@@ -13,9 +13,9 @@ h1{
     margin: 100px 200px;
 }
 
-.nav{
-    position: static;
-}
+/*.nav{*/
+    /*position: static;*/
+/*}*/
 
 .menu{
     display: flex;
