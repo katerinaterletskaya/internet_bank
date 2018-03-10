@@ -14,6 +14,7 @@ public class WelcomeController {
 
     @RequestMapping(value = {"/login"}, method = RequestMethod.GET)
     public String showAuthorizationPage(){
+        return "static/login";
         return "login";
     }
 

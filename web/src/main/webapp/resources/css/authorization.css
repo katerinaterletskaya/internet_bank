@@ -10,7 +10,11 @@ h1{
 }
 
 .right-section{
-    margin: 100px 200px;
+    margin: 100px 200px 13px;
+}
+
+.right-section-form{
+    margin: 0px 200px 13px;
 }
 
 .nav{
