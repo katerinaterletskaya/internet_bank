@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/index.js"></script>
 </head>
 <body>
 <div class="nav">
@@ -16,7 +15,7 @@
         <img src="${pageContext.request.contextPath}/resources/images/Logo.png" height="72" width="150">
     </figure>
     <ul class="clearfix">
-        <li><a href="#" id="online">Банк онлайн</a></li>
+        <li><a href="${pageContext.request.contextPath}/login" id="online">Банк онлайн</a></li>
         <li><a href="#">Карточки</a></li>
         <li><a href="#">О Банке</a></li>
     </ul>
