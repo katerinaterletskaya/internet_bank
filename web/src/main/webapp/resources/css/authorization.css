@@ -1,0 +1,86 @@
+body{
+    background: url("../images/authorization.jpg") fixed;
+}
+
+h1{
+    font-weight: 300;
+    font-size: 52px;
+    line-height: 60px;
+    color: white;
+}
+
+.right-section{
+    margin: 100px 200px;
+}
+
+.nav{
+    position: static;
+}
+
+.menu{
+    display: flex;
+    margin-top: 15px;
+    color: white;
+    font-size: 22px;
+    line-height: 34px;
+}
+
+#log{
+    margin-right: 50px;
+}
+
+.form{
+    padding: 13px 40px 13px 14px;
+    margin-top: 20px;
+    background: rgba(0,0,0,0);
+    border: 2px solid rgba(255, 255, 255, .4);
+    border-radius: 4px;
+    width: 300px;
+    color: white;
+}
+
+.form:focus{
+    background: rgba(0,0,0,.3);
+}
+
+.menu a{
+    color: white;
+    padding:0px 0px 2px 0px;
+    float: left;
+    border-bottom: 1.7px dotted rgba(0,0,0,.3);
+}
+
+.menu a:hover {
+  background-color: transparent;
+}
+
+input[type=submit]{
+    padding: 12px 30px;
+    color: #fff;
+    background-color: #f03226;
+    box-shadow: 0px 10px 20px rgba(0,0,0,.1);
+    font-weight: 400;
+    border: none;
+    border-radius: 4px;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+input:focus { outline: none; }
+
+p{
+    margin-top: 20px;
+    font-family: Arial,sans-serif;;
+    max-width: 580px;
+    font-size: 17px;
+    color: white;
+    text-align: justify;
+}
+
+
+
