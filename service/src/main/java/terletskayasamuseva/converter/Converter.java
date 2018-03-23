@@ -10,7 +10,7 @@ public class Converter {
         UserDTO userDTO = new UserDTO();
         userDTO.setUsername(user.getLogin());
         userDTO.setPassword(user.getPassword());
-        userDTO.setRole(user.getRole().toString());
+        userDTO.setRole(user.getRole().name());
         return userDTO;
     }
 

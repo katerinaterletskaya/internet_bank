@@ -60,7 +60,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
             }
         }
         if (isUser) {
-            return "/user/news";
+            return "/user/main";
         } else if (isAdmin) {
             return "/admin/news";
         } else {

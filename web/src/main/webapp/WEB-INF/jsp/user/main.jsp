@@ -16,7 +16,7 @@
         <img src="${pageContext.request.contextPath}/resources/images/Logo.png" width="200" height="95">
     </div>
     <div class="welcome">
-        <h1 align="right">Добро пожаловать, ........</h1>
+        <h1 align="right">Добро пожаловать, ${sessionScope.user}</h1>
     </div>
 </div>
 
