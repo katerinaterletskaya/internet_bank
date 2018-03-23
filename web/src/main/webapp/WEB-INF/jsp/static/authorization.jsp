@@ -4,9 +4,10 @@
 <html>
 <head>
     <title>Вход в Интернет-Банк|Sign in the Internet Bank</title>
+
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/authorization.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css?ver=123" type="text/css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/authorization.css?ver=122" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>
 </head>
@@ -26,9 +27,9 @@
         <h1 >Интернет-банк</h1>
         <div class="menu clearfix">
             <div id="log">
-                <a href="#" id="log_in">Вход</a>
+                <a href="${pageContext.request.contextPath}/login" id="log_in">Вход</a>
             </div>
-            <a href="#" id="registration">Регистрация</a>
+            <a href="${pageContext.request.contextPath}/registration" id="registration">Регистрация</a>
         </div>
     </div>
 </body>
