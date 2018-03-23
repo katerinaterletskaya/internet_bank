@@ -6,13 +6,12 @@ public class UserDTO {
     private String username;
     private String password;
     private String role;
+
     private String status;
     private String surname;
     private String name;
     private String patronymic;
-    private String telephone;
-    private String address;
-    private String otherInfo;
+    private String passport;
 
     public Long getId() {
         return id;
@@ -78,28 +77,12 @@ public class UserDTO {
         this.patronymic = patronymic;
     }
 
-    public String getTelephone() {
-        return telephone;
+    public String getPassport() {
+        return passport;
     }
 
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getOtherInfo() {
-        return otherInfo;
-    }
-
-    public void setOtherInfo(String otherInfo) {
-        this.otherInfo = otherInfo;
+    public void setPassport(String passport) {
+        this.passport = passport;
     }
 
     @Override
@@ -109,12 +92,11 @@ public class UserDTO {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", status='" + status + '\'' +
                 ", surname='" + surname + '\'' +
                 ", name='" + name + '\'' +
                 ", patronymic='" + patronymic + '\'' +
-                ", telephone='" + telephone + '\'' +
-                ", address='" + address + '\'' +
-                ", otherInfo='" + otherInfo + '\'' +
+                ", passport='" + passport + '\'' +
                 '}';
     }
 }

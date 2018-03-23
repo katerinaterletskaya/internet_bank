@@ -6,6 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import terletskayasamuseva.UserService;
+import terletskayasamuseva.model.UserDTO;
+
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -18,11 +21,12 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public String openUserMainPage() {
+    public String openUserMainPage(HttpSession session) {
+        UserDTO user = userService.getUser((String) session.getAttribute("user"));
+        session.setAttribute("fullName", user.getName()+" "+user.getPatronymic());
         return "user/main";
     }
 }

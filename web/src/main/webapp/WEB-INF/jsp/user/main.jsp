@@ -1,5 +1,4 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -22,14 +21,14 @@
         <img src="${pageContext.request.contextPath}/resources/images/Logo.png" width="200" height="95">
     </div>
     <div class="welcome">
-        <h1 align="right">Добро пожаловать, ${sessionScope.user}</h1>
+        <h1 align="right">Добро пожаловать, ${sessionScope.fullName}</h1>
     </div>
 </div>
 
 <div class="menu">
     <ul id="nav">
         <li>
-            <a href="#">Главная</a>
+            <a href="${pageContext.request.contextPath}/">Главная</a>
         </li>
         <li>
             <a href="#">Мои счета</a>
