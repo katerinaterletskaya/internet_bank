@@ -29,6 +29,9 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
     @Override
     public User getUser(String email) {
         User user = (User) getSession().createQuery("from User where login=:email").setParameter("email", email).uniqueResult();
+        logger.info(user.toString());
+        UserInformation userInformation = (UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult();
+        logger.info(userInformation.toString());
         user.setUserInformation((UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult());
         return user;
     }

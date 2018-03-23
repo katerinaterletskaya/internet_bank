@@ -8,6 +8,8 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import terletskayasamuseva.UserService;
+import terletskayasamuseva.impl.UserServiceImpl;
 import terletskayasamuseva.model.Role;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +24,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     private static final Logger logger = Logger.getLogger(AuthenticationSuccessHandlerImpl.class);
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+    private UserService userService = new UserServiceImpl();
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -33,12 +36,12 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     private void handle(HttpServletRequest request,
                         HttpServletResponse response, Authentication authentication) throws IOException {
         String targetUrl = determineTargetUrl(authentication);
-        if (response.isCommitted()) {
+        if ( response.isCommitted() ) {
             logger.debug(
                     "Response has already been committed. Unable to redirect to " + targetUrl);
             return;
         }
-        HttpSession session=request.getSession();
+        HttpSession session = request.getSession();
         session.setAttribute("user", authentication.getName());
         logger.info(session.getAttribute("user"));
         redirectStrategy.sendRedirect(request, response, targetUrl);
@@ -51,17 +54,17 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
-            if (grantedAuthority.getAuthority().equals(Role.ROLE_USER.name())) {
+            if ( grantedAuthority.getAuthority().equals(Role.ROLE_USER.name()) ) {
                 isUser = true;
                 break;
-            } else if (grantedAuthority.getAuthority().equals(Role.ROLE_ADMIN.name())) {
+            } else if ( grantedAuthority.getAuthority().equals(Role.ROLE_ADMIN.name()) ) {
                 isAdmin = true;
                 break;
             }
         }
-        if (isUser) {
-            return "/user/news";
-        } else if (isAdmin) {
+        if ( isUser ) {
+            return "/user/main";
+        } else if ( isAdmin ) {
             return "/admin/news";
         } else {
             throw new IllegalStateException();
@@ -70,7 +73,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
     private void clearAuthenticationAttribute(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        if (session == null) {
+        if ( session == null ) {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
