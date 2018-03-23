@@ -8,6 +8,12 @@
     <title>Интернет-банк "BSB"</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css">
+    <style>
+        @font-face {
+            font-family: Theano Didot;
+            src: url("${pageContext.request.contextPath}/resources/fonts/Theano Didot.ttf");
+        }
+    </style>
 </head>
 <body>
 
