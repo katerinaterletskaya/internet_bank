@@ -8,7 +8,6 @@ import terletskayasamuseva.model.UserInformation;
 
 public class Converter {
     public static UserDTO convert(User user) {
-        System.out.println(user.toString());
         if ( user != null ) {
             UserDTO userDTO = new UserDTO();
             userDTO.setUsername(user.getLogin());
