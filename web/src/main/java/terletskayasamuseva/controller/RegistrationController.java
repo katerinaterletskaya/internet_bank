@@ -42,7 +42,7 @@ public class RegistrationController {
             return "registration";
         } else {
             userService.save(user);
-            return "user/main";
+            return "login";
         }
     }
 
