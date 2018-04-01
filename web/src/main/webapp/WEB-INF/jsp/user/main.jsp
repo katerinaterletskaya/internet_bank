@@ -22,6 +22,7 @@
     </div>
     <div class="welcome">
         <h1 align="right">Добро пожаловать, ${sessionScope.fullName}</h1>
+        <a href="#">Выйти</a>
     </div>
 </div>
 
@@ -88,13 +89,43 @@
 </div>
 
 <div class="main">
-    <div class="account"></div>
-    <div class="change"></div>
+    <div class="account">
+        <table class="accountTable">
+            <thead>
+            <tr><td class="pAccount">Счет</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Открыть</a></td></tr>
+            </thead>
+        </table>
+    </div>
+    <div class="change">
+        <table class="changeTable">
+            <thead>
+            <tr><td class="pAccount">Обмен валют</td><td class="pResidue"><a href="#">Покупка</a>/<a href="#">Продажа</a></td></tr>
+            </thead>
+            <tbody>
+            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/belarus.png"><label>BYN</label></td></tr>
+            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/united-states.png"><label>USD</label></td></tr>
+            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/russian-federation.png"><label>RUB</label></td></tr>
+            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/flag-of-europ.png"><label>EUR</label></td></tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div class="info">
-    <div class="loans"></div>
-    <div class="deposit"></div>
+    <div class="loans">
+        <table class="loansTable">
+            <thead>
+            <tr><td class="pAccount">Кредит</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Оформить</a></td></tr>
+            </thead>
+        </table>
+    </div>
+    <div class="deposit">
+        <table class="depositTable">
+            <thead>
+            <tr><td class="pAccount">Депозит</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Открыть</a></td></tr>
+            </thead>
+        </table>
+    </div>
 </div>
 
 <div class="footer"></div>

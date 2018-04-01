@@ -1,3 +1,7 @@
+@font-face {
+    font-family: Theano Didot;
+    src: url("../fonts/Theano Didot.ttf");
+}
 
 .header, .main, .info, .footer{
     display: flex;
@@ -21,6 +25,16 @@
     color: black;
     letter-spacing: 2px;
     word-spacing: 4px;
+}
+.welcome a{
+    position: absolute;
+    right:7%;
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+.welcome a:link{
+    color:red;
 }
 
 .main, .info{
@@ -47,6 +61,67 @@
     height: 250px;
     overflow:auto;
     border-radius: 30px;
+}
+
+table{
+    width: 100%;
+}
+
+table thead{
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
+.pAccount{
+    position: relative;
+    left: 4%;
+    padding-top: 6%;
+    padding-bottom: 4%;
+    width:70%;
+}
+
+.pResidue{
+    position: relative;
+    left:6%;
+    padding-top: 6%;
+    padding-bottom:4%;
+    width:30%;
+    font-size: 23px;
+}
+
+.changeTable .pResidue{
+    left:0;
+    width:40%;
+}
+
+.changeTable .pAccount{
+    width:60%;
+}
+
+.changeTable tbody input{
+    position: relative;
+    left:40%;
+}
+
+.changeTable tbody label{
+    position: relative;
+    right:19%;
+    padding-top:2%;
+}
+
+.changeTable tbody img{
+    position: relative;
+    right:21%;
+    top:6px;
+}
+
+.loansTable .pResidue{
+    left:1%;
+}
+
+.depositTable .pResidue{
+    left:5%;
 }
 
 .menu{
