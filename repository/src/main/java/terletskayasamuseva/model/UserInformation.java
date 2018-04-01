@@ -75,4 +75,14 @@ public class UserInformation implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "UserInformation{" +
+                ", surname='" + surname + '\'' +
+                ", name='" + name + '\'' +
+                ", patronymic='" + patronymic + '\'' +
+                ", passportNumber='" + passportNumber + '\'' +
+                '}';
+    }
 }
