@@ -13,6 +13,7 @@
             src: url("${pageContext.request.contextPath}/resources/fonts/Theano Didot.ttf");
         }
     </style>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
 

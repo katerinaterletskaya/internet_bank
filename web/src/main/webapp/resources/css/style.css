@@ -42,10 +42,6 @@ li {
     clear:both;
 }
 
-a:hover{
-    background-color: #e0e9f2;
-}
-
 .slider{
     display: flex;
 }

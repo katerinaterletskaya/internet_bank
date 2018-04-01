@@ -10,6 +10,7 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <%@ include file="static/authorization.jsp" %>
