@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -13,7 +13,8 @@
             src: url("${pageContext.request.contextPath}/resources/fonts/Theano Didot.ttf");
         }
     </style>
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
+          type="image/x-icon">
 </head>
 <body>
 
@@ -23,7 +24,7 @@
     </div>
     <div class="welcome">
         <h1 align="right">Добро пожаловать, ${sessionScope.fullName}</h1>
-        <a href="#">Выйти</a>
+        <a href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 
@@ -93,20 +94,55 @@
     <div class="account">
         <table class="accountTable">
             <thead>
-            <tr><td class="pAccount">Счет</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Открыть</a></td></tr>
+            <tr>
+                <td class="pAccount">Счет</td>
+                <td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
+                        href="#">Открыть</a></td>
+            </tr>
             </thead>
         </table>
     </div>
     <div class="change">
         <table class="changeTable">
             <thead>
-            <tr><td class="pAccount">Обмен валют</td><td class="pResidue"><a href="#">Покупка</a>/<a href="#">Продажа</a></td></tr>
+            <tr>
+                <td class="pAccount">Обмен валют</td>
+                <td class="pResidue"><a href="#">Покупка</a>/<a href="#">Продажа</a></td>
+            </tr>
             </thead>
+
             <tbody>
-            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/belarus.png"><label>BYN</label></td></tr>
-            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/united-states.png"><label>USD</label></td></tr>
-            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/russian-federation.png"><label>RUB</label></td></tr>
-            <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/flag-of-europ.png"><label>EUR</label></td></tr>
+            <c:forEach items="currencyList" var="currency">
+            <tr>
+                <td><input type="number" min="0" value="currency."></td>
+                <td><img
+                        src="${pageContext.request.contextPath}/resources/images/${currency.currency}.png"><label>${currency.currency}</label>
+                </td>
+            </tr>
+                <%--<tr>--%>
+                <%--<td><input type="number" min="0" value="0"></td>--%>
+                <%--<td><img src="${pageContext.request.contextPath}/resources/images/BYN.png"><label>BYN</label>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                <%--<td><input type="number" min="0" value="0"></td>--%>
+                <%--<td><img--%>
+                <%--src="${pageContext.request.contextPath}/resources/images/USD.png"><label>USD</label>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                <%--<td><input type="number" min="0" value="0"></td>--%>
+                <%--<td><img--%>
+                <%--src="${pageContext.request.contextPath}/resources/images/RUB.png"><label>RUB</label>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+                <%--<tr>--%>
+                <%--<td><input type="number" min="0" value="0"></td>--%>
+                <%--<td><img--%>
+                <%--src="${pageContext.request.contextPath}/resources/images/EUR.png"><label>EUR</label>--%>
+                <%--</td>--%>
+                <%--</tr>--%>
+            </c:forEach>
             </tbody>
         </table>
     </div>
@@ -116,14 +152,22 @@
     <div class="loans">
         <table class="loansTable">
             <thead>
-            <tr><td class="pAccount">Кредит</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Оформить</a></td></tr>
+            <tr>
+                <td class="pAccount">Кредит</td>
+                <td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
+                        href="#">Оформить</a></td>
+            </tr>
             </thead>
         </table>
     </div>
     <div class="deposit">
         <table class="depositTable">
             <thead>
-            <tr><td class="pAccount">Депозит</td><td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a href="#">Открыть</a></td></tr>
+            <tr>
+                <td class="pAccount">Депозит</td>
+                <td class="pResidue"><img src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
+                        href="#">Открыть</a></td>
+            </tr>
             </thead>
         </table>
     </div>

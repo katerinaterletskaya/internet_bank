@@ -27,6 +27,12 @@ public class UserInformation implements Serializable {
     private User user;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Account> accounts;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+//    private Collection<Payment> payments;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+//    private Collection<Credit> credits;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+//    private Collection<Deposit> deposits;
 
     public Long getUserId() {
         return userId;
@@ -75,6 +81,38 @@ public class UserInformation implements Serializable {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public Collection<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Collection<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+//    public Collection<Payment> getPayments() {
+//        return payments;
+//    }
+//
+//    public void setPayments(Collection<Payment> payments) {
+//        this.payments = payments;
+//    }
+//
+//    public Collection<Credit> getCredits() {
+//        return credits;
+//    }
+//
+//    public void setCredits(Collection<Credit> credits) {
+//        this.credits = credits;
+//    }
+//
+//    public Collection<Deposit> getDeposits() {
+//        return deposits;
+//    }
+//
+//    public void setDeposits(Collection<Deposit> deposits) {
+//        this.deposits = deposits;
+//    }
 
     @Override
     public String toString() {
