@@ -47,25 +47,25 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="number" min="0" value="0" id="byn"></td>
-                        <td><img src="${pageContext.request.contextPath}/resources/images/BYN.png"><label>BYN</label>
+                        <td><input type="number" min="0" id="byn"></td>
+                        <td style="padding-left: 20px;"><img src="${pageContext.request.contextPath}/resources/images/BYN.png"><label>BYN</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0" value="1,000" id="usd"></td>
-                        <td><img
+                        <td><input type="number" min="0" id="usd"></td>
+                        <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/USD.png"><label>USD</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0" value="0" id="rub"></td>
-                        <td><img
+                        <td><input type="number" min="0" id="rub"></td>
+                        <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/RUB.png"><label>RUB</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0" value="0" id="eur"></td>
-                        <td><img
+                        <td><input type="number" min="0"  id="eur"></td>
+                        <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/EUR.png"><label>EUR</label>
                         </td>
                     </tr>
