@@ -38,8 +38,18 @@ public class UserController {
         return "user/main";
     }
 
+    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    public String openUserAccount() {
+        return "user/openAccount";
+    }
+
     @RequestMapping(value = "/deposit", method = RequestMethod.GET)
-    public String createNewDeposit(HttpSession session) {
-        return "user/deposit";
+    public String openUserDeposit() {
+        return "user/openDeposit";
+    }
+
+    @RequestMapping(value = "/loans", method = RequestMethod.GET)
+    public String openUserLoans() {
+        return "user/openLoans";
     }
 }
