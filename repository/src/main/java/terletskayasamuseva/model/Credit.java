@@ -11,7 +11,7 @@ public class Credit implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "credit_id", unique = true, nullable = false)
     private Long id;
-    @Column(name = "creadit_name", nullable = false, length = 30)
+    @Column(name = "credit_name", nullable = false, length = 30)
     private String name;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
