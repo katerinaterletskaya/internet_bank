@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import terletskayasamuseva.OperationService;
+import terletskayasamuseva.PaymentService;
 import terletskayasamuseva.UserService;
 import terletskayasamuseva.model.CurrencyKursDTO;
 import terletskayasamuseva.model.UserDTO;
@@ -22,11 +23,15 @@ public class UserController {
 
     private final UserService userService;
     private final OperationService operationService;
+    private final PaymentService paymentService;
 
     @Autowired
-    public UserController(UserService userService, OperationService operationService) {
+    public UserController(UserService userService,
+                          OperationService operationService,
+                          PaymentService paymentService) {
         this.userService = userService;
         this.operationService = operationService;
+        this.paymentService = paymentService;
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
