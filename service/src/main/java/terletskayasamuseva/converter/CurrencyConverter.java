@@ -9,8 +9,8 @@ public class CurrencyConverter {
         if ( currencyKurs != null ) {
             CurrencyKursDTO currencyKursDTO = new CurrencyKursDTO();
             currencyKursDTO.setId(currencyKurs.getId());
-            currencyKursDTO.setSale(currencyKurs.getSale());
-            currencyKursDTO.setCost(currencyKurs.getCost());
+            currencyKursDTO.setSale(currencyKurs.getSale().floatValue());
+            currencyKursDTO.setCost(currencyKurs.getCost().floatValue());
             if ( currencyKurs.getCurrency() == Currency.EUR )
                 currencyKursDTO.setCurrency(Currency.EUR.name());
             else if ( currencyKurs.getCurrency() == Currency.RUB )
