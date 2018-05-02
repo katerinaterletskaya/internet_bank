@@ -14,7 +14,7 @@ public class User implements Serializable {
     private Long id;
     @Column(nullable = false, length = 30)
     private String login;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
