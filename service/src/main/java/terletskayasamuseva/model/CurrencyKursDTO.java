@@ -8,8 +8,8 @@ public class CurrencyKursDTO implements Serializable {
 
     private Long id;
     private String currency;
-    private BigDecimal sale;
-    private BigDecimal cost;
+    private Float sale;
+    private Float cost;
 
     public Long getId() {
         return id;
@@ -27,19 +27,19 @@ public class CurrencyKursDTO implements Serializable {
         this.currency = currency;
     }
 
-    public BigDecimal getSale() {
+    public Float getSale() {
         return sale;
     }
 
-    public void setSale(BigDecimal sale) {
+    public void setSale(Float sale) {
         this.sale = sale;
     }
 
-    public BigDecimal getCost() {
+    public Float getCost() {
         return cost;
     }
 
-    public void setCost(BigDecimal cost) {
+    public void setCost(Float cost) {
         this.cost = cost;
     }
 }
