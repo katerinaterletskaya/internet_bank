@@ -4,3 +4,4 @@ target/
 *.iml
 *.ipr
 *.iws
+hibernate.properties
