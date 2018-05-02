@@ -7,6 +7,7 @@
     <title>Интернет-банк "BSB"</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css">
+    <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <style>
         @font-face {
             font-family: Theano Didot;
@@ -33,40 +34,40 @@
             <a href="${pageContext.request.contextPath}/">Главная</a>
         </li>
         <li>
-            <a href="#">Мои счета</a>
+            <a href="#" id="myAccount">Мои счета</a>
             <ul>
-                <li><a href="#">Открыть счёт</a></li>
+                <li><a href="#" id="openAccount">Открыть счёт</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">Мои кредиты</a>
+            <a href="#" id="myLoans">Мои кредиты</a>
             <ul>
-                <li><a href="#">Оформить кредит</a></li>
-                <li><a href="#">Погасить кредит</a></li>
+                <li><a href="#" id="openLoans">Оформить кредит</a></li>
+                <li><a href="#" id="repayLoans">Погасить кредит</a></li>
             </ul>
         </li>
         <li>
-            <a href="#">Мои депозиты</a>
+            <a href="#" id="myDeposit">Мои депозиты</a>
             <ul>
-                <li><a href="#">Открыть депозит</a></li>
-                <li><a href="#">Подобрать депозит</a></li>
-                <li><a href="#">Пополнить депозит</a></li>
+                <li><a href="#" id="openDeposit">Открыть депозит</a></li>
+                <li><a href="#" id="chooseDeposit">Подобрать депозит</a></li>
+                <li><a href="#" id="plusDeposit">Пополнить депозит</a></li>
             </ul>
         </li>
         <li>
             <a href="#">Переводы</a>
             <ul>
-                <li><a href="#">Перевод между своими счетами</a></li>
-                <li><a href="#">Обмен валют</a></li>
-                <li><a href="#">Перевод денег другому клиенту</a></li>
-                <li><a href="#">История переводов</a></li>
+                <li><a href="#" id="transactionMyAccount">Перевод между своими счетами</a></li>
+                <li><a href="#" id="changeCurrency">Обмен валют</a></li>
+                <li><a href="#" id="transactionOtherClient">Перевод денег другому клиенту</a></li>
+                <li><a href="#" id="transactionHistory">История переводов</a></li>
             </ul>
         </li>
         <li>
             <a href="#">Платежи</a>
             <ul>
                 <li><a href="#">ЕРИП</a></li>
-                <li><a href="#">История платежей</a></li>
+                <li><a href="#" id="paymentHistory">История платежей</a></li>
             </ul>
         </li>
         <li>
@@ -80,14 +81,15 @@
         <li>
             <a href="#">Настройки</a>
             <ul>
-                <li><a href="#">Лимиты по картам</a></li>
-                <li><a href="#">Смена логина</a></li>
-                <li><a href="#">Смена пароля</a></li>
+                <li><a href="#" id="changeLogin">Смена логина</a></li>
+                <li><a href="#" id="changePassword">Смена пароля</a></li>
             </ul>
         </li>
     </ul>
 
 </div>
+
+<div class="content">
 
 <div class="main">
     <div class="account">
@@ -100,7 +102,7 @@
     <div class="change">
         <table class="changeTable">
             <thead>
-            <tr><td class="pAccount">Обмен валют</td><td class="pResidue"><a href="#">Покупка</a>/<a href="#">Продажа</a></td></tr>
+            <tr><td class="pAccount">Обмен валют</td><td class="pResidue"><a href="#" id="achat">Покупка</a>/<a href="#" id="vente">Продажа</a></td></tr>
             </thead>
             <tbody>
             <tr><td><input type="number" min="0" value="0"></td><td><img src="${pageContext.request.contextPath}/resources/images/belarus.png"><label>BYN</label></td></tr>
@@ -128,8 +130,12 @@
         </table>
     </div>
 </div>
+</div>
 
-<div class="footer"></div>
+<div class="footer">
+        <span style="text-align: right; width:100%;">Лицензия на осуществление банковской деятельности НБРБ №0005 от 22.07.2018 г.<br>
+            Интернет-банк "Belarussian Commercial Bank" Copyright &#169; 2017-2018</span>
+</div>
 
 </body>
 </html>
