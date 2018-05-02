@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@ include file="userHeader.jsp" %>
+<div class="content">
 <h1>Подобрать депозит</h1>
 <br>
 <form style="width: 36%;float: left">
@@ -57,6 +58,7 @@
 </form>
 <div class="result" style="width:64%; float: right;" >
     <img src="${pageContext.request.contextPath}/resources/images/result.jpg" style="vertical-align:middle; padding-left:200px;" width="452" height="233">
+</div>
 </div>
 <%@ include file="userFooter.jsp" %>
 </body>

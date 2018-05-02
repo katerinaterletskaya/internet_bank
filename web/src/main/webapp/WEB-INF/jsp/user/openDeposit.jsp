@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@ include file="userHeader.jsp" %>
+<div class="content">
 <table>
     <tr>
         <td><img src="${pageContext.request.contextPath}/resources/images/button-info-icon.mXvdc.png" ></td>
@@ -31,6 +32,7 @@
         </tr>
     </table>
 </form>
+</div>
 <%@ include file="userFooter.jsp" %>
 </body>
 </html>
