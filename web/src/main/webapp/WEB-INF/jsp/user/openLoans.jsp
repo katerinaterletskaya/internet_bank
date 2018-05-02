@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<%@ include file="userHeader.jsp" %>
 <table>
     <tr>
         <td><img src="${pageContext.request.contextPath}/resources/images/button-info-icon.mXvdc.png" ></td>
@@ -30,6 +31,6 @@
         </tr>
     </table>
 </form>
-
+<%@ include file="userFooter.jsp" %>
 </body>
 </html>
