@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<%@ include file="userHeader.jsp" %>
 <h1>Перевод между своими счетами</h1>
 <form style="width:32%;">
     <table style="margin-left:30px;">
@@ -49,5 +50,6 @@
         </tr>
     </table>
 </form>
+<%@ include file="userFooter.jsp" %>
 </body>
 </html>

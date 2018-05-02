@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<%@ include file="userHeader.jsp" %>
 <h1>История переводов</h1><br>
 <div>
     <table style="width:32%; margin-left:30px;">
@@ -67,5 +68,6 @@
     </tr>
     </tbody>
 </table>
+<%@ include file="userFooter.jsp" %>
 </body>
 </html>

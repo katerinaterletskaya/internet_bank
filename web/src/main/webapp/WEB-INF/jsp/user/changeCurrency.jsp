@@ -5,14 +5,13 @@
 <head>
     <title>Обмен валют</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<%@ include file="userHeader.jsp" %>
 <h1>Обмен валют</h1>
 <form>
     <table style="width:35%; margin-left:30px;">
@@ -49,6 +48,6 @@
         </tr>
     </table>
 </form>
-
+<%@ include file="userFooter.jsp" %>
 </body>
 </html>

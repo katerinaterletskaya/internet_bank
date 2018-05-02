@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
+<%@ include file="userHeader.jsp" %>
 <h1>Подобрать депозит</h1>
 <br>
 <form style="width: 36%;float: left">
@@ -57,6 +58,6 @@
 <div class="result" style="width:64%; float: right;" >
     <img src="${pageContext.request.contextPath}/resources/images/result.jpg" style="vertical-align:middle; padding-left:200px;" width="452" height="233">
 </div>
-
+<%@ include file="userFooter.jsp" %>
 </body>
 </html>
