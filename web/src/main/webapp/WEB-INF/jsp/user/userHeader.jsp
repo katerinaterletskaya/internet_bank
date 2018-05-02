@@ -32,7 +32,7 @@
 <div class="menu">
     <ul id="nav">
         <li>
-            <a href="${pageContext.request.contextPath}/">Главная</a>
+            <a href="${pageContext.request.contextPath}/user/main">Главная</a>
         </li>
         <li>
             <a href="#" id="myAccount">Мои счета</a>

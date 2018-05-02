@@ -14,6 +14,7 @@
 </head>
 <body>
 <%@ include file="userHeader.jsp" %>
+<div class="content">
 <h1>Открыть счет</h1>
 <form>
     <table style="width:25%; margin-left:30px;">
@@ -35,6 +36,7 @@
         </tr>
     </table>
 </form>
+</div>
 <%@ include file="userFooter.jsp" %>
 </body>
 </html>

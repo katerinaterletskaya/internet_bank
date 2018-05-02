@@ -12,6 +12,7 @@
 </head>
 <body>
 <%@ include file="userHeader.jsp" %>
+<div class="content">
 <h1>Обмен валют</h1>
 <form>
     <table style="width:35%; margin-left:30px;">
@@ -48,6 +49,7 @@
         </tr>
     </table>
 </form>
+</div>
 <%@ include file="userFooter.jsp" %>
 </body>
 </html>
