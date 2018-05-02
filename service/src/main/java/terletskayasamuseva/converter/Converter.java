@@ -1,10 +1,7 @@
 package terletskayasamuseva.converter;
 
 
-import terletskayasamuseva.model.Role;
-import terletskayasamuseva.model.User;
-import terletskayasamuseva.model.UserDTO;
-import terletskayasamuseva.model.UserInformation;
+import terletskayasamuseva.model.*;
 
 public class Converter {
     public static UserDTO convert(User user) {
@@ -38,5 +35,16 @@ public class Converter {
         userInformation.setPassportNumber(userDTO.getPassport());
         user.setUserInformation(userInformation);
         return user;
+    }
+
+    public static PaymentDTO convert(Payment payment) {
+        if ( payment != null ) {
+            PaymentDTO paymentDTO = new PaymentDTO();
+            paymentDTO.setId(payment.getId());
+            paymentDTO.setName(payment.getName());
+            paymentDTO.setReceiverAccount(payment.getReceiverAccount());
+            return paymentDTO;
+        } else
+            return null;
     }
 }
