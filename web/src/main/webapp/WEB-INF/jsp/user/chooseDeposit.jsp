@@ -17,7 +17,7 @@
 <div class="content">
 <h1>Подобрать депозит</h1>
 <br>
-<form action="${pageContext.request.contextPath}/user/deposit/choose" method="post" style="width: 36%;float: left">
+<form action="${pageContext.request.contextPath}/user/deposit/choose" method="post" style="width: 40%;float: left">
     <table style="margin-left:30px;">
         <tr>
             <td class="label" style="vertical-align: middle;">Валюта:</td>
@@ -63,7 +63,7 @@
         </tr>
     </table>
 </form>
-<div class="result" style="width:64%; float: right;" >
+<div class="result" style="width:60%; float: right;" >
     <img src="${pageContext.request.contextPath}/resources/images/result.jpg" style="vertical-align:middle; padding-left:200px;" width="452" height="233">
 </div>
 </div>

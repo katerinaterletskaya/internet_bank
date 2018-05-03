@@ -7,6 +7,7 @@
     <title>Интернет-банк "BSB"</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
     <style>
         @font-face {
@@ -25,18 +26,18 @@
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">USD:</td>
-                <td><input type="text" id="costUSD" class="form" style="text-align: right; width: 60px;"  placeholder="Покупка"></td>
-                <td><input type="text" id="saleUSD" class="form" style="text-align: right; width: 68px;"  placeholder="Продажа"></td>
+                <td><input type="text" id="costUSD" class="form" style="text-align: right;"  placeholder="Покупка"></td>
+                <td><input type="text" id="saleUSD" class="form" style="text-align: right;"  placeholder="Продажа"></td>
             </tr>
             <tr>
                 <td class="label">EUR:</td>
-                <td><input type="text" id="costEUR" class="form" style="text-align: right; width: 60px;"  placeholder="Покупка"></td>
-                <td><input type="text" id="saleEUR" class="form" style="text-align: right; width: 68px;"  placeholder="Продажа"></td>
+                <td><input type="text" id="costEUR" class="form" style="text-align: right;"  placeholder="Покупка"></td>
+                <td><input type="text" id="saleEUR" class="form" style="text-align: right;"  placeholder="Продажа"></td>
             </tr>
             <tr>
                 <td class="label">RUB:</td>
-                <td><input type="text" id="costRUB" class="form" style="text-align: right; width: 60px;"  placeholder="Покупка"></td>
-                <td><input type="text" id="saleRUB" class="form" style="text-align: right; width: 68px;"  placeholder="Продажа"></td>
+                <td><input type="text" id="costRUB" class="form" style="text-align: right; "  placeholder="Покупка"></td>
+                <td><input type="text" id="saleRUB" class="form" style="text-align: right; "  placeholder="Продажа"></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Изменить"></td>
