@@ -79,6 +79,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUsername(String username, String newUsername) {
+        User user = userDAO.getUserByEmail(username);
+        user.setLogin(newUsername);
+        userDAO.updateLogin(user);
+    }
+
+    @Override
     public void updateRole(String username, String role) {
         User user = userDAO.getUserByEmail(username);
         if (role.equals(Role.ROLE_ADMIN.name())) {

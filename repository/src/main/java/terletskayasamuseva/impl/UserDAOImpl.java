@@ -38,7 +38,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
 
     @Override
     public Long getIdUserByUserName(String email) {
-        return (Long) getSession().createQuery("select u.id from User as u where u.email=:email").setParameter("email", email).uniqueResult();
+        return (Long) getSession().createQuery("select u.id from User as u where u.login=:email").setParameter("email", email).uniqueResult();
     }
 
     @Override
@@ -56,6 +56,13 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         User newUser = (User) getSession().createQuery("from User where id=:id").setParameter("id", user.getId()).uniqueResult();
         getSession().update(newUser);
         newUser.setPassword(user.getPassword());
+    }
+
+    @Override
+    public void updateLogin(User user) {
+        User newUser = (User) getSession().createQuery("from User where id=:id").setParameter("id", user.getId()).uniqueResult();
+        getSession().update(newUser);
+        newUser.setLogin(user.getLogin());
     }
 
     @Override

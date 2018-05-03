@@ -14,5 +14,5 @@ public interface UserService {
     boolean findUser(String username, String password);
     void updateRole(String username, String role);
     void updatePassword(String username, String password);
-
+    void updateUsername(String username, String newUsername);
 }

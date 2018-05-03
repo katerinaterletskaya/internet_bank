@@ -1,31 +1,14 @@
 package terletskayasamuseva.model;
 
-import org.hibernate.annotations.Type;
-
-import javax.persistence.*;
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Entity
-public class Deposit implements Serializable {
-    private static final long serialVersionUID = 8561295874381580354L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(unique = true, nullable = false)
+public class DepositDTO {
     private Long id;
-    @Column(name = "deposit_name", nullable = false, length = 30)
     private String name;
-    @Enumerated(EnumType.STRING)
-    @Column
-    private Currency currency;
-    @Column(name = "min_sum", nullable = false)
+    private String currency;
     private BigDecimal minSum;
-    @Column(nullable = false)
     private Float percent;
-    @Column(nullable = false)
     private Integer period;
-    @Type(type = "yes_no")
-    @Column(name = "is_reversal", nullable = false)
     private Boolean isReversal;
 
     public Long getId() {
@@ -44,11 +27,11 @@ public class Deposit implements Serializable {
         this.name = name;
     }
 
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 
@@ -86,10 +69,10 @@ public class Deposit implements Serializable {
 
     @Override
     public String toString() {
-        return "Deposit{" +
+        return "DepositDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", currency=" + currency +
+                ", currency='" + currency + '\'' +
                 ", minSum=" + minSum +
                 ", percent=" + percent +
                 ", period=" + period +
