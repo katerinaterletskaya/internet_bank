@@ -65,7 +65,7 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         if ( isUser ) {
             return "/user/main";
         } else if ( isAdmin ) {
-            return "/admin/news";
+            return "/admin/main";
         } else {
             throw new IllegalStateException();
         }
