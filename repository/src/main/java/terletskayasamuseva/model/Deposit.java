@@ -83,4 +83,17 @@ public class Deposit implements Serializable {
     public void setReversal(Boolean reversal) {
         isReversal = reversal;
     }
+
+    @Override
+    public String toString() {
+        return "Deposit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", currency=" + currency +
+                ", minSum=" + minSum +
+                ", percent=" + percent +
+                ", period=" + period +
+                ", isReversal=" + isReversal +
+                '}';
+    }
 }

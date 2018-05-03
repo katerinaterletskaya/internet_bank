@@ -42,16 +42,83 @@ li {
     clear:both;
 }
 
-a:hover{
-    background-color: #e0e9f2;
-}
-
 .slider{
     display: flex;
 }
 
 .plus, .otsyv{
     margin: 0px;
-   display:flex;
+    display:flex;
 }
+
+/*Меню*/
+
+#nav{
+    float:left;
+    width:100%;
+    list-style:none;
+    font-weight:500;
+    margin-top:0.5%;
+    font-family: 'PT Sans', sans-serif;
+    font-size:25px;
+}
+
+#nav li{
+    float:left;
+    margin-right:3%;
+    position:relative;
+    display:block;
+}
+
+#nav li a{
+    display:block;
+    padding:15px;
+    color:black;
+    text-decoration:none;
+    /*text-shadow:1px 1px 1px rgba(0,0,0,0.75);*/
+}
+
+#nav li a:hover{
+    color:#942a2a;
+    /*text-decoration:underline;*/
+}
+
+/*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
+#nav ul{
+    list-style:none;
+    position:absolute;
+    left:-9999px;
+    opacity:0;
+    -webkit-transition:0.25s linear opacity;
+}
+#nav ul li{
+    /*padding-top:1px; */
+    float:none;
+}
+#nav ul a{
+    white-space:nowrap; /* Останавливаем перенос текста и создаем многострочный выпадающий пункт */
+    display:block;
+
+}
+#nav li:hover ul{
+    left:-45px;
+    opacity:1;
+    font-size:25px;
+}
+#nav li:hover a{ /* Устанавливаем стили для верхнего уровня, когда выводится выпадающий список */
+    /*text-decoration:underline;*/
+}
+#nav li:hover ul a{ /* Изменяем некоторые стили верхнего уровня при выводе выпадающего пункта */
+    text-decoration:none;
+    background: white;
+    -webkit-transition:-webkit-transform 0.075s linear;
+}
+#nav li:hover ul li a:hover{ /* Устанавливаем стили для выпадающих пунктов, когда курсор наводится на конкретный пункт */
+    /*background: rgb(191, 211, 235);*/
+    /*background: rgba(191, 211, 235, 0.6); !* Будет полупрозрачным *!*/
+    /*text-decoration:underline;*/
+    -moz-transform:scale(1.05);
+    -webkit-transform:scale(1.05);
+}
+
 

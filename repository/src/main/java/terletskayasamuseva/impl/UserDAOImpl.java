@@ -29,13 +29,16 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
     @Override
     public User getUser(String email) {
         User user = (User) getSession().createQuery("from User where login=:email").setParameter("email", email).uniqueResult();
+        logger.info(user.toString());
+        UserInformation userInformation = (UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult();
+        logger.info(userInformation.toString());
         user.setUserInformation((UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult());
         return user;
     }
 
     @Override
     public Long getIdUserByUserName(String email) {
-        return (Long) getSession().createQuery("select u.id from User as u where u.email=:email").setParameter("email", email).uniqueResult();
+        return (Long) getSession().createQuery("select u.id from User as u where u.login=:email").setParameter("email", email).uniqueResult();
     }
 
     @Override
@@ -53,6 +56,13 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         User newUser = (User) getSession().createQuery("from User where id=:id").setParameter("id", user.getId()).uniqueResult();
         getSession().update(newUser);
         newUser.setPassword(user.getPassword());
+    }
+
+    @Override
+    public void updateLogin(User user) {
+        User newUser = (User) getSession().createQuery("from User where id=:id").setParameter("id", user.getId()).uniqueResult();
+        getSession().update(newUser);
+        newUser.setLogin(user.getLogin());
     }
 
     @Override

@@ -1,0 +1,298 @@
+@font-face {
+    font-family: Theano Didot;
+    src: url("../fonts/Theano Didot.ttf");
+}
+
+input:focus { outline: none; }
+select:focus{ outline: none;}
+
+.header, .main, .info, .footer{
+    display: flex;
+}
+
+.logo{
+    flex-basis: 40%;
+    padding: 0px 5%;
+}
+
+h1{
+    padding-left: 20px;
+    font-size: 23px;
+    font-family: "Theano Didot";
+    color:#444444;
+}
+
+.label{
+    font-size: 20px;
+    font-family: "Theano Didot";
+    color:black;
+}
+
+.form{
+    padding: 13px 40px 13px 14px;
+    margin-top: 20px;
+    background: rgba(0,0,0,.2);
+    border: 2px solid rgba(0,0,0,.3);
+    border-radius: 4px;
+    width: 134px;
+    color: white;
+    font-size:1em;
+}
+
+.form:focus{
+    background: rgba(0,0,0,.4);
+}
+
+input[type=submit]{
+    padding: 12px 30px;
+    color: #fff;
+    background-color: #f03226;
+    box-shadow: 0px 10px 20px rgba(0,0,0,.1);
+    font-weight: 400;
+    border: none;
+    border-radius: 4px;
+    line-height: 26px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.welcome{
+    flex-basis: 60%;
+    padding-top: 3%;
+    padding-right: 10%;
+}
+
+.welcome h1{
+    font-family: "Theano Didot";
+    font-weight: 500;
+    font-size: 2em;
+    color: black;
+    letter-spacing: 2px;
+    word-spacing: 4px;
+}
+.welcome a{
+    position: absolute;
+    right:7%;
+    font-size: 19px;
+    text-decoration: underline;
+}
+
+.welcome a:link{
+    color:red;
+}
+
+.main, .info, .content{
+    width:90%;
+    margin: 3% auto;
+    justify-content: space-around;
+}
+
+.account, .change{
+    flex-basis: 47%;
+    background: rgb(191, 211, 235);
+    background: -webkit-linear-gradient(270deg, rgb(191, 211, 235) 0%, rgb(255, 255, 255) 40%);
+    background: -o-linear-gradient(270deg, rgb(191, 211, 235) 0%, rgb(255, 255, 255) 40%);
+    height: 250px;
+    overflow:auto;
+    border-radius: 30px;
+}
+
+.loans, .deposit{
+    flex-basis: 45%;
+    background: rgb(191, 211, 235);
+    background: -webkit-linear-gradient(270deg, rgb(191, 211, 235) 0%, rgb(255, 255, 255) 40%);
+    background: -o-linear-gradient(270deg, rgb(191, 211, 235) 0%, rgb(255, 255, 255) 40%);
+    height: 250px;
+    overflow:auto;
+    border-radius: 30px;
+}
+
+table{
+    width: 100%;
+}
+
+table thead{
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 4px;
+}
+
+.pAccount{
+    position: relative;
+    left: 4%;
+    padding-top: 6%;
+    padding-bottom: 4%;
+    width:70%;
+}
+
+.pResidue{
+    position: relative;
+    left:6%;
+    padding-top: 6%;
+    padding-bottom:4%;
+    width:30%;
+    font-size: 23px;
+}
+
+.changeTable .pResidue{
+    left:0;
+    width:40%;
+}
+
+.changeTable .pAccount{
+    width:60%;
+}
+
+.changeTable tbody input{
+    position: relative;
+    left:40%;
+}
+
+.changeTable tbody label{
+    position: relative;
+    right:19%;
+    padding-top:2%;
+}
+
+.changeTable tbody img{
+    position: relative;
+    right:21%;
+    top:6px;
+}
+
+.loansTable .pResidue{
+    left:1%;
+}
+
+.depositTable .pResidue{
+    left:5%;
+}
+
+.footer{
+    width: 90%;
+    margin: 3% auto;
+    border-top: 1px solid #808080;
+    color: #666666;
+    padding-top: 10px;
+    font-size: 0.8em;
+    padding-bottom: 0;
+}
+
+#achat{
+    text-decoration: none;
+}
+
+.menu{
+    width: 90%;
+    margin: 8px auto;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    height: 90px;
+    background-color: #942a2a;
+}
+
+/*Меню*/
+
+#nav{
+    float:left;
+    width:100%;
+    list-style:none;
+    font-weight:bold;
+    margin-top:2%;
+    font-family: "Theano Didot";
+    font-size:1.5em;
+    font-weight:300;
+}
+
+#nav li{
+    float:left;
+    margin-right:2%;
+    position:relative;
+    display:block;
+}
+
+#nav li a{
+    display:block;
+    padding:5px;
+    color:#fff;
+    text-decoration:none;
+    text-shadow:1px 1px 1px rgba(0,0,0,0.75);
+}
+
+#nav li a:hover{
+    color:#fff;
+    text-decoration:underline;
+}
+
+/*--- ВЫПАДАЮЩИЕ ПУНКТЫ ---*/
+#nav ul{
+    list-style:none;
+    position:absolute;
+    left:-9999px;
+    opacity:0;
+    -webkit-transition:0.25s linear opacity;
+}
+#nav ul li{
+    /*padding-top:1px; */
+    float:none;
+}
+#nav ul a{
+    white-space:nowrap; /* Останавливаем перенос текста и создаем многострочный выпадающий пункт */
+    display:block;
+
+}
+#nav li:hover ul{
+    left:-23px;
+    opacity:1;
+    font-size:20px;
+}
+#nav li:hover a{ /* Устанавливаем стили для верхнего уровня, когда выводится выпадающий список */
+    text-decoration:underline;
+}
+#nav li:hover ul a{ /* Изменяем некоторые стили верхнего уровня при выводе выпадающего пункта */
+    text-decoration:none;
+    background:rgba(51,51,51,0.8);
+    -webkit-transition:-webkit-transform 0.075s linear;
+}
+#nav li:hover ul li a:hover{ /* Устанавливаем стили для выпадающих пунктов, когда курсор наводится на конкретный пункт */
+    background:#333;
+    background:rgba(51,51,51,0.6); /* Будет полупрозрачным */
+    text-decoration:underline;
+    -moz-transform:scale(1.05);
+    -webkit-transform:scale(1.05);
+}
+
+.radio-group input[type=radio] {
+    position: absolute;
+    visibility: hidden;
+    display: none;
+}
+
+.radio-group label {
+    color: rgba(51, 47, 53,0.4);
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 5px 20px;
+}
+
+.radio-group input[type=radio]:checked + label{
+    color: rgba(51, 47, 53,0.6);
+    background: rgba(51, 47, 53,0.2);
+}
+
+.radio-group label + input[type=radio] + label {
+    border-left: solid 3px rgba(51, 47, 53,0.2);
+}
+.radio-group {
+    border: solid 3px rgba(51, 47, 53,0.2);
+    display: inline-block;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px;
+}

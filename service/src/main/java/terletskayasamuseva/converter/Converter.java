@@ -1,25 +1,112 @@
 package terletskayasamuseva.converter;
 
 
-import terletskayasamuseva.model.Role;
-import terletskayasamuseva.model.User;
-import terletskayasamuseva.model.UserDTO;
+import terletskayasamuseva.model.*;
 
 public class Converter {
     public static UserDTO convert(User user) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setUsername(user.getLogin());
-        userDTO.setPassword(user.getPassword());
-        userDTO.setRole(user.getRole().toString());
-        return userDTO;
+        if ( user != null ) {
+            UserDTO userDTO = new UserDTO();
+            userDTO.setUsername(user.getLogin());
+            userDTO.setPassword(user.getPassword());
+            userDTO.setRole(user.getRole().name());
+            if ( user.getUserInformation() != null ) {
+                userDTO.setName(user.getUserInformation().getName());
+                userDTO.setPatronymic(user.getUserInformation().getPatronymic());
+                userDTO.setSurname(user.getUserInformation().getSurname());
+                userDTO.setPassport(user.getUserInformation().getPassportNumber());
+            }
+            return userDTO;
+        } else
+            return null;
     }
 
     public static User convert(UserDTO userDTO) {
         User user = new User();
         user.setLogin(userDTO.getUsername());
-        if (userDTO.getRole() == null) {
+        if ( userDTO.getRole() == null ) {
             user.setRole(Role.ROLE_USER);
         }
+        user.setPassword(userDTO.getPassword());
+        UserInformation userInformation = new UserInformation();
+        userInformation.setName(userDTO.getName());
+        userInformation.setPatronymic(userDTO.getPatronymic());
+        userInformation.setSurname(userDTO.getSurname());
+        userInformation.setPassportNumber(userDTO.getPassport());
+        user.setUserInformation(userInformation);
         return user;
+    }
+
+    public static PaymentDTO convert(Payment payment) {
+        if ( payment != null ) {
+            PaymentDTO paymentDTO = new PaymentDTO();
+            paymentDTO.setId(payment.getId());
+            paymentDTO.setName(payment.getName());
+            paymentDTO.setReceiverAccount(payment.getReceiverAccount());
+            return paymentDTO;
+        } else
+            return null;
+    }
+
+    public static DepositDTO convert(Deposit deposit) {
+        if ( deposit != null ) {
+            DepositDTO depositDTO = new DepositDTO();
+            depositDTO.setId(deposit.getId());
+            depositDTO.setName(deposit.getName());
+            if ( deposit.getCurrency() == Currency.BYN )
+                depositDTO.setCurrency(Currency.BYN.name());
+            else if ( deposit.getCurrency() == Currency.USD )
+                depositDTO.setCurrency(Currency.USD.name());
+            else if ( deposit.getCurrency() == Currency.EUR )
+                depositDTO.setCurrency(Currency.EUR.name());
+            else if ( deposit.getCurrency() == Currency.RUB )
+                depositDTO.setCurrency(Currency.RUB.name());
+            depositDTO.setMinSum(deposit.getMinSum());
+            depositDTO.setPercent(deposit.getPercent());
+            depositDTO.setPeriod(deposit.getPeriod());
+            depositDTO.setReversal(deposit.getReversal());
+            return depositDTO;
+        } else
+            return null;
+    }
+
+    public static Deposit convert(DepositDTO depositDTO) {
+        if ( depositDTO != null ) {
+            Deposit deposit = new Deposit();
+            deposit.setName(depositDTO.getName());
+            System.out.println(depositDTO.getCurrency());
+            if ( depositDTO.getCurrency().equals(Currency.BYN.name()) )
+                deposit.setCurrency(Currency.BYN);
+            else if ( depositDTO.getCurrency().equals(Currency.USD.name()) )
+                deposit.setCurrency(Currency.USD);
+            else if ( depositDTO.getCurrency().equals(Currency.EUR.name()) )
+                deposit.setCurrency(Currency.EUR);
+            else if ( depositDTO.getCurrency().equals(Currency.RUB.name()) ) {
+                deposit.setCurrency(Currency.RUB);
+            }
+            deposit.setMinSum(depositDTO.getMinSum());
+            deposit.setPercent(depositDTO.getPercent());
+            deposit.setPeriod(depositDTO.getPeriod());
+            deposit.setReversal(depositDTO.getReversal());
+            return deposit;
+        } else
+            return null;
+    }
+
+    public static CurrencyKursDTO convert(CurrencyKurs currencyKurs) {
+        if ( currencyKurs != null ) {
+            CurrencyKursDTO currencyKursDTO = new CurrencyKursDTO();
+            currencyKursDTO.setId(currencyKurs.getId());
+            currencyKursDTO.setSale(currencyKurs.getSale());
+            currencyKursDTO.setCost(currencyKurs.getCost());
+            if ( currencyKurs.getCurrency() == Currency.EUR )
+                currencyKursDTO.setCurrency(Currency.EUR.name());
+            else if ( currencyKurs.getCurrency() == Currency.RUB )
+                currencyKursDTO.setCurrency(Currency.RUB.name());
+            else if ( currencyKurs.getCurrency() == Currency.USD )
+                currencyKursDTO.setCurrency(Currency.USD.name());
+            return currencyKursDTO;
+        } else
+            return null;
     }
 }

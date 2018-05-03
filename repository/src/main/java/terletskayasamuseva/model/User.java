@@ -14,7 +14,7 @@ public class User implements Serializable {
     private Long id;
     @Column(nullable = false, length = 30)
     private String login;
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     private String password;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -60,5 +60,16 @@ public class User implements Serializable {
 
     public void setUserInformation(UserInformation userInformation) {
         this.userInformation = userInformation;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                ", userInformation=" + userInformation +
+                '}';
     }
 }
