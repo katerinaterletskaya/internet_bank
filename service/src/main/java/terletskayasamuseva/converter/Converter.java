@@ -10,6 +10,7 @@ public class Converter {
             userDTO.setUsername(user.getLogin());
             userDTO.setPassword(user.getPassword());
             userDTO.setRole(user.getRole().name());
+            userDTO.setStatus(user.getStatus().name());
             if ( user.getUserInformation() != null ) {
                 userDTO.setName(user.getUserInformation().getName());
                 userDTO.setPatronymic(user.getUserInformation().getPatronymic());
@@ -26,6 +27,9 @@ public class Converter {
         user.setLogin(userDTO.getUsername());
         if ( userDTO.getRole() == null ) {
             user.setRole(Role.ROLE_USER);
+        }
+        if ( userDTO.getStatus() == null ) {
+            user.setStatus(Status.UNLOCK);
         }
         user.setPassword(userDTO.getPassword());
         UserInformation userInformation = new UserInformation();
