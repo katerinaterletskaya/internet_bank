@@ -9,5 +9,6 @@ public interface UserDAO extends GenericDAO<User, Long> {
     Long getIdUserByUserName(String email);
     void updateUser(User user);
     void updatePassword(User user);
+    void updateLogin(User user);
     void updateRole(User user);
 }

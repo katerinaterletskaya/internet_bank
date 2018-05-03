@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import terletskayasamuseva.CurrencyDAO;
 import terletskayasamuseva.OperationService;
-import terletskayasamuseva.converter.CurrencyConverter;
+import terletskayasamuseva.converter.Converter;
 import terletskayasamuseva.model.CurrencyKurs;
 import terletskayasamuseva.model.CurrencyKursDTO;
 
@@ -28,7 +28,7 @@ public class OperationServiceImpl implements OperationService {
         Collection<CurrencyKurs> currencyKurs = currencyDAO.findAll();
         List<CurrencyKursDTO> currencyKursDTOList = new ArrayList<>();
         for (CurrencyKurs kurs : currencyKurs) {
-            currencyKursDTOList.add(CurrencyConverter.convert(kurs));
+            currencyKursDTOList.add(Converter.convert(kurs));
         }
         return currencyKursDTOList;
     }

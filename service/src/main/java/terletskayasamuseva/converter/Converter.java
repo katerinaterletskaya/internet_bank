@@ -47,4 +47,66 @@ public class Converter {
         } else
             return null;
     }
+
+    public static DepositDTO convert(Deposit deposit) {
+        if ( deposit != null ) {
+            DepositDTO depositDTO = new DepositDTO();
+            depositDTO.setId(deposit.getId());
+            depositDTO.setName(deposit.getName());
+            if ( deposit.getCurrency() == Currency.BYN )
+                depositDTO.setCurrency(Currency.BYN.name());
+            else if ( deposit.getCurrency() == Currency.USD )
+                depositDTO.setCurrency(Currency.USD.name());
+            else if ( deposit.getCurrency() == Currency.EUR )
+                depositDTO.setCurrency(Currency.EUR.name());
+            else if ( deposit.getCurrency() == Currency.RUB )
+                depositDTO.setCurrency(Currency.RUB.name());
+            depositDTO.setMinSum(deposit.getMinSum());
+            depositDTO.setPercent(deposit.getPercent());
+            depositDTO.setPeriod(deposit.getPeriod());
+            depositDTO.setReversal(deposit.getReversal());
+            return depositDTO;
+        } else
+            return null;
+    }
+
+    public static Deposit convert(DepositDTO depositDTO) {
+        if ( depositDTO != null ) {
+            Deposit deposit = new Deposit();
+            deposit.setName(depositDTO.getName());
+            System.out.println(depositDTO.getCurrency());
+            if ( depositDTO.getCurrency().equals(Currency.BYN.name()) )
+                deposit.setCurrency(Currency.BYN);
+            else if ( depositDTO.getCurrency().equals(Currency.USD.name()) )
+                deposit.setCurrency(Currency.USD);
+            else if ( depositDTO.getCurrency().equals(Currency.EUR.name()) )
+                deposit.setCurrency(Currency.EUR);
+            else if ( depositDTO.getCurrency().equals(Currency.RUB.name()) ) {
+                deposit.setCurrency(Currency.RUB);
+            }
+            deposit.setMinSum(depositDTO.getMinSum());
+            deposit.setPercent(depositDTO.getPercent());
+            deposit.setPeriod(depositDTO.getPeriod());
+            deposit.setReversal(depositDTO.getReversal());
+            return deposit;
+        } else
+            return null;
+    }
+
+    public static CurrencyKursDTO convert(CurrencyKurs currencyKurs) {
+        if ( currencyKurs != null ) {
+            CurrencyKursDTO currencyKursDTO = new CurrencyKursDTO();
+            currencyKursDTO.setId(currencyKurs.getId());
+            currencyKursDTO.setSale(currencyKurs.getSale());
+            currencyKursDTO.setCost(currencyKurs.getCost());
+            if ( currencyKurs.getCurrency() == Currency.EUR )
+                currencyKursDTO.setCurrency(Currency.EUR.name());
+            else if ( currencyKurs.getCurrency() == Currency.RUB )
+                currencyKursDTO.setCurrency(Currency.RUB.name());
+            else if ( currencyKurs.getCurrency() == Currency.USD )
+                currencyKursDTO.setCurrency(Currency.USD.name());
+            return currencyKursDTO;
+        } else
+            return null;
+    }
 }
