@@ -234,6 +234,7 @@ table thead{
     list-style:none;
     position:absolute;
     left:-9999px;
+    z-index: 20;
     opacity:0;
     -webkit-transition:0.25s linear opacity;
 }
