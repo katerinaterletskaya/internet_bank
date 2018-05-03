@@ -2,41 +2,41 @@ INSERT INTO t_currency_kurs(F_CURRENCY, F_SALE, F_COST) values ('USD', 2.06, 2.1
 INSERT INTO t_currency_kurs(F_CURRENCY, F_SALE, F_COST) values ('EUR', 2.35, 2.40);
 INSERT INTO t_currency_kurs(F_CURRENCY, F_SALE, F_COST) values ('RUB', 0.03, 0.04);
 
-INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 40000, 100, 'Кредит наличными', 26.9, 72);
-INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 5000, 100, 'Народный', 20, 48);
-INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 15000, 500, 'Горячее погашение', 16.4, 48);
-INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 5000, 300, 'Стандартный', 29, 48);
-INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 15000, 300, 'Доверие', 16.4, 48);
+INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 40000, 100, 'РљСЂРµРґРёС‚ РЅР°Р»РёС‡РЅС‹РјРё', 26.9, 72);
+INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 5000, 100, 'РќР°СЂРѕРґРЅС‹Р№', 20, 48);
+INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 15000, 500, 'Р“РѕСЂСЏС‡РµРµ РїРѕРіР°С€РµРЅРёРµ', 16.4, 48);
+INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 5000, 300, 'РЎС‚Р°РЅРґР°СЂС‚РЅС‹Р№', 29, 48);
+INSERT INTO t_credit(F_CURRENCY, F_MAX_SUM, F_MIN_SUM, F_CREDIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 15000, 300, 'Р”РѕРІРµСЂРёРµ', 16.4, 48);
 
 
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'y', 50, 'Фреш', 13, 16);
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('RUB', 'y', 1600, 'Профит', 10.3, 9);
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'n', 50, 'Фикс', 13, 60);
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'y', 50, 'Актив', 8, 24);
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('USD', 'y', 200, 'Свободное накопление', 1.5, 48);
-INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('EUR', 'n', 200, 'Формула успеха', 1, 48);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'y', 50, 'Р¤СЂРµС€', 13, 16);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('RUB', 'y', 1600, 'РџСЂРѕС„РёС‚', 10.3, 9);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'n', 50, 'Р¤РёРєСЃ', 13, 60);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('BYN', 'y', 50, 'РђРєС‚РёРІ', 8, 24);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('USD', 'y', 200, 'РЎРІРѕР±РѕРґРЅРѕРµ РЅР°РєРѕРїР»РµРЅРёРµ', 1.5, 48);
+INSERT INTO t_deposit(F_CURRENCY, F_IS_REVERSAL, F_MIN_SUM, F_DEPOSIT_NAME, F_PERCENT, F_PERIOD) VALUES ('EUR', 'n', 200, 'Р¤РѕСЂРјСѓР»Р° СѓСЃРїРµС…Р°', 1, 48);
 
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Билеты');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Интернет, Телевидение');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Интернет-магазины, Сервисы');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('МВД');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Мобильная связь');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('СМИ');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Таможенные платежи');
-INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Суды, Юридические услуги');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('Р‘РёР»РµС‚С‹');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РРЅС‚РµСЂРЅРµС‚, РўРµР»РµРІРёРґРµРЅРёРµ');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РРЅС‚РµСЂРЅРµС‚-РјР°РіР°Р·РёРЅС‹, РЎРµСЂРІРёСЃС‹');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РњР’Р”');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РњРѕР±РёР»СЊРЅР°СЏ СЃРІСЏР·СЊ');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РЎРњР');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РўР°РјРѕР¶РµРЅРЅС‹Рµ РїР»Р°С‚РµР¶Рё');
+INSERT INTO t_payment_category(F_NAME_CATEGORY) VALUES ('РЎСѓРґС‹, Р®СЂРёРґРёС‡РµСЃРєРёРµ СѓСЃР»СѓРіРё');
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Belavia.by - авиабилеты Беларуси', '2931', 1);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Beltuz.by - театр юного зрителя', '4324471', 1);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Kvitki.by - оплата билетов', '4439161', 1);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Poezd.rw.by - ж/д билеты', '377801', 1);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Ticketpro.by - оплата билетов', '3311', 1);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Belavia.by - Р°РІРёР°Р±РёР»РµС‚С‹ Р‘РµР»Р°СЂСѓСЃРё', '2931', 1);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Beltuz.by - С‚РµР°С‚СЂ СЋРЅРѕРіРѕ Р·СЂРёС‚РµР»СЏ', '4324471', 1);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Kvitki.by - РѕРїР»Р°С‚Р° Р±РёР»РµС‚РѕРІ', '4439161', 1);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Poezd.rw.by - Р¶/Рґ Р±РёР»РµС‚С‹', '377801', 1);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Ticketpro.by - РѕРїР»Р°С‚Р° Р±РёР»РµС‚РѕРІ', '3311', 1);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('velcome-voka - Абонентская плата за ТВ', '4404901', 2);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Мегого - Кино и ТВ', '4432421', 2);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Медиатек - TVBox', '424291', 2);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Техноон - Sputniki.by', '4392381', 2);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Эфир - Абонентская плата за ТВ', '381321', 2);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Подключение ТВ', '381341', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('velcome-voka - РђР±РѕРЅРµРЅС‚СЃРєР°СЏ РїР»Р°С‚Р° Р·Р° РўР’', '4404901', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РњРµРіРѕРіРѕ - РљРёРЅРѕ Рё РўР’', '4432421', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РњРµРґРёР°С‚РµРє - TVBox', '424291', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РўРµС…РЅРѕРѕРЅ - Sputniki.by', '4392381', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р­С„РёСЂ - РђР±РѕРЅРµРЅС‚СЃРєР°СЏ РїР»Р°С‚Р° Р·Р° РўР’', '381321', 2);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РџРѕРґРєР»СЋС‡РµРЅРёРµ РўР’', '381341', 2);
 
 INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Afashion.by', '4341161', 3);
 INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Amd.by', '4424021', 3);
@@ -46,23 +46,23 @@ INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES 
 INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Nalepka.by', '425071', 3);
 INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Udachno.by', '4434511', 3);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Штрафы ГАИ', '4325411', 4);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Фотофиксация скорости ГАИ', '381141', 4);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Штраф ГАИ - отсутствие страховки', '4325401', 4);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РЁС‚СЂР°С„С‹ Р“РђР', '4325411', 4);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р¤РѕС‚РѕС„РёРєСЃР°С†РёСЏ СЃРєРѕСЂРѕСЃС‚Рё Р“РђР', '381141', 4);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РЁС‚СЂР°С„ Р“РђР - РѕС‚СЃСѓС‚СЃС‚РІРёРµ СЃС‚СЂР°С…РѕРІРєРё', '4325401', 4);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('life :) на № телефона', '4417781', 5);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('velcom - по № телефона', '381861', 5);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('МТС по № телефона', '393931', 5);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('МТС - Домашний интернет', '4270161', 5);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('life :) РЅР° в„– С‚РµР»РµС„РѕРЅР°', '4417781', 5);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('velcom - РїРѕ в„– С‚РµР»РµС„РѕРЅР°', '381861', 5);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РњРўРЎ РїРѕ в„– С‚РµР»РµС„РѕРЅР°', '393931', 5);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РњРўРЎ - Р”РѕРјР°С€РЅРёР№ РёРЅС‚РµСЂРЅРµС‚', '4270161', 5);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Белгазета - подписка', '4393081', 6);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Гойсак - подписка', '399311', 6);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Искра - подписка', '7442346', 6);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Лидская газета - подписка', '232545', 6);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Рыболов - подписка на электронную версию', '4353511', 6);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р‘РµР»РіР°Р·РµС‚Р° - РїРѕРґРїРёСЃРєР°', '4393081', 6);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р“РѕР№СЃР°Рє - РїРѕРґРїРёСЃРєР°', '399311', 6);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РСЃРєСЂР° - РїРѕРґРїРёСЃРєР°', '7442346', 6);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р›РёРґСЃРєР°СЏ РіР°Р·РµС‚Р° - РїРѕРґРїРёСЃРєР°', '232545', 6);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р С‹Р±РѕР»РѕРІ - РїРѕРґРїРёСЃРєР° РЅР° СЌР»РµРєС‚СЂРѕРЅРЅСѓСЋ РІРµСЂСЃРёСЋ', '4353511', 6);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Госпошлина при обращении в суд РБ', '4354401', 8);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Р“РѕСЃРїРѕС€Р»РёРЅР° РїСЂРё РѕР±СЂР°С‰РµРЅРёРё РІ СЃСѓРґ Р Р‘', '4354401', 8);
 
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Таможенная пошлина МПО', '4468941', 7);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Таможенный сбор МПО', '4442131', 7);
-INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('Штрафы за АТП', '388301', 7);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РўР°РјРѕР¶РµРЅРЅР°СЏ РїРѕС€Р»РёРЅР° РњРџРћ', '4468941', 7);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РўР°РјРѕР¶РµРЅРЅС‹Р№ СЃР±РѕСЂ РњРџРћ', '4442131', 7);
+INSERT INTO t_payment(F_PAYMENT_NAME, F_RECEIVER_ACCOUNT, F_CATEGORY_ID) VALUES ('РЁС‚СЂР°С„С‹ Р·Р° РђРўРџ', '388301', 7);
