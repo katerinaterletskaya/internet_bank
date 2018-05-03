@@ -33,41 +33,41 @@
 <div class="menu">
     <ul id="nav">
         <li>
-            <a href="#">Главная</a>
+            <a href="${pageContext.request.contextPath}/admin/main">Главная</a>
         </li>
         <li>
             <a href="#" id="users">Пользователи</a>
             <ul>
-                <li><a href="#" id="registrationUser">Зарегистрировать пользователя</a></li>
-                <li><a href="#" id="showUsers">Просмотр всех пользователей</a></li>
-                <li><a href="#" id="searchUser">Поиск регистрационных данных</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/user/new" id="registrationUser">Зарегистрировать пользователя</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/user/show" id="showUsers">Просмотр всех пользователей</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/user/search" id="searchUser">Поиск регистрационных данных</a></li>
             </ul>
         </li>
         <li>
             <a href="#" id="loans">Кредиты</a>
             <ul>
-                <li><a href="#" id="addLoan">Добавить новый кредит</a></li>
-                <li><a href="#" id="openLoan">Открыть кредит ФЛ</a></li>
-                <li><a href="#" id="viewLoan">Просмотр заявок на кредиты</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/loan/new" id="addLoan">Добавить новый кредит</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/loan/open" id="openLoan">Открыть кредит ФЛ</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/loan/view" id="viewLoan">Просмотр заявок на кредиты</a></li>
             </ul>
         </li>
         <li>
             <a href="#" id="deposit">Депозиты</a>
             <ul>
-                <li><a href="#" id="openDeposit">Открыть депозит ФЛ</a></li>
-                <li><a href="#" id="addDeposit">Добавить новый депозит</a></li>
-                <li><a href="#" id="viewDeposit">Просмотр заявок на депозиты</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/deposit/open" id="openDeposit">Открыть депозит ФЛ</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/deposit/new" id="addDeposit">Добавить новый депозит</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/deposit/view" id="viewDeposit">Просмотр заявок на депозиты</a></li>
             </ul>
         </li>
         <li>
             <a href="#" id="account">Счета</a>
             <ul>
-                <li><a href="#" id="openAccount">Открыть счет ФЛ</a></li>
-                <li><a href="#" id="plusAccount">Пополнить счет ФЛ</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/account/open" id="openAccount">Открыть счет ФЛ</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/account/plus" id="plusAccount">Пополнить счет ФЛ</a></li>
             </ul>
         </li>
         <li>
-            <a href="#" id="changeKurs">Изменить курс валют</a>
+            <a href="${pageContext.request.contextPath}/admin/kurs" id="changeKurs">Изменить курс валют</a>
         </li>
     </ul>
 
