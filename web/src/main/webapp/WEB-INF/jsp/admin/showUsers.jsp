@@ -7,6 +7,7 @@
     <title>Интернет-банк "BSB"</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>
     <style>
         @font-face {
@@ -24,22 +25,43 @@
     <table style="width:70%; margin-top:20px; color:#777777; border-collapse: collapse; border: 1px solid #d8dcdf;">
         <thead style="background-color: #f0f5f8; border: 1px solid #d8dcdf; ">
         <tr>
-            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">ФИО пользователя</th>
-            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">Кол-во текущих счетов</th>
-            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">Кол-во кредитных счетов</th>
-            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">Кол-во депозитных счетов</th>
-            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">Блокировка</th>
+            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
+                ФИО пользователя
+            </th>
+            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
+                Кол-во текущих счетов
+            </th>
+            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
+                Кол-во кредитных счетов
+            </th>
+            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
+                Кол-во депозитных счетов
+            </th>
+            <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
+                Блокировка
+            </th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>jnkjsbg k kejnrfk k</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
+        <c:forEach items="${users}" var="user">
+            <tr>
+                <td>jnkjsbg k kejnrfk k</td>
+                <td>4</td>
+                <td>3</td>
+                <td>2</td>
+                <td>
+                    <c:choose>
+                        <c:when test="${user.status=='UNLOCK'}">
+                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/none_block.png");'></button>
+                        </c:when>
+                        <c:otherwise>
+                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/block.png");'></button>
+                        </c:otherwise>
+                    </c:choose>
 
-            <td><button style="width: 30px; height: 30px;margin-left: 40px; border: none; background-color: white;" onclick="alert('djksjd');" c></button></td>
-        </tr>
+                </td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
