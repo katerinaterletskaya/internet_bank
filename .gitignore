@@ -5,3 +5,4 @@ target/
 *.ipr
 *.iws
 hibernate.properties
+initial_data.sql
