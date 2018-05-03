@@ -19,6 +19,9 @@ public class User implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Role role;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private UserInformation userInformation;
 
@@ -54,6 +57,14 @@ public class User implements Serializable {
         this.role = role;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public UserInformation getUserInformation() {
         return userInformation;
     }
@@ -62,14 +73,4 @@ public class User implements Serializable {
         this.userInformation = userInformation;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", login='" + login + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                ", userInformation=" + userInformation +
-                '}';
-    }
 }

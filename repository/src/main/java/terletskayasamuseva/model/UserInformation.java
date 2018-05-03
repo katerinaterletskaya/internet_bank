@@ -27,8 +27,11 @@ public class UserInformation implements Serializable {
     private User user;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<Account> accounts;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
+    private Collection<AccountRequest> requests;
+
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-//    private Collection<Payment> payments;
+//    private Collection<AccountRequest> requests;
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
 //    private Collection<Credit> credits;
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
