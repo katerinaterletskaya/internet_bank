@@ -113,4 +113,29 @@ public class Converter {
         } else
             return null;
     }
+
+    public static AccountRequest convert(AccountRequestDTO accountRequestDTO) {
+        if ( accountRequestDTO != null ) {
+            AccountRequest accountRequest = new AccountRequest();
+            accountRequest.setTelephone(accountRequestDTO.getTelephone());
+            if ( accountRequestDTO.getStatus() == null )
+                accountRequest.setStatus(false);
+            if(accountRequestDTO.getType().equals(AccountType.CREDIT.name()))
+                accountRequest.setType(AccountType.CREDIT);
+            else if(accountRequestDTO.getType().equals(AccountType.DEPOSIT.name()))
+                accountRequest.setType(AccountType.DEPOSIT);
+            else if(accountRequestDTO.getType().equals(AccountType.CURRENT.name()))
+                accountRequest.setType(AccountType.CURRENT);
+            if(accountRequestDTO.getCurrency().equals(Currency.USD.name()))
+                accountRequest.setCurrency(Currency.USD);
+            else if(accountRequestDTO.getCurrency().equals(Currency.EUR.name()))
+                accountRequest.setCurrency(Currency.EUR);
+            else if(accountRequestDTO.getCurrency().equals(Currency.RUB.name()))
+                accountRequest.setCurrency(Currency.RUB);
+            else if(accountRequestDTO.getCurrency().equals(Currency.BYN.name()))
+                accountRequest.setCurrency(Currency.BYN);
+            return accountRequest;
+        } else
+            return null;
+    }
 }

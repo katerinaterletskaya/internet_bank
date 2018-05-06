@@ -67,8 +67,8 @@
         <li>
             <a href="#">Платежи</a>
             <ul>
-                <li><a href="#">ЕРИП</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/payments/history" id="paymentHistory">История платежей</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/payment/ERIP">ЕРИП</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/payment/history" id="paymentHistory">История платежей</a></li>
             </ul>
         </li>
         <li>

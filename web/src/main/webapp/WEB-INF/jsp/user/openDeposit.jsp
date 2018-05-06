@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Обмен валют</title>
+    <title>Открыть депозит</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
@@ -23,7 +23,7 @@
     <table style="width:37%; margin-left:30px;">
         <tr>
             <td class="label">Ваш номер телефона:</td>
-            <td><input type="text" id="telephoneNumber" class="form" style="width: 200px;"><br></td>
+            <td><input type="text" id="telephoneNumber" name="telephone" class="form" style="width: 200px;"><br></td>
         </tr>
         <tr>
             <td><input type="submit" value="Отправить"></td>
