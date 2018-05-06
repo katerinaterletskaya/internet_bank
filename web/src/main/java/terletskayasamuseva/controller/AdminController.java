@@ -82,6 +82,11 @@ public class AdminController {
         return "admin/plusAccount";
     }
 
+    @RequestMapping(value = "/account/request", method = RequestMethod.GET)
+    public String openAccountRequest() {
+        return "admin/openCurrentAccount";
+    }
+
     //Operation with transaction
 
     @RequestMapping(value = "/kurs", method = RequestMethod.GET)
