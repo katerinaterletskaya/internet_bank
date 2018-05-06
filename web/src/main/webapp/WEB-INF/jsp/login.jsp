@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css?ver=123" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/authorization.css?ver=122" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <%@ include file="static/authorization.jsp" %>
-    <form action="login" method="post" class="right-section-form" onsubmit="return isValid();">
+    <form action="login" method="post" class="right-section-form">
         <div class="clearfix">
             <input type="email" autocomplete="off" name="username" id="login" class="form" placeholder="Логин">
         </div>
