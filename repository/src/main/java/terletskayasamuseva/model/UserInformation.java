@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.Collection;
 
 @Entity
-@Table(name="user_information")
+@Table(name = "user_information")
 public class UserInformation implements Serializable {
 
     private static final long serialVersionUID = -4742145304571241489L;
@@ -29,13 +29,6 @@ public class UserInformation implements Serializable {
     private Collection<Account> accounts;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private Collection<AccountRequest> requests;
-
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-//    private Collection<AccountRequest> requests;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-//    private Collection<Credit> credits;
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-//    private Collection<Deposit> deposits;
 
     public Long getUserId() {
         return userId;
@@ -93,29 +86,17 @@ public class UserInformation implements Serializable {
         this.accounts = accounts;
     }
 
-//    public Collection<Payment> getPayments() {
-//        return payments;
-//    }
-//
-//    public void setPayments(Collection<Payment> payments) {
-//        this.payments = payments;
-//    }
-//
-//    public Collection<Credit> getCredits() {
-//        return credits;
-//    }
-//
-//    public void setCredits(Collection<Credit> credits) {
-//        this.credits = credits;
-//    }
-//
-//    public Collection<Deposit> getDeposits() {
-//        return deposits;
-//    }
-//
-//    public void setDeposits(Collection<Deposit> deposits) {
-//        this.deposits = deposits;
-//    }
+    public Collection<AccountRequest> getRequests() {
+        return requests;
+    }
+
+    public void setRequests(Collection<AccountRequest> requests) {
+        this.requests = requests;
+    }
+
+    public void addRequest(AccountRequest request) {
+        getRequests().add(request);
+    }
 
     @Override
     public String toString() {

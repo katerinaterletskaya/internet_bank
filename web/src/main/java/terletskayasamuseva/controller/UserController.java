@@ -8,13 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import terletskayasamuseva.DepositService;
-import terletskayasamuseva.OperationService;
-import terletskayasamuseva.PaymentService;
-import terletskayasamuseva.UserService;
-import terletskayasamuseva.model.CurrencyKursDTO;
-import terletskayasamuseva.model.DepositDTO;
-import terletskayasamuseva.model.UserDTO;
+import terletskayasamuseva.*;
+import terletskayasamuseva.model.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -29,16 +24,19 @@ public class UserController {
     private final OperationService operationService;
     private final DepositService depositService;
     private final PaymentService paymentService;
+    private final AccountService accountService;
 
     @Autowired
     public UserController(UserService userService,
                           OperationService operationService,
                           DepositService depositService,
-                          PaymentService paymentService) {
+                          PaymentService paymentService,
+                          AccountService accountService) {
         this.userService = userService;
         this.operationService = operationService;
-        this.depositService=depositService;
+        this.depositService = depositService;
         this.paymentService = paymentService;
+        this.accountService = accountService;
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
@@ -57,6 +55,14 @@ public class UserController {
         return "user/openAccount";
     }
 
+    @RequestMapping(value = "/account/new", method = RequestMethod.POST)
+    public String createNewAccount(HttpSession session, @RequestParam("currency") String currency) {
+        AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
+        accountRequestDTO.setType("CURRENT");
+        accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
+        return "user/openAccount";
+    }
+
     @RequestMapping(value = "/account", method = RequestMethod.GET)
     public String openUserAccount() {
         return "user/openAccount";   //change
@@ -70,13 +76,22 @@ public class UserController {
     }
 
     @RequestMapping(value = "/deposit/choose", method = RequestMethod.POST)
-    public String chooseDeposit(Model model,@ModelAttribute DepositDTO depositDTO){
+    public String chooseDeposit(Model model, @ModelAttribute DepositDTO depositDTO) {
         List<DepositDTO> deposits = depositService.getDepositsByParameter(depositDTO);
         return "user/chooseDeposit";     //change
     }
 
     @RequestMapping(value = "/deposit/new", method = RequestMethod.GET)
-    public String openCreateDepositForUser() {
+    public String openCreateDeposit() {
+        return "user/openDeposit";
+    }
+
+    @RequestMapping(value = "/deposit/new", method = RequestMethod.POST)
+    public String createDeposit(HttpSession session, @RequestParam("telephone") String telephone) {
+        AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
+        accountRequestDTO.setTelephone(telephone);
+        accountRequestDTO.setType("DEPOSIT");
+        accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
         return "user/openDeposit";
     }
 
@@ -88,7 +103,16 @@ public class UserController {
     //Operation with loans
 
     @RequestMapping(value = "/loans/new", method = RequestMethod.GET)
-    public String openCreateNewLoansForUser() {
+    public String openCreateNewLoan() {
+        return "user/openLoans";
+    }
+
+    @RequestMapping(value = "/loans/new", method = RequestMethod.POST)
+    public String createNewLoan(HttpSession session, @RequestParam("telephone") String telephone) {
+        AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
+        accountRequestDTO.setTelephone(telephone);
+        accountRequestDTO.setType("CREDIT");
+        accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
         return "user/openLoans";
     }
 
@@ -120,11 +144,17 @@ public class UserController {
     }
 
     //Operations with payments
-    @RequestMapping(value = "/payments/history", method = RequestMethod.GET)
+    @RequestMapping(value = "/payment/ERIP", method = RequestMethod.GET)
+    public String openPaymentERIP(Model model) {
+        List<PaymentDTO> payments = paymentService.getAll();
+        model.addAttribute("payments", payments);
+        return "user/paymentsERIP";
+    }
+
+    @RequestMapping(value = "/payment/history", method = RequestMethod.GET)
     public String openPaymentHistory() {
         return "user/paymentHistory";
     }
-
 
     //Operations with setting
 

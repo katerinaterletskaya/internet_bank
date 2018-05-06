@@ -1,7 +1,7 @@
 package terletskayasamuseva.model;
 
 public enum AccountType {
-    кредитный,
-    депозитный,
-    текущий
+    CREDIT,
+    DEPOSIT,
+    CURRENT
 }
