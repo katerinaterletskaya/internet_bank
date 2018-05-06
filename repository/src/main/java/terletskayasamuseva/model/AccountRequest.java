@@ -4,16 +4,21 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Table(name = "account_request")
 public class AccountRequest implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "request_id", unique = true, nullable = false)
     private Long id;
-    @Column(nullable = false, length = 20)
+    @Column(length = 20)
     private String telephone;
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private AccountType type;
+    @Enumerated(EnumType.STRING)
+    @Column()
+    private Currency currency;
     @Column(nullable = false)
     private Boolean status;
     @ManyToOne
@@ -44,6 +49,14 @@ public class AccountRequest implements Serializable {
 
     public void setType(AccountType type) {
         this.type = type;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
     }
 
     public Boolean getStatus() {

@@ -50,10 +50,10 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
     private String determineTargetUrl(Authentication authentication) {
         boolean isUser = false;
         boolean isAdmin = false;
-        boolean isRoot = false;
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
+            logger.info(grantedAuthority);
             if ( grantedAuthority.getAuthority().equals(Role.ROLE_USER.name()) ) {
                 isUser = true;
                 break;
@@ -67,7 +67,8 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         } else if ( isAdmin ) {
             return "/admin/main";
         } else {
-            throw new IllegalStateException();
+            return "/login";
+            //throw new IllegalStateException();
         }
     }
 

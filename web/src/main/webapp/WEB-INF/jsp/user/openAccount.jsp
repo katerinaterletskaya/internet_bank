@@ -16,11 +16,11 @@
 <%@ include file="userHeader.jsp" %>
 <div class="content">
 <h1>Открыть счет</h1>
-<form>
+<form action="${pageContext.request.contextPath}/user/account/new" method="post">
     <table style="width:25%; margin-left:30px;">
         <tr>
             <td class="label">Валюта:</td>
-            <td><select id="selectCurrency" class="form">
+            <td><select id="selectCurrency" name="currency" class="form">
                 <option value="BYN">BYN</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>

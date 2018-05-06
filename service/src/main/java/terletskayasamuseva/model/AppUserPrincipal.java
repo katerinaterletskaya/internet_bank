@@ -13,9 +13,10 @@ public class AppUserPrincipal implements UserDetails {
 
     public AppUserPrincipal(UserDTO user) {
         this.user = user;
-        grantedAuthorities = Collections.singleton(
-                new SimpleGrantedAuthority(user.getRole())
-        );
+        if ( user.getStatus().equals(Status.UNLOCK.name()) )
+            grantedAuthorities = Collections.singleton(
+                    new SimpleGrantedAuthority(user.getRole())
+            );
     }
 
     public Long getUserId() {
