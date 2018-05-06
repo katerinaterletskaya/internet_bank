@@ -65,6 +65,7 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/admin/account/open" id="openAccount">Открыть счет ФЛ</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/account/plus" id="plusAccount">Пополнить счет ФЛ</a></li>
+                <li><a href="" id="openCurrentAccount">Просмотр заявок на открытие текущего счета</a></li>
             </ul>
         </li>
         <li>

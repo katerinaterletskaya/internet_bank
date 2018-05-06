@@ -17,8 +17,8 @@ public class WelcomeController {
         return "login";
     }
 
-//    @RequestMapping(value = {"/registration"}, method = RequestMethod.GET)
-//    public String showRegistrationPage(){
-//        return "registration";
-//    }
+    @RequestMapping(value = {"/registration"}, method = RequestMethod.GET)
+    public String showRegistrationPage(){
+        return "registration";
+    }
 }
