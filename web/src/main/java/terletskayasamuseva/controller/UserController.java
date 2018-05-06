@@ -59,6 +59,7 @@ public class UserController {
     public String createNewAccount(HttpSession session, @RequestParam("currency") String currency) {
         AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
         accountRequestDTO.setType("CURRENT");
+        accountRequestDTO.setCurrency(currency);
         accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
         return "user/openAccount";
     }
