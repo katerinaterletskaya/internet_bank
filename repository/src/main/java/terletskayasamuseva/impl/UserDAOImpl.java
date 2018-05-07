@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import terletskayasamuseva.UserDAO;
+import terletskayasamuseva.model.Role;
 import terletskayasamuseva.model.User;
 import terletskayasamuseva.model.UserInformation;
 
@@ -34,6 +35,13 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         UserInformation userInformation = (UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult();
         user.setUserInformation((UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult());
         return user;
+    }
+
+    @Override
+    public UserInformation getUserByPassport(String passport) {
+        UserInformation info = (UserInformation) getSession().createQuery("from UserInformation where passportNumber=:passport")
+                .setParameter("passport", passport).uniqueResult();
+        return info;
     }
 
     @Override
@@ -74,7 +82,8 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
 
     @Override
     public List<User> getUserForAdmin() {
-        return null;
+        return (List<User>) getSession().createQuery("from User as u where u.role=:role")
+                .setParameter("role", Role.ROLE_USER).list();
     }
 
     @Override

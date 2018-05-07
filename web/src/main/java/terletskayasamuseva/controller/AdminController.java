@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import terletskayasamuseva.*;
 import terletskayasamuseva.model.AccountRequestDTO;
+import terletskayasamuseva.model.CreditDTO;
+import terletskayasamuseva.model.DepositDTO;
 import terletskayasamuseva.model.UserDTO;
+import terletskayasamuseva.validator.UserValidator;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -47,6 +50,7 @@ public class AdminController {
         return "admin/mainAdmin";
     }
 
+
     //DepositOperation with deposit
 
     @RequestMapping(value = "/deposit/new", method = RequestMethod.GET)
@@ -55,14 +59,38 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/deposit/new", method = RequestMethod.POST)
-    public String addNewDeposit() {
-
-        return "admin/addDeposit";
+    public String addNewDeposit(@ModelAttribute DepositDTO depositDTO,
+                                @RequestParam("isReversal") String isReversal,
+                                Model model) {
+        Boolean reversal = Boolean.parseBoolean(isReversal);
+        depositDTO.setReversal(reversal);
+        if ( !depositService.getDepositByName(depositDTO.getName()) ) {
+            if ( depositService.addDeposit(depositDTO) )
+                return "redirect:/admin/main";
+            else
+                return "admin/addDeposit";
+        } else {
+            model.addAttribute("error", "Депозит с таким названием уже существует!");
+            return "admin/addDeposit";
+        }
     }
 
     @RequestMapping(value = "/deposit/open", method = RequestMethod.GET)
-    public String openOpenDeposit() {
+    public String openOpenDeposit(Model model) {
+        List<DepositDTO> depositList = depositService.getAll();
+        model.addAttribute("deposits", depositList);
         return "admin/openDeposit";
+    }
+
+    @RequestMapping(value = "/deposit/open", method = RequestMethod.POST)
+    public String openDeposit(@ModelAttribute DepositDTO depositDTO,
+                              @RequestParam("passport") String passport) {
+        if ( userService.findUserByPassport(passport) ) {
+            logger.info(depositDTO.toString());
+            depositService.addDepositForUser(passport, depositDTO.getCurrency(), depositDTO.getMinSum());
+            return "redirect:/admin/main";
+        } else
+            return "redirect:/admin/user/new";
     }
 
     @RequestMapping(value = "/deposit/request", method = RequestMethod.GET)
@@ -76,8 +104,9 @@ public class AdminController {
     public String requestForDeposit(@ModelAttribute AccountRequestDTO accountRequest) {
         accountRequest.setType("DEPOSIT");
         depositService.updateRequestForDeposit(accountRequest);
-        return "redirect:/admin/deposit/request";
+        return "admin/viewDeposit";
     }
+
 
     //DepositOperation with loans
 
@@ -86,9 +115,35 @@ public class AdminController {
         return "admin/addLoan";
     }
 
+    @RequestMapping(value = "/loan/new", method = RequestMethod.POST)
+    public String addNewLoan(@ModelAttribute CreditDTO creditDTO,
+                             Model model) {
+        if ( !creditService.findCreditByName(creditDTO.getName()) ) {
+            if ( creditService.addCredit(creditDTO) )
+                return "redirect:/admin/main";
+            else
+                return "admin/addLoan";
+        } else {
+            model.addAttribute("error", "Кредит с таким названием уже существует!");
+            return "admin/addLoan";
+        }
+    }
+
     @RequestMapping(value = "/loan/open", method = RequestMethod.GET)
-    public String openOpenLoan() {
+    public String openOpenLoan(Model model) {
+        List<CreditDTO> creditList = creditService.getAll();
+        model.addAttribute("credits", creditList);
         return "admin/openLoan";
+    }
+
+    @RequestMapping(value = "/loan/open", method = RequestMethod.POST)
+    public String openLoan(@ModelAttribute CreditDTO creditDTO,
+                           @RequestParam("passport") String passport) {
+        if ( userService.findUserByPassport(passport) ) {
+            creditService.addCreditForUser(passport, creditDTO.getCurrency(), creditDTO.getMinSum());
+            return "redirect:/admin/main";
+        } else
+            return "redirect:/admin/user/new";
     }
 
     @RequestMapping(value = "/loan/request", method = RequestMethod.GET)
@@ -105,7 +160,12 @@ public class AdminController {
         return "redirect:/admin/loan/request";
     }
 
-    //DepositOperation with account
+
+
+
+
+
+    //Operation with account
 
     @RequestMapping(value = "/account/open", method = RequestMethod.GET)
     public String openCreateAccount() {
@@ -113,8 +173,18 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/account/open", method = RequestMethod.POST)
-    public String createAccount() {
-        return "admin/openAccount";
+    public String createAccount(@RequestParam("passport") String passport,
+                                @RequestParam("currency") String currency,
+                                @RequestParam("sum") BigDecimal sum) {
+        logger.info(passport);
+        logger.info(currency);
+        logger.info(sum);
+        if ( userService.findUserByPassport(passport) ) {
+            accountService.addCurrentAccountForUser(passport, currency, sum);
+            //creditService.addCreditForUser(passport, creditDTO.getCurrency(), creditDTO.getMinSum());
+            return "redirect:/admin/main";
+        } else
+            return "redirect:/admin/user/new";
     }
 
     @RequestMapping(value = "/account/plus", method = RequestMethod.GET)
@@ -138,6 +208,9 @@ public class AdminController {
         return "redirect:/admin/account/request";
     }
 
+
+
+
     //DepositOperation with transaction
 
     @RequestMapping(value = "/kurs", method = RequestMethod.GET)
@@ -145,11 +218,30 @@ public class AdminController {
         return "admin/changeKurs";
     }
 
+
+
+
+
+
     //DepositOperation with users
 
     @RequestMapping(value = "/user/show", method = RequestMethod.GET)
-    public String openShowUsers() {
+    public String openShowUsers(Model model) {
+        List<UserDTO> users = userService.getAllUserForAdmin();
+        for (UserDTO user : users) {
+            user.setNumberAccount(accountService.getNumberAccountForUser(user.getUsername(), "CURRENT"));
+            user.setNumberCredit(accountService.getNumberAccountForUser(user.getUsername(), "CREDIT"));
+            user.setNumberDeposit(accountService.getNumberAccountForUser(user.getUsername(), "DEPOSIT"));
+        }
+        model.addAttribute("users", users);
         return "admin/showUsers";
+    }
+
+    @RequestMapping(value = "/user/show", method = RequestMethod.POST)
+    public String changeUserStatus(@RequestParam("username") String username,
+                                   @RequestParam("status") String status) {
+        userService.updateStatus(username, status);
+        return "redirect:/admin/user/show";
     }
 
     @RequestMapping(value = "/user/new", method = RequestMethod.GET)
@@ -157,8 +249,14 @@ public class AdminController {
         return "admin/registrationUser";
     }
 
-    @RequestMapping(value = "/user/search", method = RequestMethod.GET)
-    public String openSearchUser() {
-        return "admin/searchUser";
+    @RequestMapping(value = "/user/new", method = RequestMethod.POST)
+    public String registrationUser(@ModelAttribute UserDTO user, Model model) {
+        if ( userService.getUserByEmail(user.getUsername()) != null ) {
+            model.addAttribute("usernameError", "Пользователь с таким адресом уже существует!");
+        } else {
+            userService.save(user);
+        }
+        return "admin/registrationUser";
     }
+
 }

@@ -28,6 +28,8 @@ public class DepositServiceImpl implements DepositService {
     private AccountRequestDAO accountRequestDAO;
     @Autowired
     private AccountDAO accountDAO;
+    @Autowired
+    private UserDAO userDAO;
 
     @Override
     public List<DepositDTO> getAll() {
@@ -47,6 +49,14 @@ public class DepositServiceImpl implements DepositService {
             depositDTOList.add(Converter.convert(depositItem));
         }
         return depositDTOList;
+    }
+
+    @Override
+    public boolean getDepositByName(String name) {
+        if ( depositDAO.getDepositByName(name) != null )
+            return true;
+        else
+            return false;
     }
 
     @Override
@@ -80,7 +90,17 @@ public class DepositServiceImpl implements DepositService {
         account.setCurrency(currency1);
         account.setSum(sum);
         account.setDataOpen(Date.valueOf(ft.format(new java.util.Date())));
-        logger.info(account.toString());
-        accountDAO.addNewAccount(account, passport);
+        UserInformation user = userDAO.getUserByPassport(passport);
+        account.setUser(user);
+        accountDAO.add(account);
+    }
+
+    @Override
+    public boolean addDeposit(DepositDTO depositDTO) {
+        Long add = depositDAO.add(Converter.convert(depositDTO));
+        if ( add != null )
+            return true;
+        else
+            return false;
     }
 }

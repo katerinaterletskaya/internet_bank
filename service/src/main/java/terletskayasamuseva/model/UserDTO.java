@@ -13,6 +13,10 @@ public class UserDTO {
     private String patronymic;
     private String passport;
 
+    private Integer numberDeposit;
+    private Integer numberCredit;
+    private Integer numberAccount;
+
     public Long getId() {
         return id;
     }
@@ -83,6 +87,30 @@ public class UserDTO {
 
     public void setPassport(String passport) {
         this.passport = passport;
+    }
+
+    public Integer getNumberDeposit() {
+        return numberDeposit;
+    }
+
+    public void setNumberDeposit(Integer numberDeposit) {
+        this.numberDeposit = numberDeposit;
+    }
+
+    public Integer getNumberCredit() {
+        return numberCredit;
+    }
+
+    public void setNumberCredit(Integer numberCredit) {
+        this.numberCredit = numberCredit;
+    }
+
+    public Integer getNumberAccount() {
+        return numberAccount;
+    }
+
+    public void setNumberAccount(Integer numberAccount) {
+        this.numberAccount = numberAccount;
     }
 
     @Override

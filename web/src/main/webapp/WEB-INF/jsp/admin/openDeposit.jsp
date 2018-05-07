@@ -22,43 +22,40 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Открытие депозита физ. лицу</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/admin/deposit/open" method="post">
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Номер паспорта:</td>
-                <td><input type="text" id="passportNumber" class="form"></td>
+                <td><input type="text" id="passportNumber" name="passport" class="form"></td>
             </tr>
             <tr>
                 <td class="label">Депозит:</td>
                 <td>
-                    <select id="selectDeposit" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
-                        <option value="klk">dvsd5316</option>
+                    <select id="selectDeposit" name="name" class="form" style="width:250px;" onclick="$('#currency').val($('#selectDeposit').val()); $('#currency1').val($('#selectDeposit').val());">
+                        <c:forEach items="${deposits}" var="deposit">
+                            <option value="${deposit.currency}">${deposit.name}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
-            <tr >
+            <tr>
                 <td class="label">Валюта:</td>
                 <td><input type="text" id="currency" class="form" disabled><br></td>
-            </tr>
-
-            <tr>
-                <td class="label">Номер счета:</td>
-                <td><input type="text" id="accountNumber" class="form"><br></td>
             </tr>
             <tr>
                 <td class="label">Начальная сумма:</td>
                 <td>
-                    <input type="text" id="summa" class="form" style="text-align: right;" value="0">
+                    <input type="text" id="summa" name="minSum" class="form" style="text-align: right;" value="0">
                 </td>
             </tr>
             <tr>
                 <td><input type="submit" value="Открыть"></td>
             </tr>
         </table>
+        <input type="hidden" id="currency1" name="currency">
     </form>
-
 </div>
 <%@ include file="../user/userFooter.jsp" %>
+
 </body>
 </html>

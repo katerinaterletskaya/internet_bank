@@ -38,8 +38,9 @@
         </thead>
         <tbody>
         <c:forEach items="${deposits}" var="depositRequest">
-            <form action="/admin/deposit/request" method="post">
+            <form action="${pageContext.request.contextPath}/admin/deposit/request" method="post">
                 <input type="hidden" name="telephone" value="${depositRequest.telephone}">
+                <input type="hidden" name="username" value="${depositRequest.user.username}">
                 <tr>
                     <td>${depositRequest.user.surname} ${depositRequest.user.name} ${depositRequest.user.patronymic}</td>
                     <td>${depositRequest.telephone}</td>

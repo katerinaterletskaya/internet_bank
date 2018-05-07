@@ -41,7 +41,6 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/admin/user/new" id="registrationUser">Зарегистрировать пользователя</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/user/show" id="showUsers">Просмотр всех пользователей</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/user/search" id="searchUser">Поиск регистрационных данных</a></li>
             </ul>
         </li>
         <li>

@@ -44,23 +44,26 @@
         </thead>
         <tbody>
         <c:forEach items="${users}" var="user">
-            <tr>
-                <td>jnkjsbg k kejnrfk k</td>
-                <td>4</td>
-                <td>3</td>
-                <td>2</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${user.status=='UNLOCK'}">
-                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/none_block.png");'></button>
-                        </c:when>
-                        <c:otherwise>
-                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/block.png");'></button>
-                        </c:otherwise>
-                    </c:choose>
-
-                </td>
-            </tr>
+            <form action="${pageContext.request.contextPath}/admin/user/show" method="post">
+                <input type="hidden" value="${user.username}" name="username">
+                <input type="hidden" value="${user.status}" name="status">
+                <tr>
+                    <td>${user.surname} ${user.name} ${user.patronymic}</td>
+                    <td>${user.numberAccount}</td>
+                    <td>${user.numberCredit}</td>
+                    <td>${user.numberDeposit}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${user.status=='UNLOCK'}">
+                                <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/none_block.png");'></button>
+                            </c:when>
+                            <c:otherwise>
+                                <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/block.png");'></button>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </form>
         </c:forEach>
         </tbody>
     </table>

@@ -32,25 +32,30 @@
                 <td class="label" style="vertical-align: middle; padding-top: 10px;">Валюта счета:</td>
                 <td style="padding-top: 10px;">
                     <div class="radio-group" style="vertical-align: bottom;">
-                        <input type="radio" id="option-one" name="selector" value="BYN"><label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label><input type="radio" id="option-two" name="selector" value="USD"><label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label><input type="radio" id="option-three" value="EUR" name="selector"><label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label><input type="radio" value=RUB" id="option-fourth" name="selector"><label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
+                        <input type="radio" id="option-one" name="selector" value="BYN">
+                        <label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label>
+                        <input type="radio" id="option-two" name="selector" value="USD">
+                        <label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label>
+                        <input type="radio" id="option-three" value="EUR" name="selector">
+                        <label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label>
+                        <input type="radio" value=RUB" id="option-fourth" name="selector">
+                        <label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
                     </div>
                 </td>
             </tr>
             <tr>
                 <td class="label">Начальная сумма:</td>
                 <td>
-                    <input type="text" id="summa" class="form" style="text-align: right;" value="0"> &nbsp; &nbsp;%
+                    <input type="text" id="summa" name="sum" class="form" style="text-align: right;" value="0"> &nbsp; &nbsp;%
                 </td>
             </tr>
             <tr>
                 <td><input type="submit" value="Открыть"></td>
             </tr>
         </table>
+        <input type="text" hidden style="border: none;" name="currency" id="chooseCurrency">
     </form>
-
 </div>
-<input type="text" hidden style="border: none;" id="chooseCurrency">
-
 <%@ include file="../user/userFooter.jsp" %>
 </body>
 </html>

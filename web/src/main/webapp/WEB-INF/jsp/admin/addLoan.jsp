@@ -22,7 +22,7 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Добавление кредита</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/admin/loan/new" method="post">
         <table style="width:50%; margin-left:30px;">
             <tr>
                 <td class="label" style="vertical-align: middle;">Валюта:</td>
@@ -35,37 +35,36 @@
 
             <tr>
                 <td class="label">Min сумма:</td>
-                <td><input type="text" id="minSumma" class="form" style="text-align: right;"><br></td>
+                <td><input type="text" id="minSumma" name="minSum" class="form" style="text-align: right;"><br></td>
             </tr>
 
             <tr>
                 <td class="label">Max сумма:</td>
-                <td><input type="text" id="maxSumma" class="form" style="text-align: right;"><br></td>
+                <td><input type="text" id="maxSumma" name="maxSum" class="form" style="text-align: right;"><br></td>
             </tr>
             <tr>
                 <td class="label">Название кредита:</td>
                 <td>
-                    <input type="text" id="nameLoan" class="form" >
+                    <input type="text" id="nameLoan" name="name" class="form" >
                 </td>
             </tr>
             <tr>
                 <td class="label">Процент кредита:</td>
                 <td>
-                    <input type="text" id="procent" class="form" style="text-align: right;"> &nbsp; &nbsp;%
+                    <input type="text" id="percent" name="percent" class="form" style="text-align: right;"> &nbsp; &nbsp;%
                 </td>
             </tr>
             <tr>
                 <td class="label">Срок кредита:</td>
-                <td><input type="text" id="during" class="form" style="text-align: right;">&nbsp; &nbsp; мес.<br></td>
+                <td><input type="text" id="during" name="period" class="form" style="text-align: right;">&nbsp; &nbsp; мес.<br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Добавить"></td>
             </tr>
         </table>
+        <input type="text" hidden style="border: none;" id="chooseCurrency" name="currency">
     </form>
 </div>
-<input type="text" hidden style="border: none;" id="chooseCurrency">
-
 <%@ include file="../user/userFooter.jsp" %>
 </body>
 </html>

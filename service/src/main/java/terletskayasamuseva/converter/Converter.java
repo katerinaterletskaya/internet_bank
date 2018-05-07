@@ -78,7 +78,6 @@ public class Converter {
         if ( depositDTO != null ) {
             Deposit deposit = new Deposit();
             deposit.setName(depositDTO.getName());
-            System.out.println(depositDTO.getCurrency());
             if ( depositDTO.getCurrency().equals(Currency.BYN.name()) )
                 deposit.setCurrency(Currency.BYN);
             else if ( depositDTO.getCurrency().equals(Currency.USD.name()) )
@@ -93,6 +92,50 @@ public class Converter {
             deposit.setPeriod(depositDTO.getPeriod());
             deposit.setReversal(depositDTO.getReversal());
             return deposit;
+        } else
+            return null;
+    }
+
+    public static CreditDTO convert(Credit credit) {
+        if ( credit != null ) {
+            CreditDTO creditDTO = new CreditDTO();
+            creditDTO.setId(credit.getId());
+            creditDTO.setName(credit.getName());
+            if ( credit.getCurrency() == Currency.BYN )
+                creditDTO.setCurrency(Currency.BYN.name());
+            else if ( credit.getCurrency() == Currency.USD )
+                creditDTO.setCurrency(Currency.USD.name());
+            else if ( credit.getCurrency() == Currency.EUR )
+                creditDTO.setCurrency(Currency.EUR.name());
+            else if ( credit.getCurrency() == Currency.RUB )
+                creditDTO.setCurrency(Currency.RUB.name());
+            creditDTO.setMinSum(credit.getMinSum());
+            creditDTO.setMaxSum(credit.getMaxSum());
+            creditDTO.setPercent(credit.getPercent());
+            creditDTO.setPeriod(credit.getPeriod());
+            return creditDTO;
+        } else
+            return null;
+    }
+
+    public static Credit convert(CreditDTO creditDTO) {
+        if ( creditDTO != null ) {
+            Credit credit = new Credit();
+            credit.setName(creditDTO.getName());
+            if ( creditDTO.getCurrency().equals(Currency.BYN.name()) )
+                credit.setCurrency(Currency.BYN);
+            else if ( creditDTO.getCurrency().equals(Currency.USD.name()) )
+                credit.setCurrency(Currency.USD);
+            else if ( creditDTO.getCurrency().equals(Currency.EUR.name()) )
+                credit.setCurrency(Currency.EUR);
+            else if ( creditDTO.getCurrency().equals(Currency.RUB.name()) ) {
+                credit.setCurrency(Currency.RUB);
+            }
+            credit.setMinSum(creditDTO.getMinSum());
+            credit.setMaxSum(creditDTO.getMaxSum());
+            credit.setPercent(creditDTO.getPercent());
+            credit.setPeriod(creditDTO.getPeriod());
+            return credit;
         } else
             return null;
     }

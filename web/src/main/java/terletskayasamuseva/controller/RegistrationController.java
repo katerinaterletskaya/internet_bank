@@ -36,7 +36,6 @@ public class RegistrationController {
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public String registerUser(@Valid @ModelAttribute UserDTO user, Model model) {
-        logger.info(user.toString());
         if ( userService.getUserByEmail(user.getUsername()) != null ) {
             model.addAttribute("usernameError", "Пользователь с таким адресом уже существует!");
             return "registration";
