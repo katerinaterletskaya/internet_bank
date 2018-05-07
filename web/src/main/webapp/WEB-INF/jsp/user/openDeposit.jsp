@@ -19,7 +19,7 @@
         <td><h1 style="text-align: justify;">Оформление депозита происходит непосредственно в любом отделении нашего банка. Оставьте пожалуйста свой номер телефона, с вами свяжется наш сотрудник и согласует удобное для вас время!</h1></td>
     </tr>
 </table>
-<form>
+<form action="${pageContext.request.contextPath}/user/deposit/new" method="post">
     <table style="width:37%; margin-left:30px;">
         <tr>
             <td class="label">Ваш номер телефона:</td>

@@ -6,6 +6,7 @@ public class AccountRequestDTO {
     private String type;
     private String currency;
     private Boolean status;
+    private UserDTO user;
 
     public Long getId() {
         return id;
@@ -47,4 +48,23 @@ public class AccountRequestDTO {
         this.status = status;
     }
 
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountRequestDTO{" +
+                "id=" + id +
+                ", telephone='" + telephone + '\'' +
+                ", type='" + type + '\'' +
+                ", currency='" + currency + '\'' +
+                ", status=" + status +
+                ", user=" + user +
+                '}';
+    }
 }

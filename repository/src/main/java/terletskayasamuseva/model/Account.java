@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.util.Collection;
 
 @Entity
 public class Account implements Serializable {
@@ -14,7 +13,7 @@ public class Account implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id", unique = true, nullable = false)
     private Long id;
-    @Column(name = "account_number", nullable = false, length = 20)
+    @Column(name = "account_number", nullable = false, length = 28)
     private String number;
     @Column(name = "data_open")
     private Date dataOpen;
@@ -32,8 +31,6 @@ public class Account implements Serializable {
     @JoinColumn(name = "user_id")
     @PrimaryKeyJoinColumn
     private UserInformation user;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
-    private Collection<Operation> operations;
 
     public Long getId() {
         return id;
@@ -99,11 +96,16 @@ public class Account implements Serializable {
         this.user = user;
     }
 
-    public Collection<Operation> getOperations() {
-        return operations;
-    }
-
-    public void setOperations(Collection<Operation> operations) {
-        this.operations = operations;
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", number='" + number + '\'' +
+                ", dataOpen=" + dataOpen +
+                ", dataClose=" + dataClose +
+                ", sum=" + sum +
+                ", currency=" + currency +
+                ", accountType=" + accountType +
+                '}';
     }
 }

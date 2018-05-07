@@ -142,4 +142,23 @@ public class Converter {
         } else
             return null;
     }
+
+    public static AccountRequestDTO convert(AccountRequest accountRequest) {
+        if ( accountRequest != null ) {
+            AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
+            accountRequestDTO.setTelephone(accountRequest.getTelephone());
+            if ( accountRequest.getCurrency() != null )
+                accountRequestDTO.setCurrency(accountRequest.getCurrency().name());
+            accountRequestDTO.setType(accountRequest.getType().name());
+            accountRequestDTO.setStatus(accountRequest.getStatus());
+            UserDTO userDTO = new UserDTO();
+            userDTO.setPassport(accountRequest.getUser().getPassportNumber());
+            userDTO.setSurname(accountRequest.getUser().getSurname());
+            userDTO.setName(accountRequest.getUser().getName());
+            userDTO.setPatronymic(accountRequest.getUser().getPatronymic());
+            accountRequestDTO.setUser(userDTO);
+            return accountRequestDTO;
+        } else
+            return null;
+    }
 }

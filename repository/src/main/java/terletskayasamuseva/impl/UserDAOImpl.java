@@ -9,6 +9,8 @@ import terletskayasamuseva.UserDAO;
 import terletskayasamuseva.model.User;
 import terletskayasamuseva.model.UserInformation;
 
+import java.util.List;
+
 
 @Repository
 public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
@@ -29,9 +31,7 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
     @Override
     public User getUser(String email) {
         User user = (User) getSession().createQuery("from User where login=:email").setParameter("email", email).uniqueResult();
-        logger.info(user.toString());
         UserInformation userInformation = (UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult();
-        logger.info(userInformation.toString());
         user.setUserInformation((UserInformation) getSession().createQuery("from UserInformation  where userId=:id").setParameter("id", user.getId()).uniqueResult());
         return user;
     }
@@ -70,5 +70,22 @@ public class UserDAOImpl extends GenericDAOImpl<User, Long> implements UserDAO {
         User newUser = (User) getSession().createQuery("from User where id=:id").setParameter("id", user.getId()).uniqueResult();
         getSession().update(newUser);
         newUser.setRole(user.getRole());
+    }
+
+    @Override
+    public List<User> getUserForAdmin() {
+        return null;
+    }
+
+    @Override
+    public UserInformation getUserForAccount(User user) {
+        UserInformation userInformation = (UserInformation) getSession().createQuery("from UserInformation  " +
+                "where surname=:surname and name=:name and patronymic=:patronymic and " +
+                "passportNumber=:passport")
+                .setParameter("surname", user.getUserInformation().getSurname())
+                .setParameter("name", user.getUserInformation().getName())
+                .setParameter("patronymic", user.getUserInformation().getPatronymic())
+                .setParameter("passport", user.getUserInformation().getPassportNumber());
+        return userInformation;
     }
 }

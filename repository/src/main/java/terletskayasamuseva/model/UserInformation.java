@@ -86,6 +86,10 @@ public class UserInformation implements Serializable {
         this.accounts = accounts;
     }
 
+    public void addAccount(Account account){
+        getAccounts().add(account);
+    }
+
     public Collection<AccountRequest> getRequests() {
         return requests;
     }

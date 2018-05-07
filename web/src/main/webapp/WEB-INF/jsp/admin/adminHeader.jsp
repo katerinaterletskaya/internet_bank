@@ -27,7 +27,7 @@
     <div class="welcome">
 
         <h1 align="right">Добро пожаловать, администратор</h1>
-        <a href="#">Выйти</a>
+        <a href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 
@@ -49,7 +49,7 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/admin/loan/new" id="addLoan">Добавить новый кредит</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/loan/open" id="openLoan">Открыть кредит ФЛ</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/loan/view" id="viewLoan">Просмотр заявок на кредиты</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/loan/request" id="viewLoan">Просмотр заявок на кредиты</a></li>
             </ul>
         </li>
         <li>
@@ -57,7 +57,7 @@
             <ul>
                 <li><a href="${pageContext.request.contextPath}/admin/deposit/open" id="openDeposit">Открыть депозит ФЛ</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/deposit/new" id="addDeposit">Добавить новый депозит</a></li>
-                <li><a href="${pageContext.request.contextPath}/admin/deposit/view" id="viewDeposit">Просмотр заявок на депозиты</a></li>
+                <li><a href="${pageContext.request.contextPath}/admin/deposit/request" id="viewDeposit">Просмотр заявок на депозиты</a></li>
             </ul>
         </li>
         <li>
