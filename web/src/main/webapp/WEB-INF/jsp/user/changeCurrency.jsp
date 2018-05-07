@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -34,15 +35,15 @@
         </tr>
         <tr>
             <td class="label">Сумма перевода:</td>
-            <td><input type="text" id="summa" class="form" style="text-align: right;"><br></td>
+            <td><input type="text" id="summa" class="form" name="transactionSumma" style="text-align: right;"><br></td>
         </tr>
         <tr>
             <td class="label">Комиссия:</td>
-            <td><input type="text" id="comission" class="form" disabled style="text-align: right;"><br></td>
+            <td><input type="text" id="comission" class="form" name="comission" disabled style="text-align: right;"><br></td>
         </tr>
         <tr>
             <td class="label">Сумма зачисления:</td>
-            <td><input type="text" id="allSumma" class="form" disabled style="text-align: right;"><br></td>
+            <td><input type="text" id="allSumma" class="form" name="summa" disabled style="text-align: right;"><br></td>
         </tr>
         <tr>
             <td><input type="submit" value="Обмен"></td>

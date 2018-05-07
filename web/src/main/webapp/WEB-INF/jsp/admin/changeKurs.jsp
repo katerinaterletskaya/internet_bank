@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-банк "BSB"</title>
+    <title>Изменение курса валют</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
@@ -23,7 +23,12 @@
 <div class="content">
     <h1>Изменить курс валют</h1>
     <form>
-        <table style="width:37%; margin-left:30px;">
+        <table style="width:37%; margin-left:30px; margin-top:50px;">
+            <tr>
+                <td class="label"></td>
+                <td class="label">Покупка</td>
+                <td class="label">Продажа</td>
+            </tr>
             <tr>
                 <td class="label">USD:</td>
                 <td><input type="text" id="costUSD" class="form" style="text-align: right;"  placeholder="Покупка"></td>

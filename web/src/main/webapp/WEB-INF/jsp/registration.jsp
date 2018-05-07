@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/authorization.css?ver=122"
           type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
+
     <script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/login.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -21,25 +20,25 @@
         паспорте гражданина Республики Беларусь или в виде на жительство в Республике Беларусь, а также
         ваш логин-email и пароль.</p>
     <div class="clearfix">
-        <input type="text" autocomplete="off" name="surname" id="surname" class="form" placeholder="Фамилия">
+        <input type="text" autocomplete="off" name="surname" id="surname" class="form" placeholder="Фамилия" required>
     </div>
     <div class="clearfix">
-        <input type="text" autocomplete="off" name="name" id="name" class="form" placeholder="Имя">
+        <input type="text" autocomplete="off" name="name" id="name" class="form" placeholder="Имя" required>
     </div>
     <div class="clearfix">
-        <input type="text" autocomplete="off" name="patronymic" id="patronymic" class="form" placeholder="Отчество">
+        <input type="text" autocomplete="off" name="patronymic" id="patronymic" class="form" placeholder="Отчество" required>
     </div>
     <div class="clearfix">
-        <input type="text" autocomplete="off" name="passport" id="passport" class="form" placeholder="№ паспорта">
+        <input type="text" autocomplete="off" name="passport" id="passport" class="form" placeholder="№ паспорта" required>
     </div>
     <div class="clearfix">
-        <input type="email" autocomplete="off" name="username" id="login" class="form" placeholder="Логин">
+        <input type="email" autocomplete="off" name="username" id="login" class="form" placeholder="Логин" required>
         <c:if test="${usernameError ne null}">
             <c:out value="${usernameError}"/>
         </c:if>
     </div>
     <div class="clearfix">
-        <input type="password" autocomplete="off" name="password" id="password" class="form" placeholder="Пароль">
+        <input type="password" autocomplete="off" name="password" id="password" class="form" placeholder="Пароль" required>
     </div>
     <div class="clearfix">
         <input type="submit" value="Регистрация">

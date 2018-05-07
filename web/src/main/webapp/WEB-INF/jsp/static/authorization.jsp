@@ -20,8 +20,6 @@
         </figure>
         <ul class="clearfix">
             <li><a href="${pageContext.request.contextPath}/" id="main">Главная</a></li>
-            <li><a href="#">Карточки</a></li>
-            <li><a href="#">О Банке</a></li>
         </ul>
     </div>
 

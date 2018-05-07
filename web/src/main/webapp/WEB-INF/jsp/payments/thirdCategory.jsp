@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
@@ -24,7 +25,7 @@
         <table style="width:29%; margin-left:50px; margin-bottom: 50px;">
             <tr>
                 <td class="label">Номер заказа:</td>
-                <td><input type="text" id="number" class="form"><br></td>
+                <td><input type="text" id="number" name="orderNumber" class="form"><br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Оплатить"></td>
