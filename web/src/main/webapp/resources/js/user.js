@@ -145,4 +145,107 @@ $().ready(function(){
         });
     });
 
+    $('#summa').keydown(function () {
+        $('#comission').val($('#summa').val()*0.1);
+        $('#allSumma').val($('#summa').val()-$('#comission').val());
+    });
+
+
+    $("form").validate({
+        rules:{
+            transactionSumma:{
+                required: true,
+                regexp: '[\\d+|\\d+.\\d+]'
+            },
+            newLogin:{
+                required: true,
+                regexp: '^[a-z0-9_-]{3,16}$'
+            },
+            newPassword:{
+                required: true,
+                regexp: '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,12}$'
+            },
+            minSum:{
+                required: true,
+                regexp: '[\\d+|\\d+.\\d+]'
+            },
+            telephone:{
+                required: true,
+                regexp: '^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$'
+            },
+            postNumber:{
+                required: true,
+                minlength: 13
+            },
+            orderNumber:{
+                required: true,
+                regexp: '\\d+'
+            },
+            violateNumber:{
+                required: true,
+                regexp: '\\d{11,11}'
+            },
+            contractNumber:{
+                required: true,
+            },
+            documentNumber:{
+                required: true,
+            }
+        },
+        messages:{
+            transactionSumma:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            newLogin:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            newPassword:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            minSum:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            telephone:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            postNumber:{
+                required: "The field is required!",
+                minlength: 'The completed field does not meet the requirements!'
+            },
+            orderNumber:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            violateNumber:{
+                required: "The field is required!",
+                regexp: 'The completed field does not meet the requirements!'
+            },
+            contractNumber:{
+                required: "The field is required!",
+            },
+            documentNumber:{
+                required: "The field is required!",
+            }
+        },
+        errorElement: "div",
+        errorPlacement: function(error, element) {
+            element.after(error);
+        },
+    });
+
+
+    jQuery.validator.addMethod(
+        'regexp',
+        function(value, element, regexp) {
+            var re = new RegExp(regexp);
+            return this.optional(element) || re.test(value);
+        },
+        "The completed field does not meet the requirements!"
+    );
+
 });

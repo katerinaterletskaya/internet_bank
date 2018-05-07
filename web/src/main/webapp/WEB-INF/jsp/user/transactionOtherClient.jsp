@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Обмен валют</title>
+    <title>Перевод другому клиенту</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
           type="image/x-icon">
@@ -30,18 +31,18 @@
             <tr>
                 <td class="label">Счет получателя:</td>
                 <td>
-                    <input type="text" id="accountClient" class="form" style="text-align: right;">
+                    <input type="text" id="accountClient" class="form" style="text-align: right; width: 190px;">
                 </td>
             </tr>
             <tr>
                 <td class="label">Фамилия получателя:</td>
                 <td>
-                    <input type="text" id="surnameClient" class="form">
+                    <input type="text" id="surnameClient" name="surname" class="form" required style="width: 190px;">
                 </td>
             </tr>
             <tr>
                 <td class="label">Сумма перевода:</td>
-                <td><input type="text" id="summa" class="form" style="text-align: right;"></td>
+                <td><input type="text" id="summa" class="form" name="transactionSumma" style="text-align: right;"></td>
             </tr>
             <tr>
                 <td class="label">Комиссия:</td>
