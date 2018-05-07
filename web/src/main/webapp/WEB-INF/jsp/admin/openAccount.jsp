@@ -22,11 +22,11 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Открыть текущий счет</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/admin/account/open" method="post">
         <table style="width:50%; margin-left:30px;">
             <tr>
                 <td class="label">Номер паспорта клиента:</td>
-                <td><input type="text" id="passportNumber" class="form"><br></td>
+                <td><input type="text" id="passportNumber" name="passport" class="form"><br></td>
             </tr>
             <tr >
                 <td class="label" style="vertical-align: middle; padding-top: 10px;">Валюта счета:</td>
@@ -35,11 +35,6 @@
                         <input type="radio" id="option-one" name="selector" value="BYN"><label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label><input type="radio" id="option-two" name="selector" value="USD"><label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label><input type="radio" id="option-three" value="EUR" name="selector"><label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label><input type="radio" value=RUB" id="option-fourth" name="selector"><label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
                     </div>
                 </td>
-            </tr>
-
-            <tr>
-                <td class="label">Номер счета:</td>
-                <td><input type="text" id="accountNumber" class="form"><br></td>
             </tr>
             <tr>
                 <td class="label">Начальная сумма:</td>

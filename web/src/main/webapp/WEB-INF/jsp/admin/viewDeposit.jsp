@@ -34,27 +34,29 @@
             <th style="text-align: center; font-size: 14px; font-family: Arial, sans-serif; letter-spacing: 2px; word-spacing: 3px; padding: 8px;">
                 Звонок
             </th>
-
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${deposits}" var="deposit">
-            <tr>
-                <td>jnkjsbg k kejnrfk k</td>
-                <td>4</td>
-                <td>3</td>
-                <td>2</td>
-                <td>
-                    <c:choose>
-                        <c:when test="${deposit.status=='true'}">
-                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/galochka.png");'></button>
-                        </c:when>
-                        <c:otherwise>
-                            <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/none.png");'></button>
-                        </c:otherwise>
-                    </c:choose>
-                </td>
-            </tr>
+        <c:forEach items="${deposits}" var="depositRequest">
+            <form action="/admin/deposit/request" method="post">
+                <input type="hidden" name="telephone" value="${depositRequest.telephone}">
+                <tr>
+                    <td>${depositRequest.user.surname} ${depositRequest.user.name} ${depositRequest.user.patronymic}</td>
+                    <td>${depositRequest.telephone}</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${depositRequest.status==true}">
+                                <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/galochka.png");'
+                                        disabled></button>
+                            </c:when>
+                            <c:otherwise>
+                                <button style='width: 30px; height: 30px;margin-left: 40px; border: none; background: white url("${pageContext.request.contextPath}/resources/images/none.png");'
+                                        type="submit"></button>
+                            </c:otherwise>
+                        </c:choose>
+                    </td>
+                </tr>
+            </form>
         </c:forEach>
 
         </tbody>

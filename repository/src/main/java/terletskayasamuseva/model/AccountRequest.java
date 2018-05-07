@@ -17,7 +17,7 @@ public class AccountRequest implements Serializable {
     @Column(nullable = false)
     private AccountType type;
     @Enumerated(EnumType.STRING)
-    @Column()
+    @Column
     private Currency currency;
     @Column(nullable = false)
     private Boolean status;
@@ -73,5 +73,17 @@ public class AccountRequest implements Serializable {
 
     public void setUser(UserInformation user) {
         this.user = user;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountRequest{" +
+                "id=" + id +
+                ", telephone='" + telephone + '\'' +
+                ", type=" + type +
+                ", currency=" + currency +
+                ", status=" + status +
+//                ", user=" + user +
+                '}';
     }
 }

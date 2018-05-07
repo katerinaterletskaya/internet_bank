@@ -22,12 +22,12 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Добавление депозита</h1>
-    <form>
+    <form action="/user/deposit/new" method="post">
         <table style="width:50%; margin-left:30px;">
             <tr>
                 <td class="label" style="vertical-align: middle;">Валюта:</td>
                 <td>
-                    <div class="radio-group" style="vertical-align: bottom;">
+                    <div class="radio-group" name="currency" style="vertical-align: bottom;">
                         <input type="radio" id="option-one" name="selector" value="BYN"><label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label><input type="radio" id="option-two" name="selector" value="USD"><label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label><input type="radio" id="option-three" value="EUR" name="selector"><label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label><input type="radio" value=RUB" id="option-fourth" name="selector"><label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
                     </div>
                 </td>

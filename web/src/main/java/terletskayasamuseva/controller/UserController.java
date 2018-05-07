@@ -48,7 +48,7 @@ public class UserController {
         return "user/main";
     }
 
-    //Operation with account
+    //DepositOperation with account
 
     @RequestMapping(value = "/account/new", method = RequestMethod.GET)
     public String openUserAccountNew() {
@@ -56,7 +56,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/account/new", method = RequestMethod.POST)
-    public String createNewAccount(HttpSession session, @RequestParam("currency") String currency) {
+    public String createNewAccount(HttpSession session, @RequestParam("currency") String currency){
         AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
         accountRequestDTO.setType("CURRENT");
         accountRequestDTO.setCurrency(currency);
@@ -69,7 +69,7 @@ public class UserController {
         return "user/openAccount";   //change
     }
 
-    //Operation with deposit
+    //DepositOperation with deposit
 
     @RequestMapping(value = "/deposit/choose", method = RequestMethod.GET)
     public String openChooseDeposit() {
@@ -101,7 +101,7 @@ public class UserController {
         return "user/plusDeposit";
     }
 
-    //Operation with loans
+    //DepositOperation with loans
 
     @RequestMapping(value = "/loans/new", method = RequestMethod.GET)
     public String openCreateNewLoan() {
@@ -122,7 +122,7 @@ public class UserController {
         return "user/repayLoans";
     }
 
-    //Operation with transaction
+    //DepositOperation with transaction
 
     @RequestMapping(value = "/transaction/my", method = RequestMethod.GET)
     public String openTransactionMyAccount() {
