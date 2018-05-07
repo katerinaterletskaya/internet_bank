@@ -11,6 +11,8 @@ import terletskayasamuseva.model.AccountType;
 import terletskayasamuseva.model.Currency;
 import terletskayasamuseva.model.UserInformation;
 
+import java.util.List;
+
 
 @Repository
 public class AccountDAOImpl extends GenericDAOImpl<Account, Long> implements AccountDAO {
@@ -32,10 +34,8 @@ public class AccountDAOImpl extends GenericDAOImpl<Account, Long> implements Acc
     }
 
     @Override
-    public void addNewAccount(Account account, String passport) {
-        UserInformation info = (UserInformation) getSession().createQuery("from UserInformation where passportNumber=:passport")
-                .setParameter("passport", passport).uniqueResult();
-        getSession().update(info);
-        info.addAccount(account);
+    public List<Account> getAccountForUser(String username, AccountType type) {
+        return getSession().createQuery("from Account as a where a.accountType=:type and a.user.user.login=:username")
+                .setParameter("type", type).setParameter("username", username).list();
     }
 }

@@ -22,39 +22,42 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Регистрация пользователя</h1>
-    <form>
+    <form action="/admin/user/new" method="post">
         <table style="width:33%; margin-left:30px;">
             <tr>
                 <td class="label">Фамилия:</td>
                 <td>
-                    <input type="text" id="surname" class="form" >
+                    <input type="text" id="surname" name="surname" class="form">
                 </td>
             </tr>
             <tr>
                 <td class="label">Имя:</td>
                 <td>
-                    <input type="text" id="name" class="form" >
+                    <input type="text" id="name" name="name" class="form">
                 </td>
             </tr>
             <tr>
                 <td class="label">Отчество:</td>
-                <td><input type="text" id="patronomyc" class="form" ><br></td>
+                <td><input type="text" id="patronymic" name="patronymic" class="form"><br></td>
             </tr>
             <tr>
                 <td class="label">Номер паспорта:</td>
                 <td>
-                    <input type="text" id="passportNumber" class="form" >
+                    <input type="text" id="passportNumber" name="passport" class="form">
                 </td>
             </tr>
             <tr>
                 <td class="label">Логин:</td>
                 <td>
-                    <input type="text" id="login" class="form" >
+                    <input type="text" id="login" name="username" class="form">
+                    <c:if test="${usernameError ne null}">
+                        <c:out value="${usernameError}"/>
+                    </c:if>
                 </td>
             </tr>
             <tr>
                 <td class="label">Пароль:</td>
-                <td><input type="text" id="password" class="form"><br></td>
+                <td><input type="text" id="password" name="password" class="form"><br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Регистрация"></td>

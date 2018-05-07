@@ -9,6 +9,7 @@ import terletskayasamuseva.UserDAO;
 import terletskayasamuseva.UserService;
 import terletskayasamuseva.converter.Converter;
 import terletskayasamuseva.model.Role;
+import terletskayasamuseva.model.Status;
 import terletskayasamuseva.model.User;
 import terletskayasamuseva.model.UserDTO;
 
@@ -42,8 +43,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getAll() {
-        Collection<User> users = userDAO.findAll();
+    public List<UserDTO> getAllUserForAdmin() {
+        Collection<User> users = userDAO.getUserForAdmin();
         List<UserDTO> userDTOList = new ArrayList<>();
         for (User user : users) {
             userDTOList.add(Converter.convert(user));
@@ -57,6 +58,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean findUserByPassport(String passport) {
+        if ( userDAO.getUserByPassport(passport) != null ) {
+            return true;
+        } else
+            return false;
+    }
+
+    @Override
     public UserDTO getUser(String email) {
         return Converter.convert(userDAO.getUser(email));
     }
@@ -64,7 +73,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean findUser(String username, String password) {
         User user = userDAO.getUserByEmail(username);
-        if (bCryptPasswordEncoder.matches(password, user.getPassword())) {
+        if ( bCryptPasswordEncoder.matches(password, user.getPassword()) ) {
             return true;
         } else {
             return false;
@@ -88,10 +97,21 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateRole(String username, String role) {
         User user = userDAO.getUserByEmail(username);
-        if (role.equals(Role.ROLE_ADMIN.name())) {
+        if ( role.equals(Role.ROLE_ADMIN.name()) ) {
             user.setRole(Role.ROLE_ADMIN);
-        } else if (role.equals(Role.ROLE_USER.name())) {
+        } else if ( role.equals(Role.ROLE_USER.name()) ) {
             user.setRole(Role.ROLE_USER);
+        }
+        userDAO.updateRole(user);
+    }
+
+    @Override
+    public void updateStatus(String username, String status) {
+        User user = userDAO.getUserByEmail(username);
+        if ( status.equals(Status.BLOCKED.name()) ) {
+            user.setStatus(Status.UNLOCK);
+        } else if ( status.equals(Status.UNLOCK.name()) ) {
+            user.setStatus(Status.BLOCKED);
         }
         userDAO.updateRole(user);
     }

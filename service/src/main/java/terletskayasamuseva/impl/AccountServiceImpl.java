@@ -11,7 +11,6 @@ import terletskayasamuseva.model.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -59,14 +58,26 @@ public class AccountServiceImpl implements AccountService {
         if ( number == null )
             accountNumber = NumberAccountCalculator.calculateFirstAccountNumber(AccountType.CURRENT, currency1);
         else
-            accountNumber = NumberAccountCalculator.calculateAccountNumber(number.substring(13, 28), currency1, AccountType.CREDIT);
+            accountNumber = NumberAccountCalculator.calculateAccountNumber(number.substring(17, 28), currency1, AccountType.CREDIT);
         Account account = new Account();
         account.setAccountType(AccountType.CURRENT);
         account.setNumber(accountNumber);
         account.setCurrency(currency1);
         account.setSum(sum);
         account.setDataOpen(Date.valueOf(ft.format(new java.util.Date())));
-        logger.info(account.toString());
-        accountDAO.addNewAccount(account, passport);
+        UserInformation user = userDAO.getUserByPassport(passport);
+        account.setUser(user);
+        accountDAO.add(account);
+    }
+
+    @Override
+    public Integer getNumberAccountForUser(String username, String type) {
+        AccountType type1 = AccountType.valueOf(type);
+        logger.info(type1);
+        List<Account> accountList = accountDAO.getAccountForUser(username, type1);
+        for (Account account : accountList) {
+            logger.info(account.toString());
+        }
+        return accountList.size();
     }
 }

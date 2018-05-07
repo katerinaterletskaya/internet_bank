@@ -22,13 +22,20 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Добавление депозита</h1>
-    <form action="/user/deposit/new" method="post">
+    <form action="${pageContext.request.contextPath}/admin/deposit/new" method="post">
         <table style="width:50%; margin-left:30px;">
             <tr>
                 <td class="label" style="vertical-align: middle;">Валюта:</td>
                 <td>
-                    <div class="radio-group" name="currency" style="vertical-align: bottom;">
-                        <input type="radio" id="option-one" name="selector" value="BYN"><label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label><input type="radio" id="option-two" name="selector" value="USD"><label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label><input type="radio" id="option-three" value="EUR" name="selector"><label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label><input type="radio" value=RUB" id="option-fourth" name="selector"><label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
+                    <div class="radio-group" style="vertical-align: bottom;">
+                        <input type="radio" id="option-one" name="selector" value="BYN">
+                        <label for="option-one" onclick="$('#chooseCurrency').val('BYN')">BYN</label>
+                        <input type="radio" id="option-two" name="selector" value="USD">
+                        <label for="option-two" onclick="$('#chooseCurrency').val('USD')">USD</label>
+                        <input type="radio" id="option-three" value="EUR" name="selector">
+                        <label onclick="$('#chooseCurrency').val('EUR')" for="option-three">EUR</label>
+                        <input type="radio" value=RUB" id="option-fourth" name="selector">
+                        <label onclick="$('#chooseCurrency').val('RUB')" for="option-fourth">RUB</label>
                     </div>
                 </td>
             </tr>
@@ -36,39 +43,41 @@
                 <td class="label" style="vertical-align: middle;">Отзыв:</td>
                 <td>
                     <div class="radio-group" style="vertical-align: bottom;">
-                        <input type="radio" id="yes" name="selectorY" value="y"><label for="yes" onclick="$('#chooseCurrency').val('y')">Да</label><input type="radio" id="no" name="selectorY" value="n"><label for="no" onclick="$('#chooseCurrency').val('n')">Нет</label>
+                        <input type="radio" id="yes" name="selectorY" value="y"><label for="yes" onclick="$('#reversal').val('true')">Да</label>
+                        <input type="radio" id="no" name="selectorY" value="n"><label for="no" onclick="$('#reversal').val('false')">Нет</label>
                     </div>
                 </td>
             </tr>
-
             <tr>
                 <td class="label">Min сумма:</td>
-                <td><input type="text" id="minSumma" class="form" style="text-align: right;"><br></td>
+                <td><input type="text" id="minSumma" name="minSum" class="form" style="text-align: right;"><br></td>
             </tr>
             <tr>
                 <td class="label">Название депозита:</td>
                 <td>
-                    <input type="text" id="nameDeposit" class="form" >
+                    <input type="text" id="nameDeposit" name="name" class="form">
                 </td>
             </tr>
             <tr>
                 <td class="label">Процент депозита:</td>
                 <td>
-                    <input type="text" id="procent" class="form" style="text-align: right;"> &nbsp; &nbsp;%
+                    <input type="text" id="percent" name="percent" class="form" style="text-align: right;"> &nbsp;
+                    &nbsp;%
                 </td>
             </tr>
             <tr>
                 <td class="label">Период депозита:</td>
-                <td><input type="text" id="during" class="form" style="text-align: right;">&nbsp; &nbsp; мес.<br></td>
+                <td><input type="text" id="during" name="period" class="form" style="text-align: right;">&nbsp; &nbsp;
+                    мес.<br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Добавить"></td>
             </tr>
         </table>
+        <input type="text" hidden style="border: none;" id="chooseCurrency" name="currency">
+        <input type="text" hidden style="border: none;" id="reversal" name="isReversal">
     </form>
 </div>
-<input type="text" hidden style="border: none;" id="chooseCurrency">
-<input type="text" hidden style="border: none;" id="reversal">
 <%@ include file="../user/userFooter.jsp" %>
 </body>
 </html>
