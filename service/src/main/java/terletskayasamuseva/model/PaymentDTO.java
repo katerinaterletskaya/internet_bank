@@ -5,6 +5,7 @@ public class PaymentDTO {
     private Long id;
     private String name;
     private String receiverAccount;
+    private String category;
 
     public Long getId() {
         return id;
@@ -28,5 +29,13 @@ public class PaymentDTO {
 
     public void setReceiverAccount(String receiverAccount) {
         this.receiverAccount = receiverAccount;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

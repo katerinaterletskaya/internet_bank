@@ -34,6 +34,7 @@
             <c:forEach items="${currencies}" var="currency">
                 <tr>
                     <td class="label">${currency.currency}:</td>
+
                     <td class="label"><input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
                                                     placeholder="Покупка" value="${currency.cost}"></td>
                     <td class="label"><input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
