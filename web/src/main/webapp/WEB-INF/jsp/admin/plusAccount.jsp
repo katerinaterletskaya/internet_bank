@@ -28,7 +28,7 @@
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Номер паспорта:</td>
-                <td><input type="text" id="passportNumber" class="form"></td>
+                <td><input type="text" id="passportNumber" name="passport" class="form"></td>
                 <td><input type="submit" value="Поиск счетов" onclick="$('#accountForm').css({'visibility': 'visible'})"></td>
             </tr>
         </table>
@@ -52,7 +52,7 @@
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Сумма:</td>
-                <td><input type="text" id="summa" class="form" style="text-align: right;"></td>
+                <td><input type="text" id="summa" name="minSum" class="form" style="text-align: right;"></td>
             </tr>
             <tr>
                 <td class="label">Комиссия:</td>
