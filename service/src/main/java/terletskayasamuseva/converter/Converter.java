@@ -47,6 +47,7 @@ public class Converter {
             paymentDTO.setId(payment.getId());
             paymentDTO.setName(payment.getName());
             paymentDTO.setReceiverAccount(payment.getReceiverAccount());
+            paymentDTO.setCategory(payment.getCategory().getName());
             return paymentDTO;
         } else
             return null;

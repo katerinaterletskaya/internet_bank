@@ -4,10 +4,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import terletskayasamuseva.*;
 import terletskayasamuseva.model.*;
 
@@ -204,5 +201,47 @@ public class UserController {
             model.addAttribute("errorCurrentPassword", "*Неверный текущий пароль");
         }
         return "user/changePassword";
+    }
+
+    //Operation with payments
+
+    @RequestMapping(value = "/payment/ERIP/ticket/{id}", method = RequestMethod.GET)
+    public String openFirstCategory(@PathVariable Long id) {
+        return "payments/firstCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/internet/{id}", method = RequestMethod.GET)
+    public String openSecondCategory(@PathVariable Long id) {
+        return "payments/secondCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/shop/{id}", method = RequestMethod.GET)
+    public String openThirdCategory(@PathVariable Long id) {
+        return "payments/thirdCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/mia/{id}", method = RequestMethod.GET)
+    public String openForthCategory(@PathVariable Long id) {
+        return "payments/forthCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/mobile/{id}", method = RequestMethod.GET)
+    public String openFivesCategory(@PathVariable Long id) {
+        return "payments/fivesCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/massmedia/{id}", method = RequestMethod.GET)
+    public String openSixthCategory(@PathVariable Long id) {
+        return "payments/sixthCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/custom/{id}", method = RequestMethod.GET)
+    public String openSeventhCategory(@PathVariable Long id) {
+        return "payments/seventhCategory";
+    }
+
+    @RequestMapping(value = "/payment/ERIP/legal/{id}", method = RequestMethod.GET)
+    public String openEighthCategory(@PathVariable Long id) {
+        return "payments/eighthCategory";
     }
 }

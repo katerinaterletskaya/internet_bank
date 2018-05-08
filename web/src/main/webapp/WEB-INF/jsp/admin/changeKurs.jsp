@@ -27,9 +27,9 @@
             <c:forEach items="${currencies}" var="currency">
                 <tr>
                     <td class="label">${currency.currency}:</td>
-                    <td class="label">Покупка<input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
+                    <td class="label">Покупка <input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
                                placeholder="Покупка" value="${currency.cost}"></td>
-                    <td class="label">Продажа><input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
+                    <td class="label">Продажа <input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
                                placeholder="Продажа" value="${currency.sale}"></td>
                 </tr>
             </c:forEach>           
