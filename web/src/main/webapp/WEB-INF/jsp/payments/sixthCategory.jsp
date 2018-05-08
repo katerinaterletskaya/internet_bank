@@ -24,8 +24,20 @@
     <form>
         <table style="width:29%; margin-left:50px; margin-bottom: 50px;">
             <tr>
+                <td class="label">Со счета:</td>
+                <td>
+                    <select id="selectFromAccount" class="form" style="width:250px;">
+                        <option value="BYN">65165165165316</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td class="label">Номер заказа:</td>
                 <td><input type="text" id="number" name="orderNumber" class="form"><br></td>
+            </tr>
+            <tr>
+                <td class="label">Сумма:</td>
+                <td><input type="text" id="summa" class="form" style="text-align: right;"><br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Оплатить"></td>
