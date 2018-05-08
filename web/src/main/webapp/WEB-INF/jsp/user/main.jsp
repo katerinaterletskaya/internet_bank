@@ -33,9 +33,17 @@
                     <td class="pAccount">Счет</td>
                     <td class="pResidue"><img
                             src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
-                            href="#">Открыть</a></td>
+                            href="${pageContext.request.contextPath}/user/account/new">Открыть</a></td>
                 </tr>
                 </thead>
+                <tbody>
+                <c:forEach items="${accounts}" var="account">
+                    <tr>
+                        <td>${account.number}</td>
+                        <td>${account.sum} ${account.currency}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
         <div class="change">
@@ -83,9 +91,17 @@
                     <td class="pAccount">Кредит</td>
                     <td class="pResidue"><img
                             src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
-                            href="#">Оформить</a></td>
+                            href="${pageContext.request.contextPath}/user/loans/new">Оформить</a></td>
                 </tr>
                 </thead>
+                <tbody>
+                <c:forEach items="${credits}" var="credit">
+                    <tr>
+                        <td>${credit.number}</td>
+                        <td>${credit.sum} ${credit.currency}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
         <div class="deposit">
@@ -95,9 +111,17 @@
                     <td class="pAccount">Депозит</td>
                     <td class="pResidue"><img
                             src="${pageContext.request.contextPath}/resources/images/plus.png">&nbsp;<a
-                            href="#">Открыть</a></td>
+                            href="${pageContext.request.contextPath}/user/deposit/new">Открыть</a></td>
                 </tr>
                 </thead>
+                <tbody>
+                <c:forEach items="${deposits}" var="deposit">
+                    <tr>
+                        <td>${deposit.number}</td>
+                        <td>${deposit.sum} ${deposit.currency}</td>
+                    </tr>
+                </c:forEach>
+                </tbody>
             </table>
         </div>
     </div>

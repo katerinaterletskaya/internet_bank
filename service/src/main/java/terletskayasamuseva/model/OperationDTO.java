@@ -1,0 +1,75 @@
+package terletskayasamuseva.model;
+
+import java.math.BigDecimal;
+import java.sql.Date;
+
+public class OperationDTO {
+
+    private Long id;
+    private Date date;
+    private String currency;
+    private BigDecimal sum;
+    private String account;
+    private Long payment;
+
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public BigDecimal getSum() {
+        return sum;
+    }
+
+    public void setSum(BigDecimal sum) {
+        this.sum = sum;
+    }
+
+    public String  getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
+    }
+
+    public Long getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Long payment) {
+        this.payment = payment;
+    }
+
+    @Override
+    public String toString() {
+        return "OperationDTO{" +
+                "id=" + id +
+                ", date=" + date +
+                ", currency=" + currency +
+                ", sum=" + sum +
+                ", account='" + account + '\'' +
+                ", payment=" + payment +
+                '}';
+    }
+}

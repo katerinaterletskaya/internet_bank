@@ -9,6 +9,7 @@ import terletskayasamuseva.*;
 import terletskayasamuseva.model.*;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -38,10 +39,16 @@ public class UserController {
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public String openUserMainPage(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> deposits = accountService.getAccountForUser((String) session.getAttribute("user"), "DEPOSIT");
+        List<AccountDTO> credits = accountService.getAccountForUser((String) session.getAttribute("user"), "CREDIT");
         UserDTO user = userService.getUser((String) session.getAttribute("user"));
         session.setAttribute("fullName", user.getName() + " " + user.getPatronymic());
         List<CurrencyKursDTO> currencyKursDTOList = operationService.getCurrency();
         model.addAttribute("currencyList", currencyKursDTOList);
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("deposits", deposits);
+        model.addAttribute("credits", credits);
         return "user/main";
     }
 
@@ -53,7 +60,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/account/new", method = RequestMethod.POST)
-    public String createNewAccount(HttpSession session, @RequestParam("currency") String currency){
+    public String createNewAccount(HttpSession session, @RequestParam("currency") String currency) {
         AccountRequestDTO accountRequestDTO = new AccountRequestDTO();
         accountRequestDTO.setType("CURRENT");
         accountRequestDTO.setCurrency(currency);
@@ -61,10 +68,6 @@ public class UserController {
         return "user/openAccount";
     }
 
-    @RequestMapping(value = "/account", method = RequestMethod.GET)
-    public String openUserAccount() {
-        return "user/openAccount";   //change
-    }
 
     //DepositOperation with deposit
 
@@ -141,19 +144,6 @@ public class UserController {
         return "user/transactionHistory";
     }
 
-    //Operations with payments
-    @RequestMapping(value = "/payment/ERIP", method = RequestMethod.GET)
-    public String openPaymentERIP(Model model) {
-        List<PaymentDTO> payments = paymentService.getAll();
-        model.addAttribute("payments", payments);
-        return "user/paymentsERIP";
-    }
-
-    @RequestMapping(value = "/payment/history", method = RequestMethod.GET)
-    public String openPaymentHistory() {
-        return "user/paymentHistory";
-    }
-
     //Operations with setting
 
     @RequestMapping(value = "/change/login", method = RequestMethod.GET)
@@ -203,45 +193,238 @@ public class UserController {
         return "user/changePassword";
     }
 
+
     //Operation with payments
 
+    @RequestMapping(value = "/payment/ERIP", method = RequestMethod.GET)
+    public String openPaymentERIP(Model model) {
+        List<PaymentDTO> payments = paymentService.getAll();
+        model.addAttribute("payments", payments);
+        return "user/paymentsERIP";
+    }
+
+    @RequestMapping(value = "/payment/history", method = RequestMethod.GET)
+    public String openPaymentHistory() {
+        return "user/paymentHistory";
+    }
+
     @RequestMapping(value = "/payment/ERIP/ticket/{id}", method = RequestMethod.GET)
-    public String openFirstCategory(@PathVariable Long id) {
+    public String openFirstCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
+        model.addAttribute("id", id);
         return "payments/firstCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/ticket", method = RequestMethod.POST)
+    public String addFirstCategory(@ModelAttribute OperationDTO operationDTO,
+                                   Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/firstCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/internet/{id}", method = RequestMethod.GET)
-    public String openSecondCategory(@PathVariable Long id) {
+    public String openSecondCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
+        model.addAttribute("id", id);
         return "payments/secondCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/internet", method = RequestMethod.POST)
+    public String addSecondCategory(@ModelAttribute OperationDTO operationDTO,
+                                    Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/secondCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/shop/{id}", method = RequestMethod.GET)
-    public String openThirdCategory(@PathVariable Long id) {
+    public String openThirdCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/thirdCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/shop", method = RequestMethod.POST)
+    public String addThirdCategory(@ModelAttribute OperationDTO operationDTO,
+                                   Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/thirdCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/mia/{id}", method = RequestMethod.GET)
-    public String openForthCategory(@PathVariable Long id) {
+    public String openForthCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/forthCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/mia", method = RequestMethod.POST)
+    public String openForthCategory(@ModelAttribute OperationDTO operationDTO,
+                                    Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/forthCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/mobile/{id}", method = RequestMethod.GET)
-    public String openFivesCategory(@PathVariable Long id) {
+    public String openFivesCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/fivesCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/mobile", method = RequestMethod.POST)
+    public String addFivesCategory(@ModelAttribute OperationDTO operationDTO,
+                                   Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/fivesCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/massmedia/{id}", method = RequestMethod.GET)
-    public String openSixthCategory(@PathVariable Long id) {
+    public String openSixthCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/sixthCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/massmedia", method = RequestMethod.POST)
+    public String addSixthCategory(@ModelAttribute OperationDTO operationDTO,
+                                   Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/sixthCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/custom/{id}", method = RequestMethod.GET)
-    public String openSeventhCategory(@PathVariable Long id) {
+    public String openSeventhCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/seventhCategory";
     }
 
+    @RequestMapping(value = "/payment/ERIP/custom", method = RequestMethod.POST)
+    public String addSeventhCategory(@ModelAttribute OperationDTO operationDTO,
+                                     Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/seventhCategory";
+        }
+    }
+
     @RequestMapping(value = "/payment/ERIP/legal/{id}", method = RequestMethod.GET)
-    public String openEighthCategory(@PathVariable Long id) {
+    public String openEighthCategory(@PathVariable Long id, HttpSession session, Model model) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
         return "payments/eighthCategory";
     }
+
+    @RequestMapping(value = "/payment/ERIP/legal", method = RequestMethod.POST)
+    public String addEighthCategory(@ModelAttribute OperationDTO operationDTO,
+                                    Model model, HttpSession session) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
+        int flag = account.getSum().compareTo(operationDTO.getSum());
+        if ( flag == 1 || flag == 0 ) {
+            BigDecimal sum = account.getSum().subtract(operationDTO.getSum());
+            accountService.updateSum(account.getNumber(), sum);
+            operationDTO.setCurrency(account.getCurrency());
+            operationService.addNewOperation(operationDTO);
+            return "redirect:/user/main";
+        } else {
+            model.addAttribute("error", "На вашем счете недостаточно средств");
+            List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+            model.addAttribute("numbers", numbers);
+            model.addAttribute("id", operationDTO.getPayment());
+            return "payments/eighthCategory";
+        }
+    }
+
+
 }

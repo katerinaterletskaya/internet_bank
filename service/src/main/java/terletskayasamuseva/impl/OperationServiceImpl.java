@@ -4,14 +4,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import terletskayasamuseva.CurrencyDAO;
-import terletskayasamuseva.OperationService;
+import terletskayasamuseva.*;
 import terletskayasamuseva.converter.Converter;
-import terletskayasamuseva.model.Currency;
-import terletskayasamuseva.model.CurrencyKurs;
-import terletskayasamuseva.model.CurrencyKursDTO;
+import terletskayasamuseva.model.*;
 
 import java.math.BigDecimal;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -24,6 +23,12 @@ public class OperationServiceImpl implements OperationService {
 
     @Autowired
     private CurrencyDAO currencyDAO;
+    @Autowired
+    private PaymentDAO paymentDAO;
+    @Autowired
+    private AccountDAO accountDAO;
+    @Autowired
+    private OperationDAO operationDAO;
 
     @Override
     public List<CurrencyKursDTO> getCurrency() {
@@ -41,4 +46,15 @@ public class OperationServiceImpl implements OperationService {
         currencyDAO.changeCurrency(currency1, cost, sale);
     }
 
+    @Override
+    public void addNewOperation(OperationDTO operationDTO) {
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        Operation operation = Converter.convert(operationDTO);
+        Payment payment = paymentDAO.findById(operationDTO.getPayment());
+        Account account = accountDAO.getCurrentAccountByNumber(operationDTO.getAccount());
+        operation.setDate(Date.valueOf(ft.format(new java.util.Date())));
+        operation.setAccount(account);
+        operation.setPayment(payment);
+        operationDAO.add(operation);
+    }
 }
