@@ -40,7 +40,6 @@
                                                      placeholder="Продажа" value="${currency.sale}"></td>
                 </tr>
             </c:forEach>
-            <tr>
                 <td><input type="submit" value="Изменить">
                 </td>
             </tr>

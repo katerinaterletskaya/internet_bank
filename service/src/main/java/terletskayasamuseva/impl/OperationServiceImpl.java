@@ -7,9 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import terletskayasamuseva.CurrencyDAO;
 import terletskayasamuseva.OperationService;
 import terletskayasamuseva.converter.Converter;
+import terletskayasamuseva.model.Currency;
 import terletskayasamuseva.model.CurrencyKurs;
 import terletskayasamuseva.model.CurrencyKursDTO;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -22,7 +24,7 @@ public class OperationServiceImpl implements OperationService {
 
     @Autowired
     private CurrencyDAO currencyDAO;
-    
+
     @Override
     public List<CurrencyKursDTO> getCurrency() {
         Collection<CurrencyKurs> currencyKurs = currencyDAO.findAll();
@@ -32,4 +34,11 @@ public class OperationServiceImpl implements OperationService {
         }
         return currencyKursDTOList;
     }
+
+    @Override
+    public void changeCurrency(String currency, BigDecimal cost, BigDecimal sale) {
+        Currency currency1 = Currency.valueOf(currency);
+        currencyDAO.changeCurrency(currency1, cost, sale);
+    }
+
 }
