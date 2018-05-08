@@ -12,4 +12,5 @@ public interface AccountService {
     void changeAccountRequestStatus(AccountRequestDTO accountRequestDTO);
     void addCurrentAccountForUser(String passport, String currency, BigDecimal sum);
     Integer getNumberAccountForUser(String username, String type);
+    List<String> getNumberAccountForUser(String passport);
 }

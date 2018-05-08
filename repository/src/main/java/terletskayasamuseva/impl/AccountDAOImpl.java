@@ -38,4 +38,10 @@ public class AccountDAOImpl extends GenericDAOImpl<Account, Long> implements Acc
         return getSession().createQuery("from Account as a where a.accountType=:type and a.user.user.login=:username")
                 .setParameter("type", type).setParameter("username", username).list();
     }
+
+    @Override
+    public List<String> getCurrentAccountForUser(String passport) {
+        return (List<String>) getSession().createQuery("select a.number from Account as a where a.accountType=:type and a.user.passportNumber=:passport")
+                .setParameter("type", AccountType.CURRENT).setParameter("passport", passport).list();
+    }
 }
