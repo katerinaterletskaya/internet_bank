@@ -3,12 +3,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Обмен валют</title>
+    <title>Перевод между своими счетами</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
           type="image/x-icon">
@@ -37,7 +38,7 @@
             </tr>
             <tr>
                 <td class="label">Сумма:</td>
-                <td><input type="text" id="summa" class="form" style="text-align: right;"><br></td>
+                <td><input type="text" id="summa" name="transactionSumma" class="form" style="text-align: right;"><br></td>
             </tr>
             <tr>
                 <td class="label">Комиссия:</td>

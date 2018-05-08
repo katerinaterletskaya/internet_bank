@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-банк "BSB"</title>
+    <title>Пополнить счет клиенту</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
@@ -28,6 +28,7 @@
             <tr>
                 <td class="label">Номер паспорта:</td>
                 <td><input type="text" id="passportNumber" class="form"></td>
+                <td><input type="submit" value="Поиск счетов" onclick="$('#accountForm').css({'visibility': 'visible'})"></td>
             </tr>
         </table>
     </form>

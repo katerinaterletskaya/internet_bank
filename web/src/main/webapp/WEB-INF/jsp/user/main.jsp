@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <style>
         @font-face {
@@ -47,24 +48,24 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><input type="number" min="0" id="byn"></td>
+                        <td><input type="number" min="0" id="byn" style="border-color: rgba(0,0,0,.3); text-align: right; border-radius: 5px; color: rgba(0,0,0,.6);"></td>
                         <td style="padding-left: 20px;"><img src="${pageContext.request.contextPath}/resources/images/BYN.png"><label>BYN</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0" id="usd"></td>
+                        <td><input type="number" min="0" id="usd" style="border-color: rgba(0,0,0,.3); text-align: right; border-radius: 5px; color: rgba(0,0,0,.6);"></td>
                         <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/USD.png"><label>USD</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0" id="rub"></td>
+                        <td><input type="number" min="0" id="rub" style="border-color: rgba(0,0,0,.3); text-align: right; border-radius: 5px; color: rgba(0,0,0,.6);"></td>
                         <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/RUB.png"><label>RUB</label>
                         </td>
                     </tr>
                     <tr>
-                        <td><input type="number" min="0"  id="eur"></td>
+                        <td><input type="number" min="0"  id="eur" style="border-color: rgba(0,0,0,.3); text-align: right; border-radius: 5px; color: rgba(0,0,0,.6);"></td>
                         <td style="padding-left: 20px;"><img
                                 src="${pageContext.request.contextPath}/resources/images/EUR.png"><label>EUR</label>
                         </td>

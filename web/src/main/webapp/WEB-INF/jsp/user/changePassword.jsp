@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
           type="image/x-icon">
@@ -32,12 +33,12 @@
             <tr>
                 <td class="label">Новый пароль:</td>
                 <td>
-                    <input type="text" id="newPassword" name="newPassword" class="form" style="text-align: right;">
+                    <input type="password" id="newPassword" name="newPassword" class="form" style="text-align: right;">
                 </td>
             </tr>
             <tr>
                 <td class="label">Подтверждение пароля:</td>
-                <td><input type="text" id="proofPassword" name="proofPassword" class="form" style="text-align: right;">
+                <td><input type="password" id="proofPassword" name="proofPassword" class="form" style="text-align: right;">
                     <c:if test="${errorNewPassword ne null}">
                         <p style="color: red">${errorNewPassword}</p>
                     </c:if>

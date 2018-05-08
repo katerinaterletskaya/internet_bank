@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-банк "BSB"</title>
+    <title>Заявкина открытие текущего счета</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>

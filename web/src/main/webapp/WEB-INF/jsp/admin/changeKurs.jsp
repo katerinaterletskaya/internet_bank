@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Интернет-банк "BSB"</title>
+    <title>Изменение курса валют</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
@@ -27,12 +27,12 @@
             <c:forEach items="${currencies}" var="currency">
                 <tr>
                     <td class="label">${currency.currency}:</td>
-                    <td><input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
+                    <td class="label">Покупка<input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
                                placeholder="Покупка" value="${currency.cost}"></td>
-                    <td><input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
+                    <td class="label">Продажа><input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
                                placeholder="Продажа" value="${currency.sale}"></td>
                 </tr>
-            </c:forEach>
+            </c:forEach>           
             <tr>
                 <td><input type="submit" value="Изменить">
                 </td>
