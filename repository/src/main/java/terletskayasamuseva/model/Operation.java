@@ -11,7 +11,7 @@ public class Operation implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "payment_id", unique = true, nullable = false)
+    @Column(name = "operation_id", unique = true, nullable = false)
     private Long id;
     @Column(nullable = false)
     private Date date;
@@ -20,12 +20,14 @@ public class Operation implements Serializable {
     private Currency currency;
     @Column(nullable = false)
     private BigDecimal sum;
-    @Column(name = "card_number", length = 16)
-    private String cardNumber;
     @ManyToOne
     @JoinColumn(name = "account_id")
     @PrimaryKeyJoinColumn
     private Account account;
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
+    @PrimaryKeyJoinColumn
+    private Payment payment;
 
 
     public Long getId() {
@@ -60,19 +62,19 @@ public class Operation implements Serializable {
         this.sum = sum;
     }
 
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public void setCardNumber(String cardNumber) {
-        this.cardNumber = cardNumber;
-    }
-
     public Account getAccount() {
         return account;
     }
 
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

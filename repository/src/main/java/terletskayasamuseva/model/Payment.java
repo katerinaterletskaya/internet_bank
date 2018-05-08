@@ -2,6 +2,7 @@ package terletskayasamuseva.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Collection;
 
 @Entity
 public class Payment implements Serializable {
@@ -19,6 +20,8 @@ public class Payment implements Serializable {
     @JoinColumn(name = "category_id")
     @PrimaryKeyJoinColumn
     private PaymentCategory category;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "payment", cascade = CascadeType.ALL)
+    private Collection<Operation> operations;
 
 
     public Long getId() {
@@ -53,4 +56,11 @@ public class Payment implements Serializable {
         this.category = category;
     }
 
+    public Collection<Operation> getOperations() {
+        return operations;
+    }
+
+    public void setOperations(Collection<Operation> operations) {
+        this.operations = operations;
+    }
 }

@@ -21,13 +21,15 @@
             <td class="label" style="font-size: 18px;"><p style="text-align: justify;">Введите номер документа, удостоверяющего личность.</p></td>
         </tr>
     </table>
-    <form>
+    <form action="${pageContext.request.contextPath}/user/payment/ERIP/custom" method="post">
         <table style="width:31%; margin-left:50px; margin-bottom: 50px;">
             <tr>
                 <td class="label">Со счета:</td>
                 <td>
-                    <select id="selectFromAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                    <select id="selectFromAccount" name="account" class="form" style="width:250px;">
+                        <c:forEach items="${numbers}" var="number">
+                            <option>${number.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
@@ -37,12 +39,13 @@
             </tr>
             <tr>
                 <td class="label">Сумма:</td>
-                <td><input type="text" id="summa" class="form" style="text-align: right;"><br></td>
+                <td><input type="text" id="summa" name="sum" class="form" style="text-align: right;"><br></td>
             </tr>
             <tr>
                 <td><input type="submit" value="Оплатить"></td>
             </tr>
         </table>
+        <input type="hidden" id="payment" name="payment" value="${id}">
     </form>
 </div>
 <%@ include file="../user/userFooter.jsp" %>

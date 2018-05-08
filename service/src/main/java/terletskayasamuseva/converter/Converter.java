@@ -205,4 +205,44 @@ public class Converter {
         } else
             return null;
     }
+
+    public static AccountDTO convert(Account account) {
+        if ( account != null ) {
+            AccountDTO accountDTO = new AccountDTO();
+            accountDTO.setId(account.getId());
+            accountDTO.setNumber(account.getNumber());
+            accountDTO.setDataOpen(account.getDataOpen());
+            accountDTO.setDataClose(account.getDataClose());
+            accountDTO.setSum(account.getSum());
+            if ( account.getCurrency() == Currency.EUR )
+                accountDTO.setCurrency(Currency.EUR.name());
+            else if ( account.getCurrency() == Currency.RUB )
+                accountDTO.setCurrency(Currency.RUB.name());
+            else if ( account.getCurrency() == Currency.USD )
+                accountDTO.setCurrency(Currency.USD.name());
+            else if ( account.getCurrency() == Currency.BYN )
+                accountDTO.setCurrency(Currency.BYN.name());
+            return accountDTO;
+        } else
+            return null;
+    }
+
+    public static Operation convert(OperationDTO operationDTO) {
+        if ( operationDTO != null ) {
+            Operation operation = new Operation();
+            if ( operationDTO.getCurrency() != null ) {
+                if ( operationDTO.getCurrency().equals(Currency.USD.name()) )
+                    operation.setCurrency(Currency.USD);
+                else if ( operationDTO.getCurrency().equals(Currency.EUR.name()) )
+                    operation.setCurrency(Currency.EUR);
+                else if ( operationDTO.getCurrency().equals(Currency.RUB.name()) )
+                    operation.setCurrency(Currency.RUB);
+                else if ( operationDTO.getCurrency().equals(Currency.BYN.name()) )
+                    operation.setCurrency(Currency.BYN);
+            }
+            operation.setSum(operationDTO.getSum());
+            return operation;
+        } else
+            return null;
+    }
 }

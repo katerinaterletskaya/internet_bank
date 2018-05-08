@@ -11,6 +11,7 @@ import terletskayasamuseva.model.AccountType;
 import terletskayasamuseva.model.Currency;
 import terletskayasamuseva.model.UserInformation;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -43,5 +44,25 @@ public class AccountDAOImpl extends GenericDAOImpl<Account, Long> implements Acc
     public List<String> getCurrentAccountForUser(String passport) {
         return (List<String>) getSession().createQuery("select a.number from Account as a where a.accountType=:type and a.user.passportNumber=:passport")
                 .setParameter("type", AccountType.CURRENT).setParameter("passport", passport).list();
+    }
+
+    @Override
+    public List<Account> getCurrentAccountForUserWithName(String username) {
+        return (List<Account>) getSession().createQuery("from Account as a where a.accountType=:type and a.user.user.login=:username")
+                .setParameter("type", AccountType.CURRENT).setParameter("username", username).list();
+    }
+
+    @Override
+    public Account getCurrentAccountByNumber(String number) {
+        return (Account) getSession().createQuery("from Account as a where a.number=:number")
+                .setParameter("number", number).uniqueResult();
+    }
+
+    @Override
+    public void updateSum(String number, BigDecimal sum) {
+        Account account = (Account) getSession().createQuery("from Account as a where a.number=:number")
+                .setParameter("number", number).uniqueResult();
+        getSession().update(account);
+        account.setSum(sum);
     }
 }

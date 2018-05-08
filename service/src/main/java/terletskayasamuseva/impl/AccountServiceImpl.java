@@ -75,14 +75,43 @@ public class AccountServiceImpl implements AccountService {
         AccountType type1 = AccountType.valueOf(type);
         logger.info(type1);
         List<Account> accountList = accountDAO.getAccountForUser(username, type1);
-        for (Account account : accountList) {
-            logger.info(account.toString());
-        }
         return accountList.size();
+    }
+
+    @Override
+    public List<AccountDTO> getAccountForUser(String username, String type) {
+        AccountType type1 = AccountType.valueOf(type);
+        logger.info(type1);
+        List<Account> accountList = accountDAO.getAccountForUser(username, type1);
+        List<AccountDTO> accounts = new ArrayList<>();
+        for (Account account : accountList) {
+            accounts.add(Converter.convert(account));
+        }
+        return accounts;
     }
 
     @Override
     public List<String> getNumberAccountForUser(String passport) {
         return accountDAO.getCurrentAccountForUser(passport);
+    }
+
+    @Override
+    public List<AccountDTO> getCurrentAccountForUser(String username) {
+        List<Account> accounts = accountDAO.getCurrentAccountForUserWithName(username);
+        List<AccountDTO> accountList = new ArrayList<>();
+        for (Account account : accounts) {
+            accountList.add(Converter.convert(account));
+        }
+        return accountList;
+    }
+
+    @Override
+    public AccountDTO getCurrentAccountByNumber(String number) {
+        return Converter.convert(accountDAO.getCurrentAccountByNumber(number));
+    }
+
+    @Override
+    public void updateSum(String numberAccount, BigDecimal sum) {
+        accountDAO.updateSum(numberAccount, sum);
     }
 }

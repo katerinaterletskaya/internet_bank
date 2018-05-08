@@ -1,5 +1,6 @@
 package terletskayasamuseva;
 
+import terletskayasamuseva.model.AccountDTO;
 import terletskayasamuseva.model.AccountRequestDTO;
 
 
@@ -12,5 +13,9 @@ public interface AccountService {
     void changeAccountRequestStatus(AccountRequestDTO accountRequestDTO);
     void addCurrentAccountForUser(String passport, String currency, BigDecimal sum);
     Integer getNumberAccountForUser(String username, String type);
+    List<AccountDTO> getAccountForUser(String username, String type);
     List<String> getNumberAccountForUser(String passport);
+    List<AccountDTO> getCurrentAccountForUser(String username);
+    AccountDTO getCurrentAccountByNumber(String number);
+    void updateSum(String numberAccount, BigDecimal sum);
 }
