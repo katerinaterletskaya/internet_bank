@@ -80,4 +80,9 @@ public class AccountServiceImpl implements AccountService {
         }
         return accountList.size();
     }
+
+    @Override
+    public List<String> getNumberAccountForUser(String passport) {
+        return accountDAO.getCurrentAccountForUser(passport);
+    }
 }

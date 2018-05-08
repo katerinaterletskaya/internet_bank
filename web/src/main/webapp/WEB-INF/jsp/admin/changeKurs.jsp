@@ -22,29 +22,23 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Изменить курс валют</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/admin/kurs" method="post">
         <table style="width:37%; margin-left:30px;">
+            <c:forEach items="${currencies}" var="currency">
+                <tr>
+                    <td class="label">${currency.currency}:</td>
+                    <td><input type="text" id="cost${currency.currency}" name="cost${currency.currency}" class="form" style="text-align: right;"
+                               placeholder="Покупка" value="${currency.cost}"></td>
+                    <td><input type="text" id="sale${currency.currency}" name="sale${currency.currency}" class="form" style="text-align: right;"
+                               placeholder="Продажа" value="${currency.sale}"></td>
+                </tr>
+            </c:forEach>
             <tr>
-                <td class="label">USD:</td>
-                <td><input type="text" id="costUSD" class="form" style="text-align: right;"  placeholder="Покупка"></td>
-                <td><input type="text" id="saleUSD" class="form" style="text-align: right;"  placeholder="Продажа"></td>
-            </tr>
-            <tr>
-                <td class="label">EUR:</td>
-                <td><input type="text" id="costEUR" class="form" style="text-align: right;"  placeholder="Покупка"></td>
-                <td><input type="text" id="saleEUR" class="form" style="text-align: right;"  placeholder="Продажа"></td>
-            </tr>
-            <tr>
-                <td class="label">RUB:</td>
-                <td><input type="text" id="costRUB" class="form" style="text-align: right; "  placeholder="Покупка"></td>
-                <td><input type="text" id="saleRUB" class="form" style="text-align: right; "  placeholder="Продажа"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Изменить"></td>
+                <td><input type="submit" value="Изменить">
+                </td>
             </tr>
         </table>
     </form>
-
 </div>
 <%@ include file="../user/userFooter.jsp" %>
 </body>

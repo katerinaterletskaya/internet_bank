@@ -27,7 +27,7 @@
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Номер паспорта:</td>
-                <td><input type="text" id="passportNumber" class="form" onchange="$('#accountForm').css({'visibility': 'visible'});"></td>
+                <td><input type="text" id="passportNumber" class="form"></td>
             </tr>
         </table>
     </form>

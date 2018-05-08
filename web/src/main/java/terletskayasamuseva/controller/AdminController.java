@@ -4,15 +4,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import terletskayasamuseva.*;
-import terletskayasamuseva.model.AccountRequestDTO;
-import terletskayasamuseva.model.CreditDTO;
-import terletskayasamuseva.model.DepositDTO;
-import terletskayasamuseva.model.UserDTO;
+import terletskayasamuseva.model.*;
 import terletskayasamuseva.validator.UserValidator;
 
 import java.math.BigDecimal;
@@ -161,10 +155,6 @@ public class AdminController {
     }
 
 
-
-
-
-
     //Operation with account
 
     @RequestMapping(value = "/account/open", method = RequestMethod.GET)
@@ -181,16 +171,17 @@ public class AdminController {
         logger.info(sum);
         if ( userService.findUserByPassport(passport) ) {
             accountService.addCurrentAccountForUser(passport, currency, sum);
-            //creditService.addCreditForUser(passport, creditDTO.getCurrency(), creditDTO.getMinSum());
             return "redirect:/admin/main";
         } else
             return "redirect:/admin/user/new";
     }
 
+
     @RequestMapping(value = "/account/plus", method = RequestMethod.GET)
     public String openPlusAccount() {
         return "admin/plusAccount";
     }
+
 
     @RequestMapping(value = "/account/request", method = RequestMethod.GET)
     public String openAccountRequest(Model model) {
@@ -200,27 +191,34 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/account/request", method = RequestMethod.POST)
-    public String RequestForAccount(@ModelAttribute AccountRequestDTO accountRequest,
-                                    @RequestParam("passport") String passport) {
-        accountRequest.setType("CURRENT");
-        accountService.changeAccountRequestStatus(accountRequest);
-        accountService.addCurrentAccountForUser(passport, accountRequest.getCurrency(), new BigDecimal((0.0)));
-        return "redirect:/admin/account/request";
+    public String RequestForAccount(Model model, @RequestParam("passport") String passport) {
+        List<String> numbers = accountService.getNumberAccountForUser(passport);
+        model.addAttribute("numbers", numbers);
+        model.addAttribute("passport", passport);
+        return "admin/openCurrentAccount";
     }
-
-
-
 
     //DepositOperation with transaction
 
     @RequestMapping(value = "/kurs", method = RequestMethod.GET)
-    public String openChangeKurs() {
+    public String openChangeKurs(Model model) {
+        List<CurrencyKursDTO> currencyList = operationService.getCurrency();
+        model.addAttribute("currencies", currencyList);
         return "admin/changeKurs";
     }
 
-
-
-
+    @RequestMapping(value = "/kurs", method = RequestMethod.POST)
+    public String changeKurs(@RequestParam("costUSD") BigDecimal costUSD,
+                             @RequestParam("saleUSD") BigDecimal saleUSD,
+                             @RequestParam("costEUR") BigDecimal costEUR,
+                             @RequestParam("saleEUR") BigDecimal saleEUR,
+                             @RequestParam("costRUB") BigDecimal costRUB,
+                             @RequestParam("saleRUB") BigDecimal saleRUB) {
+        operationService.changeCurrency("USD", costUSD, saleUSD);
+        operationService.changeCurrency("EUR", costEUR, saleEUR);
+        operationService.changeCurrency("RUB", costRUB, saleRUB);
+        return "redirect:/admin/kurs";
+    }
 
 
     //DepositOperation with users
