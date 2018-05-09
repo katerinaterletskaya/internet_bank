@@ -57,4 +57,22 @@ public class OperationServiceImpl implements OperationService {
         operation.setPayment(payment);
         operationDAO.add(operation);
     }
+
+    @Override
+    public List<OperationDTO> getOperations(String number) {
+        List<OperationDTO> operationList = new ArrayList<>();
+        for (PaymentCategory category : paymentDAO.getAll()) {
+            OperationDTO operationDTO = new OperationDTO();
+            operationDTO.setPaymentCategory(category.getName());
+            operationDTO.setSum(new BigDecimal(0.0));
+            operationList.add(operationDTO);
+        }
+        for (Operation operation : operationDAO.getOperations(number)) {
+            for (OperationDTO operationDTO : operationList) {
+                if(operationDTO.getPaymentCategory().equals(operation.getPayment().getCategory().getName()))
+                    operationDTO.setSum(operationDTO.getSum().add(operation.getSum()));
+            }
+        }
+        return operationList;
+    }
 }

@@ -245,4 +245,16 @@ public class Converter {
         } else
             return null;
     }
+
+    public static OperationDTO convert(Operation operation) {
+        if ( operation != null ) {
+            OperationDTO operationDTO = new OperationDTO();
+            operationDTO.setCurrency(operation.getCurrency().name());
+            operationDTO.setSum(operation.getSum());
+            operationDTO.setPaymentCategory(operation.getPayment().getCategory().getName());
+            operation.setSum(operationDTO.getSum());
+            return operationDTO;
+        } else
+            return null;
+    }
 }

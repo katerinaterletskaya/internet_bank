@@ -25,4 +25,9 @@ public class OperationDAOImpl extends GenericDAOImpl<Operation, Long> implements
         return this.sessionFactory.getCurrentSession();
     }
 
+    @Override
+    public List<Operation> getOperations(String number) {
+        return (List<Operation>) getSession().createQuery("from Operation as o where o.account.number=:number")
+                .setParameter("number", number).list();
+    }
 }

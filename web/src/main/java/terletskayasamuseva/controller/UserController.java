@@ -10,6 +10,7 @@ import terletskayasamuseva.model.*;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -120,6 +121,54 @@ public class UserController {
     @RequestMapping(value = "/loans/repay", method = RequestMethod.GET)
     public String openRepayLoansForUser() {
         return "user/repayLoans";
+    }
+
+    //Chart
+
+    @RequestMapping(value = "/diagram/line", method = RequestMethod.GET)
+    public String openLineDiagram(Model model, HttpSession session) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
+        return "diagrams/lineDiagram";
+    }
+
+    @RequestMapping(value = "/diagram/line", method = RequestMethod.POST)
+    public String createLineDiagram(Model model, HttpSession session,
+                                    @RequestParam("number") String number) {
+        List<String> categories = new ArrayList<>();
+        List<BigDecimal> sums = new ArrayList<>();
+        for (OperationDTO operationDTO : operationService.getOperations(number)) {
+            categories.add(operationDTO.getPaymentCategory());
+            sums.add(operationDTO.getSum());
+        }
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("categories", categories);
+        model.addAttribute("sums", sums);
+        model.addAttribute("numbers", numbers);
+        return "diagrams/lineDiagram";
+    }
+
+    @RequestMapping(value = "/diagram/chart", method = RequestMethod.GET)
+    public String openChartDiagram(Model model, HttpSession session) {
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("numbers", numbers);
+        return "diagrams/chartDiagram";
+    }
+
+    @RequestMapping(value = "/diagram/chart", method = RequestMethod.POST)
+    public String createChartDiagram(Model model, HttpSession session,
+                                     @RequestParam("number") String number) {
+        List<String> categories = new ArrayList<>();
+        List<BigDecimal> sums = new ArrayList<>();
+        for (OperationDTO operationDTO : operationService.getOperations(number)) {
+            categories.add(operationDTO.getPaymentCategory());
+            sums.add(operationDTO.getSum());
+        }
+        List<AccountDTO> numbers = accountService.getCurrentAccountForUser((String) session.getAttribute("user"));
+        model.addAttribute("categories", categories);
+        model.addAttribute("sums", sums);
+        model.addAttribute("numbers", numbers);
+        return "diagrams/chartDiagram";
     }
 
     //DepositOperation with transaction
