@@ -8,8 +8,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/Chart.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>--%>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/user.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
@@ -33,6 +33,8 @@
             </tr>
         </table>
     </form>
+    <input type="hidden" id="sums" value="${sums}">
+    <input type="hidden" id="categories" value="${categories}">
     <canvas id="myChart" width="400" height="400"></canvas>
 </div>
 <script>
@@ -40,17 +42,19 @@
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: [$("categories").val()],
             datasets: [{
                 label: '',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [$("sums").val()],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
                     'rgba(255, 206, 86, 0.2)',
                     'rgba(75, 192, 192, 0.2)',
                     'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0,0,0,0.3)',
+                    'rgba(139, 69, 19,0.2)'
                 ],
                 borderColor: [
                     'rgba(255,99,132,1)',
@@ -58,7 +62,9 @@
                     'rgba(255, 206, 86, 1)',
                     'rgba(75, 192, 192, 1)',
                     'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0,0,0,1)',
+                    'rgba(139, 69, 19, 1)'
                 ],
                 borderWidth: 1
             }]
