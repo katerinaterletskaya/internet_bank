@@ -3,20 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>График расходов</title>
+    <title>Диаграмма расходов</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/Chart.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>--%>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/user.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
 
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <%@ include file="../user/userHeader.jsp" %>
 <div class="content" style="width:90%;">
-    <form action="${pageContext.request.contextPath}/user/diagram/line" method="post">
+    <form action="${pageContext.request.contextPath}/user/diagram/chart" method="post">
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Со счета:</td>
@@ -35,7 +35,7 @@
     </form>
     <input type="hidden" id="sums" value="${sums}">
     <input type="hidden" id="categories" value="${categories}">
-    <canvas id="myChart" width="400" height="400"></canvas>
+    <canvas id="myChart" width="800" height="400"></canvas>
 </div>
 <script>
     var massiv;
@@ -55,7 +55,7 @@
 
     var ctx = document.getElementById("myChart").getContext('2d');
     var myChart = new Chart(ctx, {
-        type: 'pie',
+        type: 'bar',
         data: {
             labels: ["Билеты", "Интернет", "Интернет-магазины", "МВД", " Мобильная связь", "СМИ", "Таможенные платежи", "Суды"],            datasets: [{
                 label: '',
