@@ -21,7 +21,10 @@
 </head>
 <body>
 <%@ include file="adminHeader.jsp" %>
-<div class="content"></div>
+<div class="content">
+
+    <h1 style="vertical-align: middle;"><img src="${pageContext.request.contextPath}/resources/images/admin.jpg" style="float:left; margin: 7px 7px 7px 0;"> Добро пожаловать, администратор</h1>
+</div>
 <%@ include file="../user/userFooter.jsp" %>
 </body>
 </html>

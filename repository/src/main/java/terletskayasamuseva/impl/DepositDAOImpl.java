@@ -23,11 +23,11 @@ public class DepositDAOImpl extends GenericDAOImpl<Deposit, Long> implements Dep
     }
 
     @Override
-    public List<Deposit> getDepositByParameter(Deposit deposit) {
-        return getSession().createQuery("from Deposit where currency=:currency and period=:period and minSum<=:sum")
+    public Deposit getDepositByParameter(Deposit deposit) {
+        return (Deposit) getSession().createQuery("from Deposit where currency=:currency and period=:period and minSum<=:sum")
                 .setParameter("currency", deposit.getCurrency())
                 .setParameter("period", deposit.getPeriod())
-                .setParameter("sum", deposit.getMinSum()).list();
+                .setParameter("sum", deposit.getMinSum()).uniqueResult();
     }
 
     @Override

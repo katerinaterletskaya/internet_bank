@@ -42,13 +42,9 @@ public class DepositServiceImpl implements DepositService {
     }
 
     @Override
-    public List<DepositDTO> getDepositsByParameter(DepositDTO deposit) {
-        List<Deposit> deposits = depositDAO.getDepositByParameter(Converter.convert(deposit));
-        List<DepositDTO> depositDTOList = new ArrayList<>();
-        for (Deposit depositItem : deposits) {
-            depositDTOList.add(Converter.convert(depositItem));
-        }
-        return depositDTOList;
+    public DepositDTO getDepositsByParameter(DepositDTO deposit) {
+        Deposit deposit1 = depositDAO.getDepositByParameter(Converter.convert(deposit));
+        return Converter.convert(deposit1);
     }
 
     @Override
