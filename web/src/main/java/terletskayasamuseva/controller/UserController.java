@@ -79,8 +79,9 @@ public class UserController {
 
     @RequestMapping(value = "/deposit/choose", method = RequestMethod.POST)
     public String chooseDeposit(Model model, @ModelAttribute DepositDTO depositDTO) {
-        List<DepositDTO> deposits = depositService.getDepositsByParameter(depositDTO);
-        return "user/chooseDeposit";     //change
+        DepositDTO deposit = depositService.getDepositsByParameter(depositDTO);
+        model.addAttribute("deposit", deposit);
+        return "user/chooseDeposit";
     }
 
     @RequestMapping(value = "/deposit/new", method = RequestMethod.GET)

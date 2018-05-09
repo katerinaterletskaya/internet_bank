@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DepositService {
     List<DepositDTO> getAll();
-    List<DepositDTO> getDepositsByParameter(DepositDTO deposit);
+    DepositDTO getDepositsByParameter(DepositDTO deposit);
     boolean getDepositByName(String name);
     List<AccountRequestDTO> getRequestForDeposit();
     void updateRequestForDeposit(AccountRequestDTO accountRequestDTO);
