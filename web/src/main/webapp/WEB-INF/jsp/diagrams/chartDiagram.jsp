@@ -16,13 +16,15 @@
 <body>
 <%@ include file="../user/userHeader.jsp" %>
 <div class="content" style="width:500px; height:500px;">
-    <form>
+    <form action="${pageContext.request.contextPath}/user/diagram/chart" method="post">
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Со счета:</td>
                 <td>
-                    <select id="selectFromAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                    <select id="selectFromAccount" name="number" class="form" style="width:250px;">
+                        <c:forEach items="${numbers}" var="number">
+                            <option>${number.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>

@@ -74,8 +74,8 @@
         <li>
             <a href="#">Мои расходы</a>
             <ul>
-                <li><a href="#">Диаграмма</a></li>
-                <li><a href="#">График</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/diagram/chart">Диаграмма</a></li>
+                <li><a href="${pageContext.request.contextPath}/user/diagram/line">График</a></li>
             </ul>
         </li>
         <li>

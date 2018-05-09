@@ -10,6 +10,7 @@ public class OperationDTO {
     private String currency;
     private BigDecimal sum;
     private String account;
+    private String paymentCategory;
     private Long payment;
 
 
@@ -53,6 +54,14 @@ public class OperationDTO {
         this.account = account;
     }
 
+    public String getPaymentCategory() {
+        return paymentCategory;
+    }
+
+    public void setPaymentCategory(String paymentCategory) {
+        this.paymentCategory = paymentCategory;
+    }
+
     public Long getPayment() {
         return payment;
     }
@@ -66,9 +75,10 @@ public class OperationDTO {
         return "OperationDTO{" +
                 "id=" + id +
                 ", date=" + date +
-                ", currency=" + currency +
+                ", currency='" + currency + '\'' +
                 ", sum=" + sum +
                 ", account='" + account + '\'' +
+                ", paymentCategory='" + paymentCategory + '\'' +
                 ", payment=" + payment +
                 '}';
     }
