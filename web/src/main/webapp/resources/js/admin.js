@@ -6,10 +6,6 @@ $().ready(function(){
                 required: true,
                 regexp: '[\\d+|\\d+.\\d+]'
             },
-            username:{
-                required: true,
-                regexp: '^[a-z0-9_-]{3,16}$'
-            },
             password:{
                 required: true,
                 regexp: '^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,12}$'
@@ -50,10 +46,6 @@ $().ready(function(){
         },
         messages:{
             percent:{
-                required: "The field is required!",
-                regexp: 'The completed field does not meet the requirements!'
-            },
-            username:{
                 required: "The field is required!",
                 regexp: 'The completed field does not meet the requirements!'
             },

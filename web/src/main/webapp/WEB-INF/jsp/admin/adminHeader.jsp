@@ -25,6 +25,7 @@
     <div class="welcome">
 
         <h1 align="right">Добро пожаловать, администратор</h1>
+        <a style="text-align: left; font-size: 20px; color: red; margin-left: 30px;" href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 
