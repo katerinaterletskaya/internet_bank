@@ -15,7 +15,7 @@
     <figure>
         <img src="${pageContext.request.contextPath}/resources/images/Logo.png" height="72" width="150">
     </figure>
-    <ul id="nav">
+    <ul id="nav" style="margin-left: 200px;">
         <li>
             <a href="${pageContext.request.contextPath}/login" id="online">Банк онлайн</a>
         </li>
