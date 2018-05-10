@@ -96,8 +96,26 @@ public class UserController {
     }
 
     @RequestMapping(value = "/deposit/plus", method = RequestMethod.POST)
-    public String repayDepositForUser() {
-        return "user/plusDeposit";
+    public String repayDepositForUser(Model model, @RequestParam("fromAccount") String fromAccount,
+                                      @RequestParam("toAccount") String toAccount,
+                                      @RequestParam("sum") BigDecimal sum) {
+        AccountDTO accountFrom = accountService.getCurrentAccountByNumber(fromAccount);
+        AccountDTO accountTo = accountService.getCurrentAccountByNumber(toAccount);
+        if ( accountFrom.getCurrency().equals(accountTo.getCurrency()) ) {
+            if ( accountFrom.getSum().compareTo(sum) == 1 || accountFrom.getSum().compareTo(sum) == 0 ) {
+                BigDecimal sum1 = accountTo.getSum().add(sum);
+                accountService.updateSum(accountTo.getNumber(), sum1);
+                BigDecimal sum2 = accountFrom.getSum().divide(sum);
+                accountService.updateSum(accountFrom.getNumber(), sum2);
+                return "redirect:/user/main";
+            } else {
+                model.addAttribute("error", "На счете недостаточно средств!");
+                return "redirect:/user/deposit/plus";
+            }
+        } else {
+            model.addAttribute("error", "Валюта выбранных счетов не совпадает!");
+            return "redirect:/user/deposit/plus";
+        }
     }
 
     //DepositOperation with loans
@@ -117,7 +135,15 @@ public class UserController {
     }
 
     @RequestMapping(value = "/loans/repay", method = RequestMethod.GET)
-    public String openRepayLoansForUser() {
+    public String openRepayLoansForUser(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> credits = accountService.getAccountForUser((String) session.getAttribute("user"), "CREDIT");
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("credits", credits);
+        return "user/repayLoans";
+    }
+    @RequestMapping(value = "/loans/repay", method = RequestMethod.POST)
+    public String repayLoansForUser() {
         return "user/repayLoans";
     }
 

@@ -5,10 +5,8 @@
 <head>
     <title>Погашение кредита</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
@@ -18,13 +16,15 @@
 <%@ include file="userHeader.jsp" %>
 <div class="content">
     <h1>Погашение кредита</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/user/loans/repay" method="post">
         <table style="width:32%; margin-left:30px;">
             <tr>
                 <td class="label">Со счета:</td>
                 <td>
                     <select id="selectFromAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                        <c:forEach items="${accounts}" var="account">
+                            <option value="${account.currency}">${account.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
@@ -32,13 +32,16 @@
                 <td class="label">На счет:</td>
                 <td>
                     <select id="selectToAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                        <c:forEach items="${credits}" var="credit">
+                            <option value="${credit.currency}">${credit.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td class="label">Сумма:</td>
-                <td><input type="text" id="summa" class="form" name="transactionSumma" style="text-align: right;"><br></td>
+                <td><input type="text" id="summa" class="form" name="transactionSumma" style="text-align: right;"><br>
+                </td>
             </tr>
             <tr>
                 <td class="label">Комиссия:</td>
