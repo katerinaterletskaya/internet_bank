@@ -7,8 +7,6 @@
     <title>Интернет-банк "BSB"</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/admin.css">
-    <%--<script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>--%>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/admin.js"></script>--%>
     <style>
         @font-face {
             font-family: Theano Didot;
@@ -27,7 +25,7 @@
     <div class="welcome">
 
         <h1 align="right">Добро пожаловать, администратор</h1>
-        <a href="${pageContext.request.contextPath}/logout">Выйти</a>
+        <a style="text-align: left; font-size: 20px; color: red; margin-left: 30px;" href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 

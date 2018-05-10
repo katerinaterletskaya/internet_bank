@@ -5,6 +5,6 @@ import terletskayasamuseva.model.Deposit;
 import java.util.List;
 
 public interface DepositDAO extends GenericDAO<Deposit, Long>{
-    List<Deposit> getDepositByParameter(Deposit deposit);
+    Deposit getDepositByParameter(Deposit deposit);
     Deposit getDepositByName(String name);
 }

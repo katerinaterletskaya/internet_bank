@@ -66,22 +66,11 @@ public class UserController {
         accountRequestDTO.setType("CURRENT");
         accountRequestDTO.setCurrency(currency);
         accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
-        return "user/openAccount";
+        return "user/main";
     }
 
 
     //DepositOperation with deposit
-
-    @RequestMapping(value = "/deposit/choose", method = RequestMethod.GET)
-    public String openChooseDeposit() {
-        return "user/chooseDeposit";
-    }
-
-    @RequestMapping(value = "/deposit/choose", method = RequestMethod.POST)
-    public String chooseDeposit(Model model, @ModelAttribute DepositDTO depositDTO) {
-        List<DepositDTO> deposits = depositService.getDepositsByParameter(depositDTO);
-        return "user/chooseDeposit";     //change
-    }
 
     @RequestMapping(value = "/deposit/new", method = RequestMethod.GET)
     public String openCreateDeposit() {
@@ -94,11 +83,20 @@ public class UserController {
         accountRequestDTO.setTelephone(telephone);
         accountRequestDTO.setType("DEPOSIT");
         accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
-        return "user/openDeposit";
+        return "user/main";
     }
 
     @RequestMapping(value = "/deposit/plus", method = RequestMethod.GET)
-    public String openRepayDepositForUser() {
+    public String openRepayDepositForUser(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> deposits = accountService.getAccountForUser((String) session.getAttribute("user"), "DEPOSIT");
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("deposits", deposits);
+        return "user/plusDeposit";
+    }
+
+    @RequestMapping(value = "/deposit/plus", method = RequestMethod.POST)
+    public String repayDepositForUser() {
         return "user/plusDeposit";
     }
 
