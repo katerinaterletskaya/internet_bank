@@ -363,7 +363,26 @@ public class UserController {
     }
 
     @RequestMapping(value = "/payment/history", method = RequestMethod.GET)
-    public String openPaymentHistory() {
+    public String openPaymentHistory(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
+        return "user/paymentHistory";
+    }
+
+    @RequestMapping(value = "/payment/history", method = RequestMethod.POST)
+    public String paymentHistory(HttpSession session, Model model,
+                                 @RequestParam("accountNumber") String accountNumber,
+                                 @RequestParam("day") String day,
+                                 @RequestParam("dateFrom") String dateFrom,
+                                 @RequestParam("dateTo") String dateTo) {
+        logger.info(accountNumber);
+        logger.info(day);
+        logger.info(dateFrom);
+        logger.info(dateTo);
+        if(dateTo==null)
+            logger.info("ok");
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
         return "user/paymentHistory";
     }
 

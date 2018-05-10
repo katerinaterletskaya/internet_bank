@@ -218,6 +218,7 @@ public class AdminController {
                                     @RequestParam("passport") String passport) {
         accountRequest.setType("CURRENT");
         accountService.changeAccountRequestStatus(accountRequest);
+        accountService.addCurrentAccountForUser(passport, accountRequest.getCurrency(), new BigDecimal((0.0)));
         return "redirect:/admin/account/request";
     }
 
