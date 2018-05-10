@@ -145,9 +145,12 @@ $().ready(function(){
         });
     });
 
-    $('#summa').keydown(function () {
-        $('#comission').val($('#summa').val()*0.1);
-        $('#allSumma').val($('#summa').val()-$('#comission').val());
+    $('#summa').change(function () {
+        $('#comission').val(($('#summa').val()*0.1).toFixed(2));
+        var com = $('#comission').val();
+        var s = $('#summa').val()
+        var sAll= parseFloat(com)+parseFloat(s);
+        $('#allSumma').val(sAll.toFixed(2));
     });
 
 

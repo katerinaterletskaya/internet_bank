@@ -50,7 +50,7 @@
             <tr>
                 <td class="label">Логин:</td>
                 <td>
-                    <input type="text" id="login" name="username" class="form">
+                    <input type="email" id="login" name="username" class="form">
                     <c:if test="${usernameError ne null}">
                         <c:out value="${usernameError}"/>
                     </c:if>

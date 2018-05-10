@@ -25,7 +25,9 @@
         <img src="${pageContext.request.contextPath}/resources/images/Logo.png" width="200" height="95">
     </div>
     <div class="welcome">
+
         <h1 align="right">Добро пожаловать, ${sessionScope.fullName}</h1>
+        <a style="text-align: left; font-size: 20px; color: red; margin-left: 30px;" href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 
