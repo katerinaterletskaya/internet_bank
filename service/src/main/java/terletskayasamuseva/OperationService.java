@@ -1,8 +1,6 @@
 package terletskayasamuseva;
 
-import terletskayasamuseva.model.CurrencyKursDTO;
-import terletskayasamuseva.model.Operation;
-import terletskayasamuseva.model.OperationDTO;
+import terletskayasamuseva.model.*;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,4 +10,5 @@ public interface OperationService {
     void changeCurrency(String currency, BigDecimal cost, BigDecimal sale);
     void addNewOperation(OperationDTO operationDTO);
     List<OperationDTO> getOperations(String number);
+    void addTransaction(TransactionDTO transactionDTO, String numberAccount);
 }

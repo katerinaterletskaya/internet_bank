@@ -5,10 +5,8 @@
 <head>
     <title>Перевод между своими счетами</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/reset.css">
-    <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css" type="text/css">--%>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/user.css" type="text/css">
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.2.1.min.js"></script>
-    <%--<script src="${pageContext.request.contextPath}/resources/js/authorization.js"></script>--%>
     <script src="${pageContext.request.contextPath}/resources/js/jquery.validate.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/user.js"></script>
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/images/favicon.ico"
@@ -18,21 +16,25 @@
 <%@ include file="userHeader.jsp" %>
 <div class="content">
     <h1>Перевод между своими счетами</h1>
-    <form style="width:32%;">
+    <form action="${pageContext.request.contextPath}/user/transaction/my" method="post" style="width:32%;">
         <table style="margin-left:30px;">
             <tr>
                 <td class="label">Со счета:</td>
                 <td>
-                    <select id="selectFromAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                    <select id="selectFromAccount" class="form" name="fromAccount" style="width:250px;">
+                        <c:forEach items="${accounts}" var="toAccount">
+                            <option>${toAccount.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
             <tr>
                 <td class="label">На счет:</td>
                 <td>
-                    <select id="selectToAccount" class="form" style="width:250px;">
-                        <option value="BYN">65165165165316</option>
+                    <select id="selectToAccount" class="form" name="toAccount" style="width:250px;">
+                        <c:forEach items="${accounts}" var="toAccount">
+                            <option>${toAccount.number}</option>
+                        </c:forEach>
                     </select>
                 </td>
             </tr>
@@ -52,6 +54,7 @@
                 <td><input type="submit" value="Перевести"></td>
             </tr>
         </table>
+        <input type="hidden" id="hidSumFrom" name="sumFrom">
     </form>
 </div>
 <%@ include file="userFooter.jsp" %>

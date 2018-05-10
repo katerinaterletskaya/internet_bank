@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import terletskayasamuseva.AccountDAO;
 import terletskayasamuseva.OperationDAO;
-import terletskayasamuseva.model.Account;
-import terletskayasamuseva.model.AccountType;
-import terletskayasamuseva.model.Currency;
-import terletskayasamuseva.model.Operation;
+import terletskayasamuseva.model.*;
 
 import java.util.List;
 
@@ -29,5 +26,10 @@ public class OperationDAOImpl extends GenericDAOImpl<Operation, Long> implements
     public List<Operation> getOperations(String number) {
         return (List<Operation>) getSession().createQuery("from Operation as o where o.account.number=:number")
                 .setParameter("number", number).list();
+    }
+
+    @Override
+    public Long saveTransaction(Transaction entity) {
+        return (Long) getSession().save(entity);
     }
 }

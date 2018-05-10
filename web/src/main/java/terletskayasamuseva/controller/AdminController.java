@@ -218,7 +218,6 @@ public class AdminController {
                                     @RequestParam("passport") String passport) {
         accountRequest.setType("CURRENT");
         accountService.changeAccountRequestStatus(accountRequest);
-        accountService.addCurrentAccountForUser(passport, accountRequest.getCurrency(), new BigDecimal((0.0)));
         return "redirect:/admin/account/request";
     }
 
@@ -274,9 +273,10 @@ public class AdminController {
     public String registrationUser(@ModelAttribute UserDTO user, Model model) {
         if ( userService.getUserByEmail(user.getUsername()) != null ) {
             model.addAttribute("usernameError", "Пользователь с таким адресом уже существует!");
+            return "admin/registrationUser";
         } else {
             userService.save(user);
+            return "redirect:/admin/main";
         }
-        return "admin/registrationUser";
     }
 }

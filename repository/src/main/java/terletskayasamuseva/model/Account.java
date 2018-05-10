@@ -34,6 +34,8 @@ public class Account implements Serializable {
     private UserInformation user;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
     private Collection<Operation> operations;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "account", cascade = CascadeType.ALL)
+    private Collection<Transaction> transactions;
 
     public Long getId() {
         return id;
@@ -105,6 +107,14 @@ public class Account implements Serializable {
 
     public void setOperations(Collection<Operation> operations) {
         this.operations = operations;
+    }
+
+    public Collection<Transaction> getTransactions() {
+        return transactions;
+    }
+
+    public void setTransactions(Collection<Transaction> transactions) {
+        this.transactions = transactions;
     }
 
     @Override

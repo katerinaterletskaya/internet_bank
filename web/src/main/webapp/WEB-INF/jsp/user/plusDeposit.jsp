@@ -22,15 +22,15 @@
                 <td class="label">Со счета:</td>
                 <td>
                     <select id="selectFromAccount" class="form" name="fromAccount" style="width:250px;">
-                        <c:forEach items="${accounts}" var="account">
-                            <option>${account.number}</option>
+                        <c:forEach items="${accounts}" var="toAccount">
+                            <option>${toAccount.number}</option>
                         </c:forEach>
                     </select>
                 </td>
             </tr>
             <c:if test="${error ne null}">
                 <tr>
-                    <h3 style="color: red"><c:out value="${error}"/></h3>
+                    <h3 style="color: red">${error}</h3>
                 </tr>
             </c:if>
             <tr>
@@ -61,7 +61,7 @@
                 <td><input type="submit" value="Оплатить"></td>
             </tr>
         </table>
-        <input type="hidden" id="hidSum" name="sum">
+        <input type="hidden" id="hidSumFrom" name="sumFrom">
     </form>
 </div>
 <%@ include file="userFooter.jsp" %>
