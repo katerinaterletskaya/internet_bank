@@ -151,6 +151,7 @@ $().ready(function(){
         var s = $('#summa').val()
         var sAll= parseFloat(com)+parseFloat(s);
         $('#allSumma').val(sAll.toFixed(2));
+        $('#hidSumFrom').val(sAll.toFixed(2));
     });
 
 

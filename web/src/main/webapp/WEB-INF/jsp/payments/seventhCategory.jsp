@@ -26,7 +26,7 @@
             <tr>
                 <td class="label">Со счета:</td>
                 <td>
-                    <select id="selectFromAccount" name="account" class="form" style="width:250px;">
+                    <select id="selectFromAccount" name="toAccount" class="form" style="width:250px;">
                         <c:forEach items="${numbers}" var="number">
                             <option>${number.number}</option>
                         </c:forEach>

@@ -69,7 +69,7 @@
                             <td><input type="submit" value="Пополнить"></td>
                         </tr>
                     </table>
-                    <input type="hidden" name="number" id="account">
+                    <input type="hidden" name="number" id="toAccount">
                 </form>
             </c:if>
         </c:otherwise>

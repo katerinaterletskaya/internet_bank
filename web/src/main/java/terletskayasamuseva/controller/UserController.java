@@ -96,7 +96,33 @@ public class UserController {
     }
 
     @RequestMapping(value = "/deposit/plus", method = RequestMethod.POST)
-    public String repayDepositForUser() {
+    public String repayDepositForUser(Model model, HttpSession session,
+                                      @RequestParam("fromAccount") String fromAccount,
+                                      @RequestParam("toAccount") String toAccount,
+                                      @RequestParam("transactionSumma") BigDecimal sum,
+                                      @RequestParam("sumFrom") BigDecimal sumFrom) {
+        UserDTO user = userService.getUserByEmail((String) session.getAttribute("user"));
+        AccountDTO accountFrom = accountService.getCurrentAccountByNumber(fromAccount);
+        AccountDTO accountTo = accountService.getCurrentAccountByNumber(toAccount);
+        if ( accountFrom.getCurrency().equals(accountTo.getCurrency()) ) {
+            if ( accountFrom.getSum().compareTo(sumFrom) == 1 || accountFrom.getSum().compareTo(sumFrom) == 0 ) {
+                BigDecimal sum1 = accountTo.getSum().add(sum);
+                accountService.updateSum(accountTo.getNumber(), sum1);
+                BigDecimal sum2 = accountFrom.getSum().subtract(sumFrom);
+                accountService.updateSum(accountFrom.getNumber(), sum2);
+                TransactionDTO transactionDTO = new TransactionDTO(accountFrom.getCurrency(), sumFrom, toAccount, user.getSurname());
+                operationService.addTransaction(transactionDTO, fromAccount);
+                return "redirect:/user/main";
+            } else {
+                model.addAttribute("error", "На счете недостаточно средств!");
+            }
+        } else {
+            model.addAttribute("error", "Валюта выбранных счетов не совпадает!");
+        }
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> deposits = accountService.getAccountForUser((String) session.getAttribute("user"), "DEPOSIT");
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("deposits", deposits);
         return "user/plusDeposit";
     }
 
@@ -117,7 +143,42 @@ public class UserController {
     }
 
     @RequestMapping(value = "/loans/repay", method = RequestMethod.GET)
-    public String openRepayLoansForUser() {
+    public String openRepayLoansForUser(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> credits = accountService.getAccountForUser((String) session.getAttribute("user"), "CREDIT");
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("credits", credits);
+        return "user/repayLoans";
+    }
+
+    @RequestMapping(value = "/loans/repay", method = RequestMethod.POST)
+    public String repayLoansForUser(Model model, HttpSession session,
+                                    @RequestParam("fromAccount") String fromAccount,
+                                    @RequestParam("toAccount") String toAccount,
+                                    @RequestParam("transactionSumma") BigDecimal sum,
+                                    @RequestParam("sumFrom") BigDecimal sumFrom) {
+        UserDTO user = userService.getUserByEmail((String) session.getAttribute("user"));
+        AccountDTO accountFrom = accountService.getCurrentAccountByNumber(fromAccount);
+        AccountDTO accountTo = accountService.getCurrentAccountByNumber(toAccount);
+        if ( accountFrom.getCurrency().equals(accountTo.getCurrency()) ) {
+            if ( accountFrom.getSum().compareTo(sumFrom) == 1 || accountFrom.getSum().compareTo(sumFrom) == 0 ) {
+                BigDecimal sum1 = accountTo.getSum().subtract(sum);
+                accountService.updateSum(accountTo.getNumber(), sum1);
+                BigDecimal sum2 = accountFrom.getSum().subtract(sumFrom);
+                accountService.updateSum(accountFrom.getNumber(), sum2);
+                TransactionDTO transactionDTO = new TransactionDTO(accountFrom.getCurrency(), sumFrom, toAccount, user.getSurname());
+                operationService.addTransaction(transactionDTO, fromAccount);
+                return "redirect:/user/main";
+            } else {
+                model.addAttribute("error", "На счете недостаточно средств!");
+            }
+        } else {
+            model.addAttribute("error", "Валюта выбранных счетов не совпадает!");
+        }
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        List<AccountDTO> credits = accountService.getAccountForUser((String) session.getAttribute("user"), "CREDIT");
+        model.addAttribute("accounts", accounts);
+        model.addAttribute("credits", credits);
         return "user/repayLoans";
     }
 
@@ -172,17 +233,68 @@ public class UserController {
     //DepositOperation with transaction
 
     @RequestMapping(value = "/transaction/my", method = RequestMethod.GET)
-    public String openTransactionMyAccount() {
+    public String openTransactionMyAccount(HttpSession session, Model model) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
         return "user/transactionMyAccount";
     }
 
-    @RequestMapping(value = "/transaction/currency", method = RequestMethod.GET)
-    public String openChangeCurrency() {
-        return "user/changeCurrency";
+    @RequestMapping(value = "/transaction/my", method = RequestMethod.POST)
+    public String transactionMyAccount(Model model, HttpSession session,
+                                       @RequestParam("fromAccount") String fromAccount,
+                                       @RequestParam("toAccount") String toAccount,
+                                       @RequestParam("transactionSumma") BigDecimal sum,
+                                       @RequestParam("sumFrom") BigDecimal sumFrom) {
+        UserDTO user = userService.getUserByEmail((String) session.getAttribute("user"));
+        AccountDTO accountFrom = accountService.getCurrentAccountByNumber(fromAccount);
+        AccountDTO accountTo = accountService.getCurrentAccountByNumber(toAccount);
+        if ( !accountFrom.getNumber().equals(accountTo.getNumber()) ) {
+            if ( accountFrom.getCurrency().equals(accountTo.getCurrency()) ) {
+                if ( accountFrom.getSum().compareTo(sumFrom) == 1 || accountFrom.getSum().compareTo(sumFrom) == 0 ) {
+                    BigDecimal sum1 = accountTo.getSum().add(sum);
+                    accountService.updateSum(accountTo.getNumber(), sum1);
+                    BigDecimal sum2 = accountFrom.getSum().subtract(sumFrom);
+                    accountService.updateSum(accountFrom.getNumber(), sum2);
+                    TransactionDTO transactionDTO = new TransactionDTO(accountFrom.getCurrency(), sumFrom, toAccount, user.getSurname());
+                    operationService.addTransaction(transactionDTO, fromAccount);
+                    return "redirect:/user/main";
+                } else {
+                    model.addAttribute("error", "На счете недостаточно средств!");
+                }
+            } else {
+                model.addAttribute("error", "Валюта выбранных счетов не совпадает!");
+            }
+            List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+            model.addAttribute("accounts", accounts);
+            return "user/transactionMyAccount";
+        } else
+            return "redirect:/user/main";
     }
 
     @RequestMapping(value = "/transaction/other", method = RequestMethod.GET)
-    public String openTransactionOtherClient() {
+    public String openTransactionOtherClient(Model model, HttpSession session) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
+        return "user/transactionOtherClient";
+    }
+
+    @RequestMapping(value = "/transaction/other", method = RequestMethod.POST)
+    public String transactionOtherClient(HttpSession session, Model model,
+                                         @RequestParam("fromAccount") String fromAccount,
+                                         @RequestParam("toAccount") String toAccount,
+                                         @RequestParam("surname") String surname,
+                                         @RequestParam("sumFrom") BigDecimal sumFrom) {
+        AccountDTO accountFrom = accountService.getCurrentAccountByNumber(fromAccount);
+        if ( accountFrom.getSum().compareTo(sumFrom) == 1 || accountFrom.getSum().compareTo(sumFrom) == 0 ) {
+            BigDecimal sum = accountFrom.getSum().subtract(sumFrom);
+            accountService.updateSum(accountFrom.getNumber(), sum);
+            TransactionDTO transactionDTO = new TransactionDTO(accountFrom.getCurrency(), sumFrom, toAccount, surname);
+            operationService.addTransaction(transactionDTO, fromAccount);
+            return "redirect:/user/main";
+        } else
+            model.addAttribute("error", "На счете недостаточно средств!");
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
         return "user/transactionOtherClient";
     }
 

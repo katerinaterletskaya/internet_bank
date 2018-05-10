@@ -58,7 +58,7 @@
             </ul>
         </li>
         <li>
-            <a href="#" id="account">Счета</a>
+            <a href="#" id="toAccount">Счета</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/admin/account/open" id="openAccount">Открыть счет ФЛ</a></li>
                 <li><a href="${pageContext.request.contextPath}/admin/account/plus" id="plusAccount">Пополнить счет ФЛ</a></li>

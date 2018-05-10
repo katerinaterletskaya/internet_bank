@@ -257,4 +257,25 @@ public class Converter {
         } else
             return null;
     }
+
+    public static Transaction convert(TransactionDTO transactionDTO) {
+        if ( transactionDTO != null ) {
+            Transaction transaction = new Transaction();
+            if ( transactionDTO.getCurrency() != null ) {
+                if ( transactionDTO.getCurrency().equals(Currency.USD.name()) )
+                    transaction.setCurrency(Currency.USD);
+                else if ( transactionDTO.getCurrency().equals(Currency.EUR.name()) )
+                    transaction.setCurrency(Currency.EUR);
+                else if ( transactionDTO.getCurrency().equals(Currency.RUB.name()) )
+                    transaction.setCurrency(Currency.RUB);
+                else if ( transactionDTO.getCurrency().equals(Currency.BYN.name()) )
+                    transaction.setCurrency(Currency.BYN);
+            }
+            transaction.setSum(transactionDTO.getSum());
+            transaction.setSurname(transactionDTO.getSurname());
+            transaction.setToAccount(transactionDTO.getToAccount());
+            return transaction;
+        } else
+            return null;
+    }
 }

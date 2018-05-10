@@ -60,7 +60,6 @@
             <a href="#">Переводы</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/user/transaction/my" id="transactionMyAccount">Перевод между своими счетами</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/transaction/currency" id="changeCurrency">Обмен валют</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/transaction/other" id="transactionOtherClient">Перевод денег другому клиенту</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/transaction/history" id="transactionHistory">История переводов</a></li>
             </ul>

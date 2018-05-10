@@ -69,10 +69,20 @@ public class OperationServiceImpl implements OperationService {
         }
         for (Operation operation : operationDAO.getOperations(number)) {
             for (OperationDTO operationDTO : operationList) {
-                if(operationDTO.getPaymentCategory().equals(operation.getPayment().getCategory().getName()))
+                if ( operationDTO.getPaymentCategory().equals(operation.getPayment().getCategory().getName()) )
                     operationDTO.setSum(operationDTO.getSum().add(operation.getSum()));
             }
         }
         return operationList;
+    }
+
+    @Override
+    public void addTransaction(TransactionDTO transactionDTO, String numberAccount) {
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        Account account = accountDAO.getCurrentAccountByNumber(numberAccount);
+        Transaction transaction = Converter.convert(transactionDTO);
+        transaction.setDate(Date.valueOf(ft.format(new java.util.Date())));
+        transaction.setAccount(account);
+        operationDAO.saveTransaction(transaction);
     }
 }
