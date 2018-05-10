@@ -182,6 +182,29 @@ public class AdminController {
         return "admin/plusAccount";
     }
 
+    @RequestMapping(value = "/account/plus", method = RequestMethod.POST)
+    public String findNumberAccount(Model model,
+                                    @RequestParam("passport") String passport) {
+        if ( userService.findUserByPassport(passport) ) {
+            List<String> numbers = accountService.getNumberAccountForUser(passport);
+            if ( numbers.size() == 0 )
+                model.addAttribute("info", "У данного пользователя нет текущих счетов!");
+            else
+                model.addAttribute("numbers", numbers);
+        } else
+            model.addAttribute("error", "Пользователь не найден!");
+        return "admin/plusAccount";
+    }
+
+    @RequestMapping(value = "/account/plus/sum", method = RequestMethod.POST)
+    public String addSumToAccount(@RequestParam("accountNumber") String number,
+                                  @RequestParam("minSum") BigDecimal sum) {
+        AccountDTO account = accountService.getCurrentAccountByNumber(number);
+        BigDecimal sum1 = account.getSum().add(sum);
+        accountService.updateSum(account.getNumber(), sum1);
+        return "redirect:/admin/main";
+    }
+
 
     @RequestMapping(value = "/account/request", method = RequestMethod.GET)
     public String openAccountRequest(Model model) {
@@ -191,11 +214,12 @@ public class AdminController {
     }
 
     @RequestMapping(value = "/account/request", method = RequestMethod.POST)
-    public String RequestForAccount(Model model, @RequestParam("passport") String passport) {
-        List<String> numbers = accountService.getNumberAccountForUser(passport);
-        model.addAttribute("numbers", numbers);
-        model.addAttribute("passport", passport);
-        return "admin/openCurrentAccount";
+    public String RequestForAccount(@ModelAttribute AccountRequestDTO accountRequest,
+                                    @RequestParam("passport") String passport) {
+        accountRequest.setType("CURRENT");
+        accountService.changeAccountRequestStatus(accountRequest);
+        accountService.addCurrentAccountForUser(passport, accountRequest.getCurrency(), new BigDecimal((0.0)));
+        return "redirect:/admin/account/request";
     }
 
     //DepositOperation with transaction
@@ -219,7 +243,6 @@ public class AdminController {
         operationService.changeCurrency("RUB", costRUB, saleRUB);
         return "redirect:/admin/kurs";
     }
-
 
     //DepositOperation with users
 
@@ -256,5 +279,4 @@ public class AdminController {
         }
         return "admin/registrationUser";
     }
-
 }

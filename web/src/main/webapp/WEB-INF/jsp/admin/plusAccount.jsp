@@ -24,50 +24,56 @@
 <%@ include file="adminHeader.jsp" %>
 <div class="content">
     <h1>Пополнить счет клиенту</h1>
-    <form>
+    <form action="${pageContext.request.contextPath}/admin/account/plus" method="post">
         <table style="width:37%; margin-left:30px;">
             <tr>
                 <td class="label">Номер паспорта:</td>
                 <td><input type="text" id="passportNumber" name="passport" class="form"></td>
-                <td><input type="submit" value="Поиск счетов" onclick="$('#accountForm').css({'visibility': 'visible'})"></td>
+                <td><input type="submit" value="Поиск счетов"></td>
             </tr>
         </table>
     </form>
-
-    <form  style="visibility: hidden; margin-top: 15px;" id="accountForm">
-        <table style="width:45%; margin-left:30px;">
-            <tr>
-                <td class="label">Счет:</td>
-                <td>
-                    <select id="selectAccount" class="form" style="width:250px;" onclick="$('#summaForm').css({'visibility': 'visible'});">
-                        <option value="BYN">65165165165316</option>
-                        <option value="klk">dvsd5316</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    </form>
-
-    <form  style="visibility: hidden; margin-top: 15px;" id="summaForm">
-        <table style="width:37%; margin-left:30px;">
-            <tr>
-                <td class="label">Сумма:</td>
-                <td><input type="text" id="summa" name="minSum" class="form" style="text-align: right;"></td>
-            </tr>
-            <tr>
-                <td class="label">Комиссия:</td>
-                <td><input type="text" id="comission" class="form" disabled style="text-align: right;"></td>
-            </tr>
-            <tr>
-                <td class="label">Общая сумма:</td>
-                <td><input type="text" id="allSumma" class="form" disabled style="text-align: right;"></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Пополнить"></td>
-            </tr>
-        </table>
-    </form>
-
+    <c:choose>
+        <c:when test="${error ne null}">
+            <h3 style="color: red;"><c:out value="${error}"/></h3>
+        </c:when>
+        <c:otherwise>
+            <c:if test="${numbers ne null}">
+                <form action="${pageContext.request.contextPath}/admin/account/plus/sum" method="post" style=" margin-top: 15px;" id="accountForm">
+                    <table style="width:45%; margin-left:30px;">
+                        <tr>
+                            <td class="label">Счет:</td>
+                            <td>
+                                <select id="selectAccount" class="form" name="accountNumber" style="width:250px;">
+                                    <c:forEach items="${numbers}" var="number">
+                                        <option>${number}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                    <table style="width:37%; margin-left:30px;">
+                        <tr>
+                            <td class="label">Сумма:</td>
+                            <td><input type="text" id="summa" name="minSum" class="form" style="text-align: right;"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Комиссия:</td>
+                            <td><input type="text" id="comission" class="form" disabled style="text-align: right;"></td>
+                        </tr>
+                        <tr>
+                            <td class="label">Общая сумма:</td>
+                            <td><input type="text" id="allSumma" class="form" disabled style="text-align: right;"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Пополнить"></td>
+                        </tr>
+                    </table>
+                    <input type="hidden" name="number" id="account">
+                </form>
+            </c:if>
+        </c:otherwise>
+    </c:choose>
 </div>
 <%@ include file="../user/userFooter.jsp" %>
 </body>

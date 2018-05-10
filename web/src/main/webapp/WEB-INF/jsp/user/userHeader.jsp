@@ -26,7 +26,6 @@
     </div>
     <div class="welcome">
         <h1 align="right">Добро пожаловать, ${sessionScope.fullName}</h1>
-        <a href="${pageContext.request.contextPath}/logout">Выйти</a>
     </div>
 </div>
 
@@ -52,7 +51,6 @@
             <a href="#" id="myDeposit">Мои депозиты</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/user/deposit/new" id="openDeposit">Открыть депозит</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/deposit/choose" id="chooseDeposit">Подобрать депозит</a></li>
                 <li><a href="${pageContext.request.contextPath}/user/deposit/plus" id="plusDeposit">Пополнить депозит</a></li>
             </ul>
         </li>
