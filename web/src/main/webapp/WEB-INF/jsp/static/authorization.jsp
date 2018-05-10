@@ -18,7 +18,7 @@
         <figure>
             <img src="${pageContext.request.contextPath}/resources/images/Logo.png" height="72" width="150">
         </figure>
-        <ul class="clearfix">
+        <ul class="clearfix" style="margin-left: 250px;">
             <li><a href="${pageContext.request.contextPath}/" id="main">Главная</a></li>
         </ul>
     </div>

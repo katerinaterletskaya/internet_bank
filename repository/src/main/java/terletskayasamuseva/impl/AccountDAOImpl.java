@@ -65,4 +65,5 @@ public class AccountDAOImpl extends GenericDAOImpl<Account, Long> implements Acc
         getSession().update(account);
         account.setSum(sum);
     }
+
 }
