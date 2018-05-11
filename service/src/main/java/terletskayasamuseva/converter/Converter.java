@@ -252,7 +252,8 @@ public class Converter {
             operationDTO.setCurrency(operation.getCurrency().name());
             operationDTO.setSum(operation.getSum());
             operationDTO.setPaymentCategory(operation.getPayment().getCategory().getName());
-            operation.setSum(operationDTO.getSum());
+            operationDTO.setDate(operation.getDate());
+            operationDTO.setPaymentName(operation.getPayment().getName());
             return operationDTO;
         } else
             return null;
@@ -275,6 +276,19 @@ public class Converter {
             transaction.setSurname(transactionDTO.getSurname());
             transaction.setToAccount(transactionDTO.getToAccount());
             return transaction;
+        } else
+            return null;
+    }
+
+    public static TransactionDTO convert(Transaction transaction) {
+        if ( transaction != null ) {
+            TransactionDTO transactionDTO = new TransactionDTO();
+            transactionDTO.setDate(transaction.getDate());
+            transactionDTO.setCurrency(transaction.getCurrency().name());
+            transactionDTO.setSum(transaction.getSum());
+            transactionDTO.setSurname(transaction.getSurname());
+            transactionDTO.setToAccount(transaction.getToAccount());
+            return transactionDTO;
         } else
             return null;
     }

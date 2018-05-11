@@ -10,6 +10,7 @@ import terletskayasamuseva.model.*;
 
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class UserController {
         accountRequestDTO.setType("CURRENT");
         accountRequestDTO.setCurrency(currency);
         accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
-        return "user/main";
+        return "redirect:/user/main";
     }
 
 
@@ -83,7 +84,7 @@ public class UserController {
         accountRequestDTO.setTelephone(telephone);
         accountRequestDTO.setType("DEPOSIT");
         accountService.addAccountRequest(accountRequestDTO, (String) session.getAttribute("user"));
-        return "user/main";
+        return "redirect:/user/main";
     }
 
     @RequestMapping(value = "/deposit/plus", method = RequestMethod.GET)
@@ -299,7 +300,23 @@ public class UserController {
     }
 
     @RequestMapping(value = "/transaction/history", method = RequestMethod.GET)
-    public String openTransactionHistory() {
+    public String openTransactionHistory(Model model, HttpSession session) {
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
+        return "user/transactionHistory";
+    }
+
+    @RequestMapping(value = "/transaction/history", method = RequestMethod.POST)
+    public String openTransactionHistory(Model model, HttpSession session,
+                                         @RequestParam("accountNumber") String accountNumber,
+                                         @RequestParam("day") String day,
+                                         @RequestParam("dateFrom") String dateFrom,
+                                         @RequestParam("dateTo") String dateTo) {
+
+        List<TransactionDTO> transactions = operationService.getTransactionsWithParameter(accountNumber, dateFrom, dateTo, day);
+        model.addAttribute("transactions", transactions);
+        List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
+        model.addAttribute("accounts", accounts);
         return "user/transactionHistory";
     }
 
@@ -321,6 +338,7 @@ public class UserController {
                 if ( userService.getUserByEmail(newLogin) == null ) {
                     userService.updateUsername(username, newLogin);
                     session.setAttribute("user", newLogin);
+                    return "redirect:/user/main";
                 } else
                     model.addAttribute("errorNewLogin", "*Логин занят");
             } else
@@ -342,9 +360,10 @@ public class UserController {
                                  @RequestParam("proofPassword") String proofPassword) {
         String username = (String) session.getAttribute("user");
         if ( userService.findUser(username, currentPassword) ) {
-            if ( newPassword.equals(proofPassword) )
+            if ( newPassword.equals(proofPassword) ) {
                 userService.updatePassword(username, newPassword);
-            else
+                return "redirect:/user/main";
+            } else
                 model.addAttribute("errorNewPassword", "*Пароли не совпадают");
         } else {
             model.addAttribute("errorCurrentPassword", "*Неверный текущий пароль");
@@ -375,12 +394,9 @@ public class UserController {
                                  @RequestParam("day") String day,
                                  @RequestParam("dateFrom") String dateFrom,
                                  @RequestParam("dateTo") String dateTo) {
-        logger.info(accountNumber);
-        logger.info(day);
-        logger.info(dateFrom);
-        logger.info(dateTo);
-        if(dateTo==null)
-            logger.info("ok");
+
+        List<OperationDTO> operations = operationService.getOperationsWithParameter(accountNumber, dateFrom, dateTo, day);
+        model.addAttribute("operations", operations);
         List<AccountDTO> accounts = accountService.getAccountForUser((String) session.getAttribute("user"), "CURRENT");
         model.addAttribute("accounts", accounts);
         return "user/paymentHistory";
@@ -425,6 +441,7 @@ public class UserController {
     @RequestMapping(value = "/payment/ERIP/internet", method = RequestMethod.POST)
     public String addSecondCategory(@ModelAttribute OperationDTO operationDTO,
                                     Model model, HttpSession session) {
+        logger.info(operationDTO.toString());
         AccountDTO account = accountService.getCurrentAccountByNumber(operationDTO.getAccount());
         int flag = account.getSum().compareTo(operationDTO.getSum());
         if ( flag == 1 || flag == 0 ) {
@@ -603,6 +620,4 @@ public class UserController {
             return "payments/eighthCategory";
         }
     }
-
-
 }

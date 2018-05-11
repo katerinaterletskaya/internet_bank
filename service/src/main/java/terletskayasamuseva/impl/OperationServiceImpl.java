@@ -85,4 +85,70 @@ public class OperationServiceImpl implements OperationService {
         transaction.setAccount(account);
         operationDAO.saveTransaction(transaction);
     }
+
+    @Override
+    public List<OperationDTO> getOperationsWithParameter(String number, String firstDate, String secondDate, String date) {
+        List<OperationDTO> operations = new ArrayList<>();
+        List<Operation> operationList;
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        if ( date.equals("today") ) {
+            operationList = operationDAO.getOperationForThisDay(Date.valueOf(ft.format(new java.util.Date())), number);
+        } else if ( date.equals("month") ) {
+            Date date1 = Date.valueOf(ft.format(new java.util.Date()));
+            String[] split = date1.toString().split("-");
+            Date date2 = Date.valueOf(split[0] + "-" + split[1] + "-01");
+            operationList = operationDAO.getOperationWithParameter(date2, date1, number);
+        } else {
+            if ( !firstDate.equals("") && secondDate.equals("") ) {
+                Date date1 = Date.valueOf(firstDate);
+                operationList = operationDAO.getOperationAfterDay(date1, number);
+            } else if ( firstDate.equals("") && !secondDate.equals("") ) {
+                Date date2 = Date.valueOf(secondDate);
+                operationList = operationDAO.getOperationUtilDay(date2, number);
+            } else if ( !firstDate.equals("") && !secondDate.equals("") ) {
+                Date date1 = Date.valueOf(firstDate);
+                Date date2 = Date.valueOf(secondDate);
+                operationList = operationDAO.getOperationWithParameter(date1, date2, number);
+            } else {
+                operationList = operationDAO.getOperations(number);
+            }
+        }
+        for (Operation operation : operationList) {
+            operations.add(Converter.convert(operation));
+        }
+        return operations;
+    }
+
+    @Override
+    public List<TransactionDTO> getTransactionsWithParameter(String number, String firstDate, String secondDate, String date) {
+        List<TransactionDTO> transactions = new ArrayList<>();
+        List<Transaction> transactionList;
+        SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd");
+        if ( date.equals("today") ) {
+            transactionList = operationDAO.getTransactionForThisDay(Date.valueOf(ft.format(new java.util.Date())), number);
+        } else if ( date.equals("month") ) {
+            Date date1 = Date.valueOf(ft.format(new java.util.Date()));
+            String[] split = date1.toString().split("-");
+            Date date2 = Date.valueOf(split[0] + "-" + split[1] + "-01");
+            transactionList = operationDAO.getTransactionWithParameter(date2, date1, number);
+        } else {
+            if ( !firstDate.equals("") && secondDate.equals("") ) {
+                Date date1 = Date.valueOf(firstDate);
+                transactionList = operationDAO.getTransactionAfterDay(date1, number);
+            } else if ( firstDate.equals("") && !secondDate.equals("") ) {
+                Date date2 = Date.valueOf(secondDate);
+                transactionList = operationDAO.getTransactionUtilDay(date2, number);
+            } else if ( !firstDate.equals("") && !secondDate.equals("") ) {
+                Date date1 = Date.valueOf(firstDate);
+                Date date2 = Date.valueOf(secondDate);
+                transactionList = operationDAO.getTransactionWithParameter(date1, date2, number);
+            } else {
+                transactionList = operationDAO.getAllTransaction(number);
+            }
+        }
+        for (Transaction transaction : transactionList) {
+            transactions.add(Converter.convert(transaction));
+        }
+        return transactions;
+    }
 }

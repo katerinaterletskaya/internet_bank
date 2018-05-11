@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface PaymentDAO extends GenericDAO<Payment, Long>{
     List<PaymentCategory> getAll();
+
 }

@@ -70,8 +70,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-        </tr>
+        <c:forEach items="${operations}" var="operation">
+            <tr>
+                <td>${operation.date}</td>
+                <td>${operation.paymentName}</td>
+                <td>${operation.sum}</td>
+            </tr>
+        </c:forEach>
         </tbody>
     </table>
 </div>
