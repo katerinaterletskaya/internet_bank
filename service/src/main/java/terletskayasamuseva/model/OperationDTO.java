@@ -12,6 +12,7 @@ public class OperationDTO {
     private String account;
     private String paymentCategory;
     private Long payment;
+    private String paymentName;
 
 
     public Long getId() {
@@ -68,6 +69,14 @@ public class OperationDTO {
 
     public void setPayment(Long payment) {
         this.payment = payment;
+    }
+
+    public String getPaymentName() {
+        return paymentName;
+    }
+
+    public void setPaymentName(String paymentName) {
+        this.paymentName = paymentName;
     }
 
     @Override

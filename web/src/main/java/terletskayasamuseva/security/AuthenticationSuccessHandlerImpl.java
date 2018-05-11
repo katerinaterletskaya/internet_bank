@@ -43,7 +43,6 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
         }
         HttpSession session = request.getSession();
         session.setAttribute("user", authentication.getName());
-        logger.info(session.getAttribute("user"));
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
@@ -53,7 +52,6 @@ public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHa
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (GrantedAuthority grantedAuthority : authorities) {
-            logger.info(grantedAuthority);
             if ( grantedAuthority.getAuthority().equals(Role.ROLE_USER.name()) ) {
                 isUser = true;
                 break;

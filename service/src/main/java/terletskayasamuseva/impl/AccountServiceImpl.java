@@ -73,7 +73,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public Integer getNumberAccountForUser(String username, String type) {
         AccountType type1 = AccountType.valueOf(type);
-        logger.info(type1);
         List<Account> accountList = accountDAO.getAccountForUser(username, type1);
         return accountList.size();
     }
@@ -81,7 +80,6 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public List<AccountDTO> getAccountForUser(String username, String type) {
         AccountType type1 = AccountType.valueOf(type);
-        logger.info(type1);
         List<Account> accountList = accountDAO.getAccountForUser(username, type1);
         List<AccountDTO> accounts = new ArrayList<>();
         for (Account account : accountList) {
